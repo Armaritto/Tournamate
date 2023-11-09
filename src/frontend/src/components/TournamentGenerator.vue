@@ -4,223 +4,55 @@
     <title>TournaMate - Swiss Tournament</title>
   </head>
   <body>
-  <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute">
-  <br>
-  <br>
-  <div class="header">
-    <a class="logo">TournaMate</a>
-    <div class="header-right header-rightHovered">
-      <lord-icon class = "icon"
-                 src="https://cdn.lordicon.com/kthelypq.json"
-                 trigger="hover"
-                 style="width:50px;height:50px">
-      </lord-icon>
+  <div :style="{ width: playerWidth + 'px' }">
+    <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
+    <br>
+    <br>
+    <div class="header">
+      <a class="logo">TournaMate</a>
+      <div class="header-right header-rightHovered">
+        <lord-icon class = "icon" @click = gotoProfile();
+                   src="https://cdn.lordicon.com/kthelypq.json"
+                   trigger="hover"
+                   style="width:50px;height:50px">
+        </lord-icon>
+      </div>
+      <div class="header-right header-rightHovered">
+        <div class="active"
+        @click = gotoAbout();
+        >
+          About
+        </div>
+      </div>
     </div>
-    <div class="header-right header-rightHovered">
-      <a class="active">
-        About
-      </a>
+    <hr style="margin-top: 100px">
+    <div class="title">
+      Lorem Ipsum
     </div>
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <hr>
-  <div class="title">
-    Lorem Ipsum
-  </div>
-  <div class="content">
-    <table>
-      <tr>
-        <th>Rank</th>
-        <th>Team Name</th>
-        <th>Points</th>
-        <th>Win</th>
-        <th>Draw</th>
-        <th>Lose</th>
-      </tr>
-      <!-- Repeat this row for each team -->
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr><tr>
-      <td>1</td>
-      <td>Team E</td>
-      <td>25</td>
-      <td>24</td>
-      <td>20</td>
-      <td>17</td>
-    </tr><tr>
-      <td>1</td>
-      <td>Team E</td>
-      <td>25</td>
-      <td>24</td>
-      <td>20</td>
-      <td>17</td>
-    </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-
-
-
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Team E</td>
-        <td>25</td>
-        <td>24</td>
-        <td>20</td>
-        <td>17</td>
-      </tr>
-
-      <!-- ... -->
-    </table>
+    <div class="content">
+      <table class="my-table">
+        <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Team Name</th>
+          <th>Points</th>
+          <th>Win</th>
+          <th>Draw</th>
+          <th>Lose</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(team, index) in teams" :key="index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ team.name }}</td>
+          <td>{{ team.points }}</td>
+          <td>{{ team.win }}</td>
+          <td>{{ team.draw }}</td>
+          <td>{{ team.lose }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   </body>
 </template>
@@ -229,7 +61,28 @@
 <script>
 import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+let screenWidth = ref(window.innerWidth);
 
+computed(() => {
+  if (screenWidth.value <= 3840) {
+    return screenWidth.value - 10;
+  } else {
+    return 3840;
+  }
+});
+
+function handleResize() {
+  screenWidth.value = window.innerWidth;
+}
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize);
+});
 // define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
 
@@ -238,10 +91,35 @@ export default {
   name: 'TournamentGenerator',
   data(){
     return{
-      Elements: ['Frontend','Backend'],
+      roomName: '',
+      fantasyScore: '',
+      teams: [
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+      ],
+      screenWidth: window.innerWidth,
     }
   },
   methods:{
+    gotoAbout(){
+      helloMsg = 'About';
+    },
+    gotoProfile(){
+      helloMsg = 'Profile';
+    },
     action(n){
       helloMsg = n
       callBackend();
@@ -313,7 +191,7 @@ body {
   display: flex;
   justify-content: center;
   padding-top: 20px;
-
+  padding-bottom: 40px;
 }
 ////////////////////////////
 .header {
@@ -321,6 +199,7 @@ body {
   overflow: hidden;
   padding: 20px 10px;
   max-width: 200px;
+  display: grid;
 }
 .header a {
   float: left;
@@ -333,9 +212,12 @@ body {
   color: #081234;
 }
 .header a.logo {
-  font-size: 60px;
+  font-size: 320%;
   font-weight: bold;
   padding-left: 210px;
+}
+.active{
+  padding: 20px;
 }
 .header-right {
   float: right;
@@ -345,24 +227,26 @@ body {
 }
 .header-rightHovered:hover{
   background: #f6f3eb;
+  cursor:pointer;
 }
 .content{
   padding-top: 20px;
   padding-bottom: 70px;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 .content table {
-  width: 50%;
-  border-collapse: separate;
-  border:solid #095F59FF 4px;
+  width: 70%;
+  border-collapse: collapse;
+  border:solid #095F59FF 3px;
   align-content: center;
   border-radius: 20px;
+  overflow: hidden;
 }
-
 .content th, .content td {
   border: 2px solid #095f59;
-  padding: 8px;
+  padding: 10px;
   text-align: center;
 }
 .content td{
@@ -370,7 +254,6 @@ body {
   align-content: center;
   font-size: 20px;
 }
-
 .content th {
   background-color: #095f59;
   border-top: none;
@@ -378,12 +261,9 @@ body {
   align-content: center;
   font-size: 20px;
 }
-.navigationHeader {
-  display: grid;
-  font-size: 3rem;
-  grid-template-columns: repeat(5, 1fr);
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  align-items: center;
+@media(max-width: 700px) {
+  test{
+    grid-template-columns: minmax(100px,1fr);
+  }
 }
 </style>
