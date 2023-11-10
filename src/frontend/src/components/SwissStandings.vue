@@ -1,10 +1,10 @@
 <template>
   <head>
     <meta charset="UTF-8">
-    <title>TournaMate - Swiss Tournament</title>
+    <title>Swiss Standings</title>
   </head>
   <body>
-  <div :style="{ width: playerWidth + 'px' }">
+  <div>
     <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
     <br>
     <br>
@@ -12,7 +12,7 @@
       <a class="logo">TournaMate</a>
       <div class="header-right header-rightHovered">
         <div>
-            <router-link to="/contact" class="nav-link">
+            <router-link to="/profile" class="nav-link">
               <lord-icon class = "icon"
                          src="https://cdn.lordicon.com/kthelypq.json"
                          trigger="hover"

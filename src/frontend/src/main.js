@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 
 import SwissStandings from './components/SwissStandings.vue';
 import About from './components/about-us.vue';
-import Profile from './components/profile.vue'
+import Profile from './components/user-profile.vue'
 
 const router = createRouter({
     mode: 'history',
