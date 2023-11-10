@@ -59,6 +59,7 @@
 
 
 <script>
+/////
 import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
@@ -85,10 +86,10 @@ onBeforeUnmount(() => {
 });
 // define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
-
+////
 let helloMsg = '';
 export default {
-  name: 'TournamentGenerator',
+  name: 'SwissStandings',
   data(){
     return{
       roomName: '',
@@ -114,8 +115,8 @@ export default {
     }
   },
   methods:{
-    gotoAbout(){
-      helloMsg = 'About';
+    gotoAbout() {
+      helloMsg = 'ji';
     },
     gotoProfile(){
       helloMsg = 'Profile';
