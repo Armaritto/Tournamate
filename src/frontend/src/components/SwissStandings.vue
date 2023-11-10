@@ -11,17 +11,23 @@
     <div class="header">
       <a class="logo">TournaMate</a>
       <div class="header-right header-rightHovered">
-        <lord-icon class = "icon" @click = gotoProfile();
-                   src="https://cdn.lordicon.com/kthelypq.json"
-                   trigger="hover"
-                   style="width:50px;height:50px">
-        </lord-icon>
+        <div>
+            <router-link to="/contact" class="nav-link">
+              <lord-icon class = "icon" @click = gotoProfile();
+                         src="https://cdn.lordicon.com/kthelypq.json"
+                         trigger="hover"
+                         style="width:50px;height:50px">
+              </lord-icon>
+          </router-link>
+        </div>
       </div>
       <div class="header-right header-rightHovered">
-        <div class="active"
-        @click = gotoAbout();
-        >
-          About
+        <div>
+          <router-link to="/about">
+            <div class="active" style="text-decoration: none;">
+              About
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -211,6 +217,7 @@ body {
   border-radius: 4px;
   font-family: ubuntu-bold;
   color: #081234;
+  text-decoration: none;
 }
 .header a.logo {
   font-size: 320%;
@@ -218,7 +225,7 @@ body {
   padding-left: 210px;
 }
 .active{
-  padding: 20px;
+  padding: 12px;
 }
 .header-right {
   float: right;
