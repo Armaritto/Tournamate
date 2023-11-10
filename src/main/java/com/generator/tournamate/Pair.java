@@ -14,5 +14,11 @@ public class Pair<K, V> {
         this.second = second;
     }
 
-
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "first=" + first +
+                ", second=" + second +
+                '}';
+    }
 }

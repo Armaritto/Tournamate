@@ -12,18 +12,27 @@ public class SwissMatch {
         this.player2 = player2;
     }
 
-    void setStatusNA(){
-        matchStatus = "NA";
+    public SwissMatch(SwissPlayer player1, SwissPlayer player2, String matchStatus) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.matchStatus = matchStatus;
     }
 
-    void setStatusP1(){
+    public void setStatusNA(){
+        matchStatus = "NA";
+    }
+    public void setStatusP1(){
         matchStatus = "P1";
+        player1.incrementScoreW();
     }
-    void setStatusP2(){
+    public void setStatusP2(){
         matchStatus = "P2";
+        player2.incrementScoreW();
     }
-    void setStatusD(){
+    public void setStatusD(){
         matchStatus = "D";
+        player1.incrementScoreD();
+        player2.incrementScoreD();
     }
 
     public String getMatchStatus() {

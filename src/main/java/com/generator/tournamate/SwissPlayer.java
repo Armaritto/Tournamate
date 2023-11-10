@@ -5,6 +5,18 @@ public class SwissPlayer {
     int currentScore;
     String Name;
 
+    public long getId() {
+        return id;
+    }
+
+    public int getCurrentScore() {
+        return currentScore;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
     public SwissPlayer(int currentScore, String name) {
         this.currentScore = currentScore;
         Name = name;
@@ -26,6 +38,12 @@ public class SwissPlayer {
 
     public void setName(String name) {
         Name = name;
+    }
+    public void incrementScoreW(){
+        currentScore += 2;
+    }
+    public void incrementScoreD(){
+        currentScore += 1;
     }
 
     @Override

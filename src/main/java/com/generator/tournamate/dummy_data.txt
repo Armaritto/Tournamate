@@ -35,3 +35,23 @@
                     return mySwissTournament;
                 }
             }
+
+public class SwissController {
+
+   List<SwissPlayer> swissPlayerList = Arrays.asList(new SwissPlayer(0, "player0"),
+            new SwissPlayer(0, "player1"),
+            new SwissPlayer(0, "player2"),
+            new SwissPlayer(0, "player3"),
+            new SwissPlayer(0, "player4"),
+            new SwissPlayer(0, "player5"),
+            new SwissPlayer(0, "player6"),
+            new SwissPlayer(0, "player7"),
+            new SwissPlayer(0, "player8"),
+            new SwissPlayer(0, "player9"),
+            new SwissPlayer(0, "player10"));
+    @GetMapping
+    public String generateTournament(){
+        return  new SwissTournament(5, swissPlayerList).toString();
+
+    }
+}
