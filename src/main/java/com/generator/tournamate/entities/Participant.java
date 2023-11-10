@@ -1,4 +1,4 @@
-package com.generator.tournamate;
+package com.generator.tournamate.entities;
 
 public class Participant {
     long id;
@@ -50,5 +50,13 @@ public class Participant {
         this.photoPath = photoPath;
     }
 
-
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", score=" + score +
+                ", photoPath='" + photoPath + '\'' +
+                '}';
+    }
 }

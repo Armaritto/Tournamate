@@ -1,4 +1,4 @@
-package com.generator.tournamate;
+package com.generator.tournamate.entities;
 
 public class SwissMatch {
      SwissPlayer player1;

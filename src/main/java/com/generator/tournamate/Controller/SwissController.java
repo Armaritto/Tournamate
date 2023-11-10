@@ -1,6 +1,12 @@
 package com.generator.tournamate.Controller;
 
 import com.generator.tournamate.*;
+import com.generator.tournamate.Services.SwissRoundService;
+import com.generator.tournamate.Services.SwissTournamentService;
+import com.generator.tournamate.entities.SwissMatch;
+import com.generator.tournamate.entities.SwissPlayer;
+import com.generator.tournamate.entities.SwissRound;
+import com.generator.tournamate.entities.SwissTournament;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,10 +16,10 @@ import java.util.List;
 public class SwissController {
     SwissRoundService swissRoundService = new SwissRoundService();
     SwissTournamentService swissTournamentService = new SwissTournamentService();
-    List<SwissPlayer> swissPlayerList =List.of(new SwissPlayer(0, "player0"),
-            new SwissPlayer(0, "player1"),
-            new SwissPlayer(0, "player2"),
-            new SwissPlayer(0, "player3")
+    List<SwissPlayer> swissPlayerList =List.of(new SwissPlayer("player0",0 ),
+            new SwissPlayer( "player1", 0),
+            new SwissPlayer( "player2", 0),
+            new SwissPlayer("player3", 0)
          );
     SwissTournament mySwissTournament = null;
     @PostMapping(path = "/newSwissTournament")

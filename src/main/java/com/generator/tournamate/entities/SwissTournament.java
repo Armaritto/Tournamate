@@ -1,4 +1,6 @@
-package com.generator.tournamate;
+package com.generator.tournamate.entities;
+
+import com.generator.tournamate.RoundNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;

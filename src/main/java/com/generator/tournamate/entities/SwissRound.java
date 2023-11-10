@@ -1,4 +1,6 @@
-package com.generator.tournamate;
+package com.generator.tournamate.entities;
+import com.generator.tournamate.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class SwissRound {
         }
         if(!finished)
         for(SwissPlayer p : playersList){
-            outputList.add(Pair.createPair(p.currentScore, p));
+            outputList.add(Pair.createPair(p.score, p));
         }
         finished = true;
 
