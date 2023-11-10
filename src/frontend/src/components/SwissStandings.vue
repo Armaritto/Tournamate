@@ -13,7 +13,7 @@
       <div class="header-right header-rightHovered">
         <div>
             <router-link to="/contact" class="nav-link">
-              <lord-icon class = "icon" @click = gotoProfile();
+              <lord-icon class = "icon"
                          src="https://cdn.lordicon.com/kthelypq.json"
                          trigger="hover"
                          style="width:50px;height:50px">
@@ -68,32 +68,9 @@
 /////
 import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
-let screenWidth = ref(window.innerWidth);
-
-computed(() => {
-  if (screenWidth.value <= 3840) {
-    return screenWidth.value - 10;
-  } else {
-    return 3840;
-  }
-});
-
-function handleResize() {
-  screenWidth.value = window.innerWidth;
-}
-
-onMounted(() => {
-  window.addEventListener('resize', handleResize);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', handleResize);
-});
 // define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
 ////
-let helloMsg = '';
 export default {
   name: 'SwissStandings',
   data(){
@@ -101,7 +78,7 @@ export default {
       roomName: '',
       fantasyScore: '',
       teams: [
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
+        {name: 'Team A', points: 25, win: 20, draw: 5, lose: 0 },
         {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
         {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
         {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
@@ -121,20 +98,13 @@ export default {
     }
   },
   methods:{
-    gotoAbout() {
-      helloMsg = 'ji';
-    },
-    gotoProfile(){
-      helloMsg = 'Profile';
-    },
-    action(n){
-      helloMsg = n
+    action(){
       callBackend();
       function callBackend(){
         fetch("/api/messages/backend", {
           method: 'POST',
           body: JSON.stringify({
-            msg: helloMsg
+            msg: ''
           }),
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
