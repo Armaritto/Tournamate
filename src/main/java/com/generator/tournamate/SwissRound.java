@@ -42,5 +42,13 @@ public class SwissRound {
         return true;
     }
 
-
+    @Override
+    public String toString() {
+        return "SwissRound{" +
+                "roundNumber=" + roundNumber +
+                ", finished=" + finished +
+                ", inputList=" + inputList +
+                ", matchList=" + matchList +
+                '}';
+    }
 }

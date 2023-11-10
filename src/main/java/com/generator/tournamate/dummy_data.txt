@@ -1,0 +1,37 @@
+{
+"player0",
+"player1", 
+"player2", 
+"player3", 
+"player4", 
+"player5", 
+"player6", 
+"player7", 
+"player8", 
+"player9", 
+"player10"
+}
+	ArrayList<SwissPlayer> l = {new SwissPlayer(0, "player0"),
+			new SwissPlayer(0, "player1"),
+			new SwissPlayer(0, "player2"),
+			new SwissPlayer(0, "player3"),
+			new SwissPlayer(0, "player4"),
+			new SwissPlayer(0, "player5"),
+			new SwissPlayer(0, "player6"),
+			new SwissPlayer(0, "player7"),
+			new SwissPlayer(0, "player8"),
+			new SwissPlayer(0, "player9"),
+			new SwissPlayer(0, "player10")};
+
+
+			public class SwissController {
+                SwissTournament mySwissTournament = null;
+                @PostMapping(path = "/newSwissTournament")
+                public void generateTournament(@RequestBody List<SwissPlayer> swissPlayerList){
+                    mySwissTournament = new SwissTournament(5, swissPlayerList);
+                }
+                @GetMapping(path = "/mySwissTournament")
+                public SwissTournament getMySwissTournament(){
+                    return mySwissTournament;
+                }
+            }

@@ -29,4 +29,14 @@ public class SwissTournament {
     public List<SwissRound> getRounds() {
         return rounds;
     }
+
+    @Override
+    public String toString() {
+        return "SwissTournament{" +
+                "numberOfRounds=" + numberOfRounds +
+                ", currentRound=" + currentRound +
+                ", players=" + players +
+                ", rounds=" + rounds +
+                '}';
+    }
 }
