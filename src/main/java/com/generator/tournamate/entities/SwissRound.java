@@ -1,7 +1,9 @@
 package com.generator.tournamate.entities;
 import com.generator.tournamate.Pair;
+import com.generator.tournamate.PairComparator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SwissRound {
@@ -55,6 +57,8 @@ public class SwissRound {
         for(SwissPlayer p : playersList){
             outputList.add(Pair.createPair(p.score, p));
         }
+        Collections.sort(outputList, new PairComparator());
+        Collections.reverse(outputList);
         finished = true;
 
         return true;
@@ -62,12 +66,12 @@ public class SwissRound {
 
     @Override
     public String toString() {
-        return "SwissRound{" +
+        return "SwissRound{" + '\n' +
                 "roundNumber=" + roundNumber +
-                ", finished=" + finished +
-                ", playersList=" + playersList +
+                ", finished=" + finished + '\n' +'\n' +
+            //    ", playersList=" + playersList +'\n' +'\n' +
                 ", outputList=" + outputList +
                 ", matchList=" + matchList +
-                '}';
+                '}' + '\n' ;
     }
 }

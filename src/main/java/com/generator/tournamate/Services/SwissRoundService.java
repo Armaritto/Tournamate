@@ -21,7 +21,7 @@ public class SwissRoundService {
             SwissPlayer p1 = inputList.get(i);
             SwissPlayer bye = new SwissPlayer("bye", 0);
             matchList.add(new Pair(inputList.size()-1, new SwissMatch(p1, bye)));
-            matchList.get(i).second.setStatusP1();
+            matchList.get(i/2).second.setStatusP1();
         }
         return matchList;
     }

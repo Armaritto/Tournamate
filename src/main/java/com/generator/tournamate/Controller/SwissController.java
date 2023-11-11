@@ -9,18 +9,21 @@ import com.generator.tournamate.entities.SwissRound;
 import com.generator.tournamate.entities.SwissTournament;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "/swiss")
 public class SwissController {
     SwissRoundService swissRoundService = new SwissRoundService();
     SwissTournamentService swissTournamentService = new SwissTournamentService();
-    List<SwissPlayer> swissPlayerList =List.of(new SwissPlayer("player0",0 ),
-            new SwissPlayer( "player1", 0),
-            new SwissPlayer( "player2", 0),
-            new SwissPlayer("player3", 0)
-         );
+    List<SwissPlayer> swissPlayerList = Arrays.asList(
+
+            new SwissPlayer("player1", 0),
+            new SwissPlayer("player2", 0),
+            new SwissPlayer("player3", 0),
+            new SwissPlayer("player4", 0),
+            new SwissPlayer("player5", 0)
+    );
     SwissTournament mySwissTournament = null;
     @PostMapping(path = "/newSwissTournament")
     public String generateTournament() throws RoundNotFoundException {
@@ -36,6 +39,12 @@ public class SwissController {
         mySwissTournament.addRound(newRound);
         return mySwissTournament.toString();
     }
+    @PostMapping(path = "/finishRound")
+    public String finishRound(@RequestParam("roundNumber") int roundNumber) throws RoundNotFoundException {
+        mySwissTournament.getRound(roundNumber).finishRound();
+        return mySwissTournament.toString();
+    }
+
     @PostMapping(path = "/setMatch")
     public String setMatch(@RequestParam("roundNumber") int roundNumber , @RequestParam("matchNumber") int matchNumber, @RequestParam("matchStatus") String matchStatus) throws RoundNotFoundException {
         if(mySwissTournament.getRound(roundNumber).getMatchList().get(matchNumber).second.getMatchStatus().equals("NA")) {
@@ -53,12 +62,14 @@ public class SwissController {
                     mySwissTournament.getRound(roundNumber).getMatchList().get(matchNumber).second.setStatusNA();
             }
         }
+        Collections.sort(mySwissTournament.getPlayers(), new ParticipantComparator());
+        Collections.reverse(mySwissTournament.getPlayers());
         return mySwissTournament.toString();
     }
     @PostMapping(path = "/generateMatches")
     public String generateMatches() throws RoundNotFoundException {
         List<Pair<Integer, SwissMatch>> matchList = swissRoundService.generateMatchList(mySwissTournament.getPlayers());
-        mySwissTournament.getRound(1).setMatchList(matchList);
+        mySwissTournament.getRound(mySwissTournament.getCurrentRoundNumber()).setMatchList(matchList);
         return mySwissTournament.toString();
     }
     @GetMapping(path = "/mySwissTournament")

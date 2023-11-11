@@ -71,11 +71,9 @@ public class SwissMatch {
 
     @Override
     public String toString() {
-        return "SwissMatch{" +
-                "player1=" + player1 +
-                ", player2=" + player2 +
-                ", warningsPlayer1=" + warningsPlayer1 +
-                ", warningsPlayer2=" + warningsPlayer2 +
+        return "SwissMatch{" + '\n' +
+                "player1=" + player1 +'\n' +
+                ", player2=" + player2 +'\n' +
                 ", matchStatus='" + matchStatus + '\'' +
                 '}';
     }
