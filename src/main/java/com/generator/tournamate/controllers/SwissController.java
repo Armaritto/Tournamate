@@ -1,12 +1,13 @@
-package com.generator.tournamate.Controller;
+package com.generator.tournamate.controllers;
 
 import com.generator.tournamate.*;
-import com.generator.tournamate.Services.SwissRoundService;
-import com.generator.tournamate.Services.SwissTournamentService;
 import com.generator.tournamate.entities.SwissMatch;
 import com.generator.tournamate.entities.SwissPlayer;
 import com.generator.tournamate.entities.SwissRound;
 import com.generator.tournamate.entities.SwissTournament;
+import com.generator.tournamate.services.SwissRoundService;
+import com.generator.tournamate.services.SwissTournamentService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

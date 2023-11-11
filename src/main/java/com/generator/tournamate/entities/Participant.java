@@ -18,7 +18,12 @@ public class Participant {
         this.photoPath = photoPath;
     }
 
-    public long getId() {
+    public Participant(String name) {
+		this.name= name;
+		this.score= 0;
+	}
+
+	public long getId() {
         return id;
     }
 

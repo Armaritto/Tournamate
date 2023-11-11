@@ -1,4 +1,4 @@
-package com.generator.tournamate.Services;
+package com.generator.tournamate.services;
 
 import com.generator.tournamate.RoundStillRunningException;
 import com.generator.tournamate.entities.SwissPlayer;
