@@ -1,14 +1,14 @@
 <template>
-  <TournamentGenerator></TournamentGenerator>
+  <SwissStandings></SwissStandings>
 </template>
 
 <script>
-import TournamentGenerator from './components/TournamentGenerator.vue'
-
+/* eslint-disable */
+import SwissStandings from './components/SwissStandings.vue'
 export default {
   name: 'App',
   components: {
-    TournamentGenerator
+    SwissStandings
   }
 }
 </script>

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@lordicon/element": "^1.2.0",
+    "lottie-web": "^5.12.2",
+    "renderer": "^0.1.5",
+    "vue-router": "^4.2.5s"
+  }
+}

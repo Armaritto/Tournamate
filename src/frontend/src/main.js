@@ -1,4 +1,35 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
-createApp(App).mount('#app')
+import SwissStandings from './components/SwissStandings.vue';
+import About from './components/about-us.vue';
+import Profile from './components/user-profile.vue'
+
+const router = createRouter({
+    mode: 'history',
+    history: createWebHashHistory(),
+    // base: __dirname,
+    routes: [
+        { path: '/', component: SwissStandings },
+        { path: '/about', component: About },
+        { path: '/profile', component: Profile },
+    ]
+});
+
+const app = createApp({
+    template: `
+    <div>
+      <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+           
+          </ul>
+        </div>
+      </nav>
+      <router-view class="view"></router-view>
+    </div>
+  `
+});
+
+app.use(router);
+app.mount("#app");

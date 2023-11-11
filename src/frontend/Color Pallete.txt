@@ -1,0 +1,8 @@
+Colors used in the webApp:
+1. off-white: #fffcf1 (background)
+2- Black-blue: #081234 (Titles)
+3- Dark Green: #095f59
+4- Dark Yellow: #fdcf6e
+5- Grey: #686762
+6- Light Green: #0c766f
+7- Light Yellow: #ffd681
