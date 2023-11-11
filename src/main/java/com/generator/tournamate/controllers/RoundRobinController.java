@@ -48,10 +48,10 @@ public class RoundRobinController {
         if(myTournament.getRound(roundNumber).getRoundMatches().get(matchNumber-1).getMatchStatus().equals("NA")) {
             switch (matchStatus) {
                 case "P1":
-                    myTournament.getRound(roundNumber).getRoundMatches().get(matchNumber-1).setMatchResult("p1");
+                    myTournament.getRound(roundNumber).getRoundMatches().get(matchNumber-1).setMatchResult("P1");
                     break;
                 case "P2":
-                    myTournament.getRound(roundNumber).getRoundMatches().get(matchNumber-1).setMatchResult("p2");
+                    myTournament.getRound(roundNumber).getRoundMatches().get(matchNumber-1).setMatchResult("P2");
                     break;
                 case "D":
                     myTournament.getRound(roundNumber).getRoundMatches().get(matchNumber-1).setMatchResult("D");

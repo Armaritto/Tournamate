@@ -40,9 +40,9 @@ public class RoundRobinMatch {
             matchTeam1.setTeamPoints(1);
             matchTeam2.setTeamPoints(1);
 
-        } else if (stat.equals("p1")) {
+        } else if (stat.equals("P1")) {
             matchTeam1.setTeamPoints(3);
-        } else if (stat.equals("p2")) {
+        } else if (stat.equals("P2")) {
             matchTeam2.setTeamPoints(3);
         }
     }

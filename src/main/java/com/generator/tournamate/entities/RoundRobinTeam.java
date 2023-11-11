@@ -58,7 +58,7 @@ public class RoundRobinTeam extends Participant{
               ", Loss=" + Loss +
               ", Win=" + Win +
               ", Draw=" + Draw +
-              "Name="+getName()+
+              ", score=" + score +
               '}';
    }
 }
