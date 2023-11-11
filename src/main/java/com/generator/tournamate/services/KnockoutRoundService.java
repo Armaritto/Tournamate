@@ -18,6 +18,9 @@ public class KnockoutRoundService {
 				eligiblePlayers.add(p);
 			}
 		}
+		if(eligiblePlayers.size() == 1) {
+			return null;
+		}
 		for(int i=0; i<eligiblePlayers.size(); i+=2) {
 			KnockoutMatch newMatch= new KnockoutMatch(eligiblePlayers.get(i), eligiblePlayers.get(i+1));
 			newMatch.setScore(0, 0);

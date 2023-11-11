@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.generator.tournamate.entities.KnockoutMatch;
 import com.generator.tournamate.entities.KnockoutPlayer;
+import com.generator.tournamate.entities.KnockoutRound;
 import com.generator.tournamate.entities.KnockoutTournament;
 
 public class KnockoutTournamentService {
@@ -32,7 +33,15 @@ public class KnockoutTournamentService {
 				qualified.add(qualP);
 			}
 		}
+		
 		myKnockoutTournament.getCurrentRound().fnishRound();
-		myKnockoutTournament.addRound(roundService.generateKnockoutRound(qualified, myKnockoutTournament.getCurrentRoundNumber()));
+		KnockoutRound nextRound= roundService.generateKnockoutRound(qualified, myKnockoutTournament.getCurrentRoundNumber());
+		myKnockoutTournament.setTournamentPlayers(qualified);
+		if(nextRound != null) {
+			myKnockoutTournament.addRound(nextRound);
+		}else {
+			myKnockoutTournament.setTournamentWinner(qualified.get(0));
+			myKnockoutTournament.setFinished();
+		}
     }
 }

@@ -7,11 +7,14 @@ public class KnockoutTournament {
 	String tournamentName;
 	int totalNumberOfRounds;
 	int currentRoundNumber;
+	boolean isFinished;
+	KnockoutPlayer tournamentWinner;
 	List<KnockoutRound> tournamentRounds;
 	List<KnockoutPlayer> tournamentPlayers;
 	
 	public KnockoutTournament() {
 		this.currentRoundNumber= 0;
+		this.isFinished= false;
 	}
 
 	public KnockoutTournament(String tournamentName, List<KnockoutPlayer> tournamentPlayers) {
@@ -20,6 +23,7 @@ public class KnockoutTournament {
 		this.totalNumberOfRounds= (int) ((int) Math.log10(tournamentPlayers.size())/Math.log10(2));
 		this.currentRoundNumber= 0;
 		this.tournamentRounds= new ArrayList<>();
+		this.isFinished= false;
 	}
 
 	public String getTournamentName() {
@@ -72,5 +76,21 @@ public class KnockoutTournament {
 		return "KnockoutTournament [tournamentName=" + tournamentName + ", totalNumberOfRounds=" + totalNumberOfRounds
 				+ ", currentRoundNumber=" + currentRoundNumber + ", tournamentRounds=" + tournamentRounds
 				+ ", tournamentPlayers=" + tournamentPlayers + "]";
+	}
+
+	public KnockoutPlayer getTournamentWinner() {
+		return tournamentWinner;
+	}
+
+	public void setTournamentWinner(KnockoutPlayer tournamentWinner) {
+		this.tournamentWinner = tournamentWinner;
+	}
+
+	public boolean isFinished() {
+		return isFinished;
+	}
+
+	public void setFinished() {
+		this.isFinished = true;
 	}
 }
