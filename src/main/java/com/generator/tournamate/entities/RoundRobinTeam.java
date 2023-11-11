@@ -55,9 +55,6 @@ public class RoundRobinTeam extends Participant{
    public String toString() {
       return "RoundRobinTeam{" +
               "teamRank=" + teamRank +
-              ", Loss=" + Loss +
-              ", Win=" + Win +
-              ", Draw=" + Draw +
               ", score=" + score +
               '}';
    }
