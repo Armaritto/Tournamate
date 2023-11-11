@@ -170,7 +170,7 @@ body {
   padding-top: 20px;
   padding-bottom: 40px;
 }
-////////////////////////////
+
 .header {
   position: relative;
   overflow: hidden;
