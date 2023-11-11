@@ -1,28 +1,16 @@
-package com.RoundRobin.entities;
+package com.generator.tournamate.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-
-
-@Table(name = "Teams")
-@Entity
 public class RoundRobinTeam extends Participant{
-   @Id
-   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-   @Column(name = "Rank")
    public int teamRank = 0;
-   @Column(name = "Loss")
+
    private int Loss = 0;
-   @Column(name = "Win")
+
    private int Win = 0;
-   @Column(name = "Draw")
+
    private int Draw = 0;
 
-   public RoundRobinTeam() {
+   public RoundRobinTeam(){
+
    }
    public RoundRobinTeam(String name)
    {

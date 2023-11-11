@@ -1,9 +1,9 @@
-package com.RoundRobin.services;
+package com.generator.tournamate.services;
 
-import com.RoundRobin.entities.RoundRobin;
-import com.RoundRobin.entities.RoundRobinMatch;
-import com.RoundRobin.entities.RoundRobinRound;
-import com.RoundRobin.entities.RoundRobinTeam;
+import com.generator.tournamate.entities.RoundRobin;
+import com.generator.tournamate.entities.RoundRobinMatch;
+import com.generator.tournamate.entities.RoundRobinRound;
+import com.generator.tournamate.entities.RoundRobinTeam;
 
 import java.util.ArrayList;
 import java.util.Deque;

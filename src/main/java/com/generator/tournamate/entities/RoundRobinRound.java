@@ -1,15 +1,9 @@
-package com.RoundRobin.entities;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package com.generator.tournamate.entities;
 
 import java.util.Deque;
 import java.util.List;
 import java.util.Queue;
 
-@Data
 public class RoundRobinRound {
     private int numOfMatches;
     private int roundNum;
@@ -52,9 +46,18 @@ public RoundRobinRound(Deque<RoundRobinTeam> teams, int roundNum,int num)
         return roundNum;
     }
 
+    public int getNumOfMatches() {
+        return numOfMatches;
+    }
+
+    public void setTeams(Deque<RoundRobinTeam> teams) {
+        this.teams = teams;
+    }
+
     public void setRoundNum(int roundNum) {
         this.roundNum = roundNum;
     }
+
 
     @Override
     public String toString() {

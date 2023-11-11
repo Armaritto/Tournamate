@@ -1,13 +1,13 @@
-package com.RoundRobin.controllers;
+package com.generator.tournamate.controllers;
 
-import com.RoundRobin.RoundNotFoundException;
-import com.RoundRobin.RoundStillRunningException;
-import com.RoundRobin.entities.RoundRobin;
-import com.RoundRobin.entities.RoundRobinMatch;
-import com.RoundRobin.entities.RoundRobinRound;
-import com.RoundRobin.entities.RoundRobinTeam;
-import com.RoundRobin.services.RoundRobinRoundService;
-import com.RoundRobin.services.RoundRobinService;
+import com.generator.tournamate.RoundNotFoundException;
+import com.generator.tournamate.RoundStillRunningException;
+import com.generator.tournamate.entities.RoundRobin;
+import com.generator.tournamate.entities.RoundRobinMatch;
+import com.generator.tournamate.entities.RoundRobinRound;
+import com.generator.tournamate.entities.RoundRobinTeam;
+import com.generator.tournamate.services.RoundRobinRoundService;
+import com.generator.tournamate.services.RoundRobinService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

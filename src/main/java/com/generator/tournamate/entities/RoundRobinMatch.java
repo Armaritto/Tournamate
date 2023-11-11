@@ -1,13 +1,8 @@
-package com.RoundRobin.entities;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package com.generator.tournamate.entities;
 
 import java.util.List;
 
-@Data
+
 public class RoundRobinMatch {
 
     private int matchNum;

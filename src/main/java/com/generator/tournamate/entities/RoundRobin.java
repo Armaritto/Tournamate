@@ -1,13 +1,13 @@
-package com.RoundRobin.entities;
+package com.generator.tournamate.entities;
 
-import com.RoundRobin.RoundNotFoundException;
-import lombok.Data;
+import com.generator.tournamate.RoundNotFoundException;
+
 
 import java.util.*;
 import java.util.concurrent.LinkedBlockingDeque;
 
 
-@Data
+
 public class RoundRobin {
  private int numberOfRounds=0;
 private List<RoundRobinRound> rounds;

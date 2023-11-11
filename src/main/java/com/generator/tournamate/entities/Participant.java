@@ -5,6 +5,9 @@ public class Participant {
     String name;
     int score;
     String photoPath;
+    public Participant(){
+
+    }
 
     public Participant(String name, int score) {
         this.name = name;

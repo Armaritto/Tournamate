@@ -1,8 +1,8 @@
-package com.RoundRobin.services;
-import com.RoundRobin.RoundStillRunningException;
-import com.RoundRobin.entities.RoundRobin;
-import com.RoundRobin.entities.RoundRobinRound;
-import com.RoundRobin.entities.RoundRobinTeam;
+package com.generator.tournamate.services;
+import com.generator.tournamate.RoundStillRunningException;
+import com.generator.tournamate.entities.RoundRobin;
+import com.generator.tournamate.entities.RoundRobinRound;
+import com.generator.tournamate.entities.RoundRobinTeam;
 
 import java.util.LinkedList;
 import java.util.List;
