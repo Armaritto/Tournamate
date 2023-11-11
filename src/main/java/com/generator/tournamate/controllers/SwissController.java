@@ -22,7 +22,8 @@ public class SwissController {
             new SwissPlayer("player2", 0),
             new SwissPlayer("player3", 0),
             new SwissPlayer("player4", 0),
-            new SwissPlayer("player5", 0)
+            new SwissPlayer("player5", 0),
+            new SwissPlayer("player6", 0)
     );
     SwissTournament mySwissTournament = null;
     @PostMapping(path = "/newSwissTournament")

@@ -23,10 +23,10 @@ public class RoundRobinController {
     RoundRobin myTournament = null;
     @PostMapping(path = "/newRoundRobinTournament")
     public String generateTournament() throws RoundNotFoundException {
-//        teams.add(new RoundRobinTeam("11"));
-//        teams.add(new RoundRobinTeam("22"));
-//        teams.add(new RoundRobinTeam("33"));
-//        teams.add(new RoundRobinTeam("44"));
+        teams.add(new RoundRobinTeam("11"));
+        teams.add(new RoundRobinTeam("22"));
+        teams.add(new RoundRobinTeam("33"));
+        teams.add(new RoundRobinTeam("44"));
 
         myTournament = new RoundRobin(teams);
         myTournament.setRound(new LinkedList<>(teams));
@@ -45,7 +45,7 @@ public class RoundRobinController {
     }
     @PostMapping(path = "/setMatch")
     public String setMatch(@RequestParam("roundNumber") int roundNumber , @RequestParam("matchNumber") int matchNumber, @RequestParam("matchStatus") String matchStatus) throws RoundNotFoundException {
-        if(myTournament.getRound(roundNumber).getRoundMatches().get(matchNumber).getMatchStatus().equals("NA")) {
+        if(myTournament.getRound(roundNumber).getRoundMatches().get(matchNumber-1).getMatchStatus().equals("NA")) {
             switch (matchStatus) {
                 case "P1":
                     myTournament.getRound(roundNumber).getRoundMatches().get(matchNumber-1).setMatchResult("p1");
@@ -63,11 +63,13 @@ public class RoundRobinController {
         return myTournament.toString();
     }
     @PostMapping(path = "/generateMatches")
-    public String generateMatches() throws RoundNotFoundException {
+    public String generateMatches(@RequestParam("roundNumber")int roundNumber) throws RoundNotFoundException {
         List<RoundRobinMatch> matchList = roundRobinRoundService.generateMatchList
                 (new LinkedList<>(myTournament.getTeams()),myTournament.getCurrentRound()
                         ,myTournament.getRound(myTournament.getCurrentRound()).getNumOfMatches());
-        myTournament.getRound(1).setTeams(new LinkedList<>(teams));
+        myTournament.getRound(roundNumber).setTeams(new LinkedList<>(teams));
+        myTournament.getRound(roundNumber).setRoundMatches(matchList);
+
         return myTournament.toString();
     }
     @GetMapping(path = "/myRoundRobinTournament")

@@ -24,9 +24,9 @@ import java.util.List;
                     if(teams.size()%2==1 &&roundNum==teams.size() )
                     {
                         teams.removeFirst();
-                       roundMatches.set(i,new RoundRobinMatch(teams.removeFirst(),teams.removeFirst(),i+1));
+                       roundMatches.add(i,new RoundRobinMatch(teams.removeFirst(),teams.removeFirst(),i+1));
                     }
-                    else roundMatches.set(i,new RoundRobinMatch(teams.removeFirst(),teams.removeLast(),i+1));
+                    else roundMatches.add(i,new RoundRobinMatch(teams.removeFirst(),teams.removeLast(),i+1));
                 }
                 round.setRoundMatches(roundMatches);
 
