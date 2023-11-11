@@ -1,4 +1,4 @@
-package com.generator.tournamate.Services;
+package com.generator.tournamate.services;
 import com.generator.tournamate.Pair;
 import com.generator.tournamate.entities.SwissMatch;
 import com.generator.tournamate.entities.SwissPlayer;
