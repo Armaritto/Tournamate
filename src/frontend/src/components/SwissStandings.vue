@@ -1,37 +1,11 @@
 <template>
+  <Header></Header>
   <head>
     <meta charset="UTF-8">
-    <title>Swiss Standings</title>
   </head>
   <body>
   <div>
-    <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
-    <br>
-    <br>
-    <div class="header">
-      <a class="logo">TournaMate</a>
-      <div class="header-right header-rightHovered">
-        <div>
-            <router-link to="/profile" class="nav-link">
-              <lord-icon class = "icon"
-                         src="https://cdn.lordicon.com/kthelypq.json"
-                         trigger="hover"
-                         style="width:50px;height:50px">
-              </lord-icon>
-          </router-link>
-        </div>
-      </div>
-      <div class="header-right header-rightHovered">
-        <div>
-          <router-link to="/about">
-            <div class="active" style="text-decoration: none;">
-              About
-            </div>
-          </router-link>
-        </div>
-      </div>
-    </div>
-    <hr style="margin-top: 100px">
+
     <div class="title">
       Lorem Ipsum
     </div>
@@ -68,11 +42,13 @@
 /////
 import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
+import Header from "@/components/Header.vue";
 // define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
 ////
 export default {
   name: 'SwissStandings',
+  components: {Header},
   data(){
     return{
       roomName: '',
@@ -95,6 +71,9 @@ export default {
         {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
       ],
       screenWidth: window.innerWidth,
+      updateTeams: function(){
+
+      },
     }
   },
   methods:{
@@ -158,9 +137,6 @@ export default {
 body {
   font-family: ubuntu-regular;
 }
-#tournamatelogo{
-  font-size: small;
-}
 .title{
   font-size: 50px;
   color: #095f59;
@@ -169,14 +145,6 @@ body {
   justify-content: center;
   padding-top: 20px;
   padding-bottom: 40px;
-}
-////////////////////////////
-.header {
-  position: relative;
-  overflow: hidden;
-  padding: 20px 10px;
-  max-width: 200px;
-  display: grid;
 }
 .header a {
   float: left;
