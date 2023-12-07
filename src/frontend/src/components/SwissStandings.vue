@@ -163,7 +163,7 @@ body {
 }
 .title{
   font-size: 50px;
-  color: #095f59;
+  color: #213555;
   font-family: ubuntu-bold;
   display: flex;
   justify-content: center;
@@ -186,7 +186,7 @@ body {
   line-height: 25px;
   border-radius: 4px;
   font-family: ubuntu-bold;
-  color: #081234;
+  color: #213555;
   text-decoration: none;
 }
 .header a.logo {
@@ -201,10 +201,10 @@ body {
   float: right;
   margin-right: 70px;
   border-radius: 7px;
-  color: #686762;
+  color: #213555;
 }
 .header-rightHovered:hover{
-  background: #f6f3eb;
+  background: #ebebeb;
   cursor:pointer;
 }
 .content{
@@ -217,25 +217,26 @@ body {
 .content table {
   width: 70%;
   border-collapse: collapse;
-  border:solid #095F59FF 3px;
+  border:solid #213555 3px;
   align-content: center;
   border-radius: 20px;
   overflow: hidden;
 }
 .content th, .content td {
-  border: 2px solid #095f59;
+  border: 2px solid #213555;
   padding: 10px;
   text-align: center;
 }
 .content td{
-  background-color: #fdcf6e;
+  background-color: #bbccd7;
   align-content: center;
   font-size: 20px;
+
 }
 .content th {
-  background-color: #095f59;
+  background-color: #27374D;
   border-top: none;
-  color: #fdcf6e;
+  color: #FFC1A2;
   align-content: center;
   font-size: 20px;
 }
@@ -245,3 +246,4 @@ body {
   }
 }
 </style>
+

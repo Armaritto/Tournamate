@@ -73,8 +73,8 @@
         </tr>
         </tbody>
       </table>
-      <div class="active2 header-right2 header-rightHovered2" style="text-decoration: none;margin-right: 200px;margin-top: 150px;margin-bottom: 50px ;width:135px;text-align: center;background: #fdcf6e;
-  color: #095F59FF;">
+      <div class="active2 header-right2 header-rightHovered2" style="text-decoration: none;margin-right: 200px;margin-top: 150px;margin-bottom: 50px ;width:135px;text-align: center;background: #213555;
+  color: #DDE6ED;">
         Save Changes
       </div>
 
@@ -175,7 +175,7 @@ body {
 }
 .title{
   font-size: 45px;
-  color: #095f59;
+  color: #213555;
   font-family: ubuntu-bold;
   display: flex;
   justify-content: center;
@@ -190,12 +190,12 @@ body {
   font-family: ubuntu-bold;
   font-size: large;
   float: right;
-  background: #095f59;
-  color: #fffcf1;
+  background: #213555;
+  color: #DDE6ED;
   border-radius: 30px;
 }
 .header-rightHovered2:hover{
-  background: #0c766f;
+  background: #213555;
   cursor:pointer;
 }
 
@@ -228,36 +228,38 @@ body {
 .header-right {
   font-family: ubuntu-bold;
   float: right;
-  background: #095f59;
-  color: #fffcf1;
+  color: #27374D;
+  border-style: solid;
+  border-color: #213555;
   border-radius: 20px;
 }
 .header-rightHovered:hover{
-  background: #0c766f;
+  background: #213555;
+  color: #DDE6ED;
   cursor:pointer;
 }
 .content table {
   width: 70%;
   border-collapse: collapse;
-  border:solid #095F59FF 3px;
+  border:solid #213555 3px;
   align-content: center;
   border-radius: 20px;
   overflow: hidden;
 }
 .content th, .content td {
-  border: 2px solid #095f59;
+  border: 2px solid #213555;
   padding: 10px;
   text-align: center;
 }
 .content td{
-  background-color: #fdcf6e;
+  background-color: #DDE6ED;
   align-content: center;
   font-size: 20px;
 }
 .content th {
-  background-color: #095f59;
+  background-color: #213555;
   border-top: none;
-  color: #fdcf6e;
+  color: #DDE6ED;
   align-content: center;
   font-size: 20px;
 }
