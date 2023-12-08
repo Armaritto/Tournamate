@@ -34,13 +34,29 @@
         </tr>
       </table>
     </div>
-  </div>
-  <div>
-    <button @click="generateNewRound()">
-      <div>
-        generate new round
+    <div class="bigBUTTONCLASS">
+      <div class="bigBUTTONS">
+        <button @click="generateNewRound()">
+          <div style="display: flex; flex-direction: column; align-items: center">
+            <lord-icon
+                src="https://cdn.lordicon.com/nizfqlnk.json"
+                trigger="hover"
+                colors="primary:#213555"
+                style="width:200px;height:200px">
+            </lord-icon>
+            <div>
+              <br>
+              generate new round
+            </div>
+          </div>
+        </button>
+        <button @click="generateNewRound()">
+          <div>
+            generate new round
+          </div>
+        </button>
       </div>
-    </button>
+    </div>
   </div>
 </template>
 
@@ -54,7 +70,8 @@ export default defineComponent({
       roundNumber: 1,
       tournamentID:  8066887,
       matches:[
-        // {teamA: "team 1" ,scoreTeamA: -1, scoreTeamB: -1, teamB: "team 2"}
+        {teamA: "team 1" ,scoreTeamA: -1, scoreTeamB: -1, teamB: "team 2"},
+        {teamA: "team 1" ,scoreTeamA: -1, scoreTeamB: -1, teamB: "team 2"}
       ],
       setScore: function (status,matchNumber){
         fetch("http://localhost:8080/swiss/setMatch?" + new URLSearchParams({
@@ -110,7 +127,7 @@ export default defineComponent({
  .match{
    margin-left: 80px;
    margin-top: 20px;
-   border: 4px solid #27374D ;
+   border: 4px solid #213555 ;
    padding: 20px 50px;
    border-radius: 60px;
    display: flex;
@@ -124,7 +141,7 @@ export default defineComponent({
  }
  .teams{
    border-radius: 20px;
-   border: 2px solid #27374D ;
+   border: 2px solid #213555 ;
    padding: 20px 70px;
    font-size: 20px;
  }
@@ -162,15 +179,14 @@ export default defineComponent({
    display: none;
    position: absolute;
    background-color: #DDE6ED;
-   min-width: 160px;
+   min-width: 100px;
    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
    z-index: 1;
-   border-radius: 20px;
  }
  /* Links inside the dropdown */
  .dropdown-content a {
-   color: black;
-   padding: 12px 16px;
+   color: #213555;
+   padding: 6px 16px;
    text-decoration: none;
    display: block;
  }
@@ -182,5 +198,14 @@ export default defineComponent({
  .page{
    display: flex;
     justify-content: left;
+ }
+ .bigBUTTONCLASS{
+   padding-left: 200px;
+ }
+ .bigBUTTONS{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   min-width: 50px;
  }
 </style>

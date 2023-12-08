@@ -43,6 +43,7 @@
 import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
 import Header from "@/components/Header.vue";
+import rounds from "@/components/rounds.vue";
 // define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
 ////
@@ -53,7 +54,7 @@ export default {
     return{
       roomName: '',
       fantasyScore: '',
-      tournamentID:  8066887,
+      tournamentID:  rounds.data().tournamentID,  // very important
       teams: [],
       screenWidth: window.innerWidth,
       update: function(){
