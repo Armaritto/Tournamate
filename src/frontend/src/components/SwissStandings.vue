@@ -155,13 +155,14 @@ body {
   padding-top: 20px;
   padding-bottom: 40px;
 }
-.header {
+
+/* .header {
   position: relative;
   overflow: hidden;
   padding: 20px 10px;
   max-width: 200px;
   display: grid;
-}
+} */
 .header a {
   float: left;
   text-align: center;

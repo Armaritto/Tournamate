@@ -9,7 +9,7 @@ import CreateTournament from './components/Create-tournament.vue';
 import CreateKnockout from './components/Create-Knockout.vue';
 import CreateRobin from './components/Create-Robin.vue';
 import CreateGroups from './components/Create-Groups.vue';
-//import NewAccount from './components/SignUp.vue';
+import NewAccount from './components/SignUp.vue';
 const router = createRouter({
     mode: 'history',
     history: createWebHashHistory(),
@@ -24,7 +24,7 @@ const router = createRouter({
         { path: '/createKnockout', component: CreateKnockout},
         { path: '/createRoundRobin', component: CreateRobin},
         { path: '/createGroups', component: CreateGroups},
-        //{ path: '/NewAccount', component: NewAccount},
+        { path: '/NewAccount', component: NewAccount},
     ]
 });
 
