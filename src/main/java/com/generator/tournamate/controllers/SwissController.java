@@ -10,7 +10,9 @@ import com.generator.tournamate.entities.SwissTournament;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+
 @CrossOrigin
+
 @RestController
 @RequestMapping(path = "/swiss")
 public class SwissController {
@@ -25,6 +27,7 @@ public class SwissController {
             new SwissPlayer("player5", 0),
             new SwissPlayer("player6", 0)
     );
+
     //SwissTournament SwissTournamentService.AllSwissTournaments.get(id) = null;
     @PostMapping(path = "/newSwissTournament")
     public Long generateTournament() throws RoundNotFoundException {
@@ -81,10 +84,13 @@ public class SwissController {
     @GetMapping(path = "/")
     public List getSwissPlayersList(@RequestParam("id") Long id){
         return SwissTournamentService.AllSwissTournaments.get(id).getPlayers();
+
     }
 
     @GetMapping
     public List<SwissPlayer> test(){
         return swissPlayerList;
     }
+
 }
+

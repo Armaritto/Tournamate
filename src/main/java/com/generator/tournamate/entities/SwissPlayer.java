@@ -1,10 +1,13 @@
 package com.generator.tournamate.entities;
 
+
 public class SwissPlayer extends Participant implements Cloneable{
+
 
     public SwissPlayer(String name, int score) {
         super(name, score);
     }
+
 
     int numOfWins = 0;
     int numOfLosses = 0;
@@ -37,12 +40,14 @@ public class SwissPlayer extends Participant implements Cloneable{
         this.numOfDraws = numOfDraws;
     }
 
+
     public void incrementScoreW(){
         this.score += 2;
     }
     public void incrementScoreD(){
         this.score += 1;
     }
+
 
     @Override
     public String toString() {
@@ -55,4 +60,5 @@ public class SwissPlayer extends Participant implements Cloneable{
                 ", score=" + score +
                 '}';
     }
+
 }
