@@ -54,6 +54,8 @@ public class RoundRobinTeam extends Participant{
    @Override
    public String toString() {
       return "RoundRobinTeam{" +
+
+              "name='" + name + '\'' +
               "teamRank=" + teamRank +
               ", Loss=" + Loss +
               ", Win=" + Win +

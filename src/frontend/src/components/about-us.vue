@@ -1,17 +1,11 @@
 <template>
+  <Header></Header>
   <head>
     <meta charset="UTF-8">
     <title>Swiss Standings</title>
   </head>
   <body>
   <div>
-    <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute;margin-left: 8px;" class="img-fluid">
-    <br>
-    <br>
-    <div class="header">
-      <a class="logo">TournaMate</a>
-    </div>
-    <hr style="margin-top: 100px">
     <div class="about">
       <h1 style="color: #213555">About Tournament Generator</h1>
       <p>Tournament Generator is a web application that helps you generate tournament brackets for any game, match, or competition. We offer a variety of bracket styles and sizes to fit your needs.</p>
@@ -84,6 +78,12 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
+import Header from "@/components/Header.vue";
+
+export default defineComponent({
+  components: {Header}
+})
 </script>
 
 <style scoped>

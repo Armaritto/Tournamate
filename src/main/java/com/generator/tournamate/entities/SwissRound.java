@@ -47,7 +47,9 @@ public class SwissRound {
         this.matchList = matchList;
     }
 
-    public boolean finishRound(){
+
+    public boolean finishRound() throws CloneNotSupportedException {
+
         for(Pair<Integer, SwissMatch> i : matchList){
             if(i.second.getMatchStatus().equals("NA")){
                 return false;
@@ -55,7 +57,9 @@ public class SwissRound {
         }
         if(!finished)
         for(SwissPlayer p : playersList){
-            outputList.add(Pair.createPair(p.score, p));
+
+            outputList.add(Pair.createPair(p.score, (SwissPlayer) p.clone()));
+
         }
         Collections.sort(outputList, new PairComparator());
         Collections.reverse(outputList);

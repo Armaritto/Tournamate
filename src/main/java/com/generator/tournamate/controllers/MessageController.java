@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@CrossOrigin
+
 @RestController
 @RequestMapping("/api/messages")
 public class MessageController {

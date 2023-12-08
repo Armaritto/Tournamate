@@ -13,16 +13,19 @@
         <meta charset="UTF-8">
         <h1 style="color:#e2f4ff; font-size: 50px;">Login</h1>
         <div class="log-in">
-            <form>
-                    <!-- <br><br><br><br><br><br> -->
-                <input type="text" class="input-box" placeholder="Username"/>
-                <!-- <br> -->
+            <form>                
+                <input type="text" class="input-box" placeholder="Username/Email"/>
                 <input type="password" class="input-box" placeholder="Password"/>
-            
-                <p style="font-size:10px" class="other"><a href="#" style=" color:#DDE6ED;">Create new account? Sign up.</a></p>
+                <router-link to="/NewAccount">
+                  <p style="font-size:10px; color:#DDE6ED;" class="other">Create new account? Sign up.</p>
+                 </router-link>
+                <!-- <p style="font-size:10px" class="other"><a href="#" style=" color:#DDE6ED;">Create new account? Sign up.</a></p> -->
                 <button type="button" class="login-btn">Login</button>
-                <p style="font-size:10px" class="other"><a href="#" style=" color: #DDE6ED">Continue as a guest.</a></p>
-                
+                <router-link to="/createTournament">
+                  <p style="font-size:10px; color:#DDE6ED;" class="other">Continue as a guest.</p>
+                 </router-link>
+                <!-- <p style="font-size:10px" class="other"><a href="#" style=" color: #DDE6ED">Continue as a guest.</a></p> -->
+
             </form>
         </div>
      </div>
