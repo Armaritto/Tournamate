@@ -6,6 +6,11 @@ public class SwissPlayer extends Participant{
         super(name, score);
     }
 
+    int numOfWins = 0;
+    int numOfLosses = 0;
+    int numOfDraws = 0;
+
+
     public void incrementScoreW(){
         this.score += 2;
     }

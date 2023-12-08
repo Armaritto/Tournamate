@@ -25,58 +25,58 @@ public class SwissController {
             new SwissPlayer("player5", 0),
             new SwissPlayer("player6", 0)
     );
-    SwissTournament mySwissTournament = null;
+    //SwissTournament SwissTournamentService.AllSwissTournaments.get(id) = null;
     @PostMapping(path = "/newSwissTournament")
-    public String generateTournament() throws RoundNotFoundException {
-        mySwissTournament = new SwissTournament(3, swissPlayerList);
-        mySwissTournament.getRound(1).setPlayersList(swissPlayerList);
-        System.out.println(mySwissTournament);
-        return mySwissTournament.toString();
+    public Long generateTournament() throws RoundNotFoundException {
+//        SwissTournamentService.AllSwissTournaments.get(id) = new SwissTournament(3, swissPlayerList);
+//        SwissTournamentService.AllSwissTournaments.get(id).getRound(1).setPlayersList(swissPlayerList);
+//        System.out.println(SwissTournamentService.AllSwissTournaments.get(id));
+        return swissTournamentService.generateSwissTournament(3, swissPlayerList);
 
     }
     @PostMapping(path = "/newSwissRound")
-    public String generateRound() throws RoundNotFoundException, RoundStillRunningException {
-        SwissRound newRound = swissTournamentService.generateNextRound(mySwissTournament.getRound(mySwissTournament.getCurrentRoundNumber()), mySwissTournament.getPlayers());
-        mySwissTournament.addRound(newRound);
-        return mySwissTournament.toString();
+    public String generateRound(@RequestParam("id") Long id) throws RoundNotFoundException, RoundStillRunningException {
+        SwissRound newRound = swissTournamentService.generateNextRound(SwissTournamentService.AllSwissTournaments.get(id).getRound(SwissTournamentService.AllSwissTournaments.get(id).getCurrentRoundNumber()), SwissTournamentService.AllSwissTournaments.get(id).getPlayers());
+        SwissTournamentService.AllSwissTournaments.get(id).addRound(newRound);
+        return SwissTournamentService.AllSwissTournaments.get(id).toString();
     }
     @PostMapping(path = "/finishRound")
-    public String finishRound(@RequestParam("roundNumber") int roundNumber) throws RoundNotFoundException {
-        mySwissTournament.getRound(roundNumber).finishRound();
-        return mySwissTournament.toString();
+    public String finishRound(@RequestParam("id") Long id, @RequestParam("roundNumber") int roundNumber) throws RoundNotFoundException {
+        SwissTournamentService.AllSwissTournaments.get(id).getRound(roundNumber).finishRound();
+        return SwissTournamentService.AllSwissTournaments.get(id).toString();
     }
 
     @PostMapping(path = "/setMatch")
-    public String setMatch(@RequestParam("roundNumber") int roundNumber , @RequestParam("matchNumber") int matchNumber, @RequestParam("matchStatus") String matchStatus) throws RoundNotFoundException {
-        if(mySwissTournament.getRound(roundNumber).getMatchList().get(matchNumber).second.getMatchStatus().equals("NA")) {
+    public String setMatch(@RequestParam("id") Long id, @RequestParam("roundNumber") int roundNumber , @RequestParam("matchNumber") int matchNumber, @RequestParam("matchStatus") String matchStatus) throws RoundNotFoundException {
+        if(SwissTournamentService.AllSwissTournaments.get(id).getRound(roundNumber).getMatchList().get(matchNumber).second.getMatchStatus().equals("NA")) {
             switch (matchStatus) {
                 case "P1":
-                    mySwissTournament.getRound(roundNumber).getMatchList().get(matchNumber).second.setStatusP1();
+                    SwissTournamentService.AllSwissTournaments.get(id).getRound(roundNumber).getMatchList().get(matchNumber).second.setStatusP1();
                     break;
                 case "P2":
-                    mySwissTournament.getRound(roundNumber).getMatchList().get(matchNumber).second.setStatusP2();
+                    SwissTournamentService.AllSwissTournaments.get(id).getRound(roundNumber).getMatchList().get(matchNumber).second.setStatusP2();
                     break;
                 case "D":
-                    mySwissTournament.getRound(roundNumber).getMatchList().get(matchNumber).second.setStatusD();
+                    SwissTournamentService.AllSwissTournaments.get(id).getRound(roundNumber).getMatchList().get(matchNumber).second.setStatusD();
                     break;
                 default:
-                    mySwissTournament.getRound(roundNumber).getMatchList().get(matchNumber).second.setStatusNA();
+                    SwissTournamentService.AllSwissTournaments.get(id).getRound(roundNumber).getMatchList().get(matchNumber).second.setStatusNA();
             }
         }
-        Collections.sort(mySwissTournament.getPlayers(), new ParticipantComparator());
-        Collections.reverse(mySwissTournament.getPlayers());
-        return mySwissTournament.toString();
+        Collections.sort(SwissTournamentService.AllSwissTournaments.get(id).getPlayers(), new ParticipantComparator());
+        Collections.reverse(SwissTournamentService.AllSwissTournaments.get(id).getPlayers());
+        return SwissTournamentService.AllSwissTournaments.get(id).toString();
     }
     @PostMapping(path = "/generateMatches")
-    public String generateMatches() throws RoundNotFoundException {
-        List<Pair<Integer, SwissMatch>> matchList = swissRoundService.generateMatchList(mySwissTournament.getPlayers());
-        mySwissTournament.getRound(mySwissTournament.getCurrentRoundNumber()).setMatchList(matchList);
-        return mySwissTournament.toString();
+    public String generateMatches(@RequestParam("id") Long id) throws RoundNotFoundException {
+        List<Pair<Integer, SwissMatch>> matchList = swissRoundService.generateMatchList(SwissTournamentService.AllSwissTournaments.get(id).getPlayers());
+        SwissTournamentService.AllSwissTournaments.get(id).getRound(SwissTournamentService.AllSwissTournaments.get(id).getCurrentRoundNumber()).setMatchList(matchList);
+        return SwissTournamentService.AllSwissTournaments.get(id).toString();
     }
-    @GetMapping(path = "/mySwissTournament")
-    public SwissTournament getMySwissTournament(){
-        return mySwissTournament;
-    }
+//    @GetMapping(path = "/")
+//    public SwissTournament getSwissTournamentService.AllSwissTournaments.get(id)(@RequestParam("id") Long id){
+//        return SwissTournamentService.AllSwissTournaments.get(id);
+//    }
 
     @GetMapping
     public List<SwissPlayer> test(){
