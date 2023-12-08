@@ -1,17 +1,11 @@
 <template>
+  <Header></Header>
   <head>
     <meta charset="UTF-8">
     <title>Swiss Standings</title>
   </head>
   <body>
   <div>
-    <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
-    <br>
-    <br>
-    <div class="header">
-      <a class="logo">TournaMate</a>
-    </div>
-    <hr style="margin-top: 100px">
     <div class="title">
       User Profile
     </div>
@@ -48,7 +42,7 @@
           <td style="font-size: 18px;font-family: ubuntu-bold">
             Player Name
           </td>
-            <td>
+          <td>
             <div>
               <div class="active header-right header-rightHovered" style="text-decoration: none; margin-left: 5px;width:135px;text-align: center;">
                 Change name
@@ -73,8 +67,8 @@
         </tr>
         </tbody>
       </table>
-      <div class="active2 header-right2 header-rightHovered2" style="text-decoration: none;margin-right: 200px;margin-top: 150px;margin-bottom: 50px ;width:135px;text-align: center;background: #fdcf6e;
-  color: #095F59FF;">
+      <div class="active2 header-right2 header-rightHovered2" style="text-decoration: none;margin-right: 200px;margin-top: 150px;margin-bottom: 50px ;width:135px;text-align: center;background: #213555;
+  color: #DDE6ED;">
         Save Changes
       </div>
 
@@ -84,43 +78,45 @@
 </template>
 
 <script>
-  import lottie from "lottie-web";
-  import { defineElement } from "@lordicon/element";
-  // define "lord-icon" custom element with default properties
-  defineElement(lottie.loadAnimation);
-  export default {
-    data() {
-      return {
-        imageUrl: null,
-        username: "",
-        name: "",
-      };
+import lottie from "lottie-web";
+import { defineElement } from "@lordicon/element";
+import Header from "@/components/Header.vue";
+// define "lord-icon" custom element with default properties
+defineElement(lottie.loadAnimation);
+export default {
+  components: {Header},
+  data() {
+    return {
+      imageUrl: null,
+      username: "",
+      name: "",
+    };
+  },
+  methods: {
+    pickFile() {
+      this.$refs.fileInput.click();
     },
-    methods: {
-      pickFile() {
-        this.$refs.fileInput.click();
-      },
-      onFilePicked(event) {
-        const files = event.target.files;
-        let filename = files[0].name;
-        if (filename.lastIndexOf(".") <= 0) {
-          return alert("Please add a valid image file!");
-        }
-        const fileReader = new FileReader();
-        fileReader.addEventListener("load", () => {
-          this.imageUrl = fileReader.result;
-        });
-        fileReader.readAsDataURL(files[0]);
-        this.image = files[0];
-      },
-      save() {
-        // Perform your save operation here
-        console.log("Image URL: ", this.imageUrl);
-        console.log("Username: ", this.username);
-        console.log("Player Name: ", this.name);
-      },
+    onFilePicked(event) {
+      const files = event.target.files;
+      let filename = files[0].name;
+      if (filename.lastIndexOf(".") <= 0) {
+        return alert("Please add a valid image file!");
+      }
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        this.imageUrl = fileReader.result;
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
     },
-  };
+    save() {
+      // Perform your save operation here
+      console.log("Image URL: ", this.imageUrl);
+      console.log("Username: ", this.username);
+      console.log("Player Name: ", this.name);
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -175,7 +171,7 @@ body {
 }
 .title{
   font-size: 45px;
-  color: #095f59;
+  color: #213555;
   font-family: ubuntu-bold;
   display: flex;
   justify-content: center;
@@ -190,12 +186,12 @@ body {
   font-family: ubuntu-bold;
   font-size: large;
   float: right;
-  background: #095f59;
-  color: #fffcf1;
+  background: #213555;
+  color: #DDE6ED;
   border-radius: 30px;
 }
 .header-rightHovered2:hover{
-  background: #0c766f;
+  background: #213555;
   cursor:pointer;
 }
 
@@ -228,36 +224,38 @@ body {
 .header-right {
   font-family: ubuntu-bold;
   float: right;
-  background: #095f59;
-  color: #fffcf1;
+  color: #27374D;
+  border-style: solid;
+  border-color: #213555;
   border-radius: 20px;
 }
 .header-rightHovered:hover{
-  background: #0c766f;
+  background: #213555;
+  color: #DDE6ED;
   cursor:pointer;
 }
 .content table {
   width: 70%;
   border-collapse: collapse;
-  border:solid #095F59FF 3px;
+  border:solid #213555 3px;
   align-content: center;
   border-radius: 20px;
   overflow: hidden;
 }
 .content th, .content td {
-  border: 2px solid #095f59;
+  border: 2px solid #213555;
   padding: 10px;
   text-align: center;
 }
 .content td{
-  background-color: #fdcf6e;
+  background-color: #DDE6ED;
   align-content: center;
   font-size: 20px;
 }
 .content th {
-  background-color: #095f59;
+  background-color: #213555;
   border-top: none;
-  color: #fdcf6e;
+  color: #DDE6ED;
   align-content: center;
   font-size: 20px;
 }

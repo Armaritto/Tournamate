@@ -4,7 +4,9 @@
   </head>
 
   <div>
-    <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
+    <router-link to="/about">
+      <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
+    </router-link>
     <br>
     <br>
     <div class="header">
@@ -35,3 +37,5 @@
 
 
 </template>
+<script setup>
+</script>
