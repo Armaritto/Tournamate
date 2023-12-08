@@ -1,9 +1,11 @@
-package com.generator.tournamate.Controller;
+package com.generator.tournamate.controllers;
 
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+
+@CrossOrigin
 
 @RestController
 @RequestMapping("/api/messages")

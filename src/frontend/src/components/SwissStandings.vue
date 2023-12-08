@@ -1,37 +1,11 @@
 <template>
   <head>
     <meta charset="UTF-8">
-    <title>TournaMate - Swiss Tournament</title>
+    <title>Swiss Standings</title>
   </head>
+  <Header></Header>
   <body>
-  <div :style="{ width: playerWidth + 'px' }">
-    <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
-    <br>
-    <br>
-    <div class="header">
-      <a class="logo">TournaMate</a>
-      <div class="header-right header-rightHovered">
-        <div>
-            <router-link to="/contact" class="nav-link">
-              <lord-icon class = "icon"
-                         src="https://cdn.lordicon.com/kthelypq.json"
-                         trigger="hover"
-                         style="width:50px;height:50px">
-              </lord-icon>
-          </router-link>
-        </div>
-      </div>
-      <div class="header-right header-rightHovered">
-        <div>
-          <router-link to="/about">
-            <div class="active" style="text-decoration: none;">
-              About
-            </div>
-          </router-link>
-        </div>
-      </div>
-    </div>
-    <hr style="margin-top: 100px">
+  <div>
     <div class="title">
       Lorem Ipsum
     </div>
@@ -60,41 +34,52 @@
       </table>
     </div>
   </div>
+  <button @click="update()"> update</button>
   </body>
 </template>
-
 
 <script>
 /////
 import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
+import Header from "@/components/Header.vue";
+import rounds from "@/components/rounds.vue";
 // define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
 ////
 export default {
   name: 'SwissStandings',
+  components: {Header},
   data(){
     return{
       roomName: '',
       fantasyScore: '',
-      teams: [
-        {name: 'Team A', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-      ],
+      tournamentID:  rounds.data().tournamentID,  // very important
+      teams: [],
       screenWidth: window.innerWidth,
+      update: function(){
+        fetch("http://localhost:8080/swiss/?" + new URLSearchParams({
+          id:this.tournamentID
+        }),{
+          method: 'GET'
+        })
+            .then(function (response) {
+              return response.json()
+            })
+            .then((data) => {
+              console.log(data)
+              this.teams = [];
+              for(var index in data){
+                this.teams.push({
+                  name: data[index].name,
+                  points: data[index].score / 2,
+                  win: data[index].numOfWins,
+                  draw: data[index].numOfDraws,
+                  lose: data[index].numOfLosses,
+                })
+              }
+            })
+      }
     }
   },
   methods:{
@@ -163,14 +148,13 @@ body {
 }
 .title{
   font-size: 50px;
-  color: #095f59;
+  color: #213555;
   font-family: ubuntu-bold;
   display: flex;
   justify-content: center;
   padding-top: 20px;
   padding-bottom: 40px;
 }
-
 .header {
   position: relative;
   overflow: hidden;
@@ -186,7 +170,7 @@ body {
   line-height: 25px;
   border-radius: 4px;
   font-family: ubuntu-bold;
-  color: #081234;
+  color: #213555;
   text-decoration: none;
 }
 .header a.logo {
@@ -201,10 +185,10 @@ body {
   float: right;
   margin-right: 70px;
   border-radius: 7px;
-  color: #686762;
+  color: #213555;
 }
 .header-rightHovered:hover{
-  background: #f6f3eb;
+  background: #ebebeb;
   cursor:pointer;
 }
 .content{
@@ -217,25 +201,26 @@ body {
 .content table {
   width: 70%;
   border-collapse: collapse;
-  border:solid #095F59FF 3px;
+  border:solid #213555 3px;
   align-content: center;
   border-radius: 20px;
   overflow: hidden;
 }
 .content th, .content td {
-  border: 2px solid #095f59;
+  border: 2px solid #213555;
   padding: 10px;
   text-align: center;
 }
 .content td{
-  background-color: #fdcf6e;
+  background-color: #bbccd7;
   align-content: center;
   font-size: 20px;
+
 }
 .content th {
-  background-color: #095f59;
+  background-color: #27374D;
   border-top: none;
-  color: #fdcf6e;
+  color: #FFC1A2;
   align-content: center;
   font-size: 20px;
 }
@@ -245,3 +230,4 @@ body {
   }
 }
 </style>
+
