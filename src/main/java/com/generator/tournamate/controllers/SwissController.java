@@ -1,6 +1,7 @@
 package com.generator.tournamate.controllers;
 
 import com.generator.tournamate.*;
+import com.generator.tournamate.services.Service;
 import com.generator.tournamate.services.SwissRoundService;
 import com.generator.tournamate.services.SwissTournamentService;
 import com.generator.tournamate.entities.SwissMatch;
@@ -18,23 +19,28 @@ import java.util.*;
 public class SwissController {
     SwissRoundService swissRoundService = new SwissRoundService();
     SwissTournamentService swissTournamentService = new SwissTournamentService();
-    List<SwissPlayer> swissPlayerList = Arrays.asList(
 
-            new SwissPlayer("player1", 0),
-            new SwissPlayer("player2", 0),
-            new SwissPlayer("player3", 0),
-            new SwissPlayer("player4", 0),
-            new SwissPlayer("player5", 0),
-            new SwissPlayer("player6", 0)
-    );
+//    List<SwissPlayer> swissPlayerList = Arrays.asList(
+//
+//            new SwissPlayer("player1", 0),
+//            new SwissPlayer("player2", 0),
+//            new SwissPlayer("player3", 0),
+//            new SwissPlayer("player4", 0),
+//            new SwissPlayer("player5", 0),
+//            new SwissPlayer("player6", 0)
+//    );
 
     //SwissTournament SwissTournamentService.AllSwissTournaments.get(id) = null;
     @PostMapping(path = "/newSwissTournament")
-    public Long generateTournament() throws RoundNotFoundException {
+    public Long generateTournament(@RequestParam("name") String name, @RequestParam("numOfRound") int numOfRounds, @RequestParam("list") List list) throws RoundNotFoundException {
 //        SwissTournamentService.AllSwissTournaments.get(id) = new SwissTournament(3, swissPlayerList);
 //        SwissTournamentService.AllSwissTournaments.get(id).getRound(1).setPlayersList(swissPlayerList);
 //        System.out.println(SwissTournamentService.AllSwissTournaments.get(id));
-        return swissTournamentService.generateSwissTournament(3, swissPlayerList);
+        List<SwissPlayer> swissPlayerList = new ArrayList<>();
+        for(int i=0; i<list.size(); i++){
+            swissPlayerList.add(new SwissPlayer(list.get(i).toString(),  0));
+        }
+        return swissTournamentService.generateSwissTournament(numOfRounds, swissPlayerList);
 
     }
     @PostMapping(path = "/newSwissRound")
@@ -48,13 +54,13 @@ public class SwissController {
         return SwissTournamentService.AllSwissTournaments.get(id).getRound(SwissTournamentService.AllSwissTournaments.get(id).getCurrentRoundNumber()).getMatchList();
         //return SwissTournamentService.AllSwissTournaments.get(id).toString();
     }
-    @PostMapping(path = "/finishRound")
+    @PutMapping(path = "/finishRound")
     public String finishRound(@RequestParam("id") Long id, @RequestParam("roundNumber") int roundNumber) throws RoundNotFoundException, CloneNotSupportedException {
         SwissTournamentService.AllSwissTournaments.get(id).getRound(roundNumber).finishRound();
         return SwissTournamentService.AllSwissTournaments.get(id).toString();
     }
 
-    @PostMapping(path = "/setMatch")
+    @PutMapping(path = "/setMatch")
     public String setMatch(@RequestParam("id") Long id, @RequestParam("roundNumber") int roundNumber , @RequestParam("matchNumber") int matchNumber, @RequestParam("matchStatus") String matchStatus) throws RoundNotFoundException {
         if(SwissTournamentService.AllSwissTournaments.get(id).getRound(roundNumber).getMatchList().get(matchNumber).second.getMatchStatus().equals("NA")) {
             switch (matchStatus) {
@@ -86,10 +92,13 @@ public class SwissController {
         return SwissTournamentService.AllSwissTournaments.get(id).getPlayers();
 
     }
-
-    @GetMapping
-    public List<SwissPlayer> test(){
-        return swissPlayerList;
+    // @GetMapping
+//    public List<SwissPlayer> test(){
+//        return swissPlayerList;
+//    }
+    @PostMapping(path = "/shuffle")
+    public List shuffle(@RequestParam("list") List list){
+        return Service.shuffle(list);
     }
 
 }

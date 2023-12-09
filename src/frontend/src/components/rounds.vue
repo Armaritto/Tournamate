@@ -36,13 +36,13 @@
     </div>
     <div class="bigBUTTONCLASS">
       <div class="bigBUTTONS">
-        <button @click="generateNewRound()">
+        <button class="blue-button" @click="generateNewRound() ">
           <div style="display: flex; flex-direction: column; align-items: center">
             <lord-icon
                 src="https://cdn.lordicon.com/nizfqlnk.json"
                 trigger="hover"
                 colors="primary:#213555"
-                style="width:200px;height:200px">
+                style="width:100px;height:100px">
             </lord-icon>
             <div>
               <br>
@@ -50,37 +50,49 @@
             </div>
           </div>
         </button>
-        <button @click="generateNewRound()">
-          <div>
-            generate new round
-          </div>
-        </button>
+        <router-link to="/swissStandings">
+          <button class="blue-button">
+            <div style="display: flex; flex-direction: column; align-items: center">
+              <lord-icon
+                  src="https://cdn.lordicon.com/whrxobsb.json"
+                  trigger="hover"
+                  colors="primary:#213555"
+                  style="width:100px;height:100px">
+              </lord-icon>
+              <div>
+                <br>
+                View Standings
+              </div>
+            </div>
+          </button>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import myMixin from "@/components/myMixin";
 import {defineComponent} from "vue";
 import Header from "@/components/Header.vue";
 export default defineComponent({
+  props: ['tournamentID'],
   components: {Header},
+  mixins: [myMixin],
   data(){
     return{
       roundNumber: 1,
-      tournamentID:  8066887,
+      tournamentID: 13 ,
       matches:[
-        {teamA: "team 1" ,scoreTeamA: -1, scoreTeamB: -1, teamB: "team 2"},
-        {teamA: "team 1" ,scoreTeamA: -1, scoreTeamB: -1, teamB: "team 2"}
       ],
       setScore: function (status,matchNumber){
         fetch("http://localhost:8080/swiss/setMatch?" + new URLSearchParams({
-          roundNumber:this.roundNumber,
+          roundNumber:this.roundNumber.toString(),
           matchNumber:matchNumber,
           matchStatus:status.toString(),
-          id:this.tournamentID
+          id:13
       }),{
-          method: 'POST'
+          method: 'PUT'
         })
         switch (status){
           case "D":
@@ -98,6 +110,7 @@ export default defineComponent({
         }
       },
       generateNewRound: function(){
+        console.log(myMixin.data().id)
         fetch("http://localhost:8080/swiss/newSwissRound?" + new URLSearchParams({
           id:this.tournamentID
         }),{
@@ -204,8 +217,25 @@ export default defineComponent({
  }
  .bigBUTTONS{
    display: flex;
-   flex-direction: column;
+   flex-direction: row;
    justify-content: center;
    min-width: 50px;
+ }
+ .blue-button {
+   display: flex;
+   justify-content: center;
+   background-color: #DDE6ED;
+   color: #213555;
+   border: none;
+   border-radius: 0;
+   margin: 0;
+   cursor: pointer;
+   transition: background-color 0.3s;
+   margin-bottom: -2px;
+   padding: 15px;
+   font-size: 20px;
+ }
+ .blue-buttonH:hover {
+   background-color: #bcc5cc;
  }
 </style>

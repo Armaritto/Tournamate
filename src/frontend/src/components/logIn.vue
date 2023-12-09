@@ -34,7 +34,9 @@
                   <p style="font-size:10px; color:#DDE6ED;" class="other">Create new account? Sign up.</p>
                  </router-link>
                 <!-- <p style="font-size:10px" class="other"><a href="#" style=" color:#DDE6ED;">Create new account? Sign up.</a></p> -->
+
                 <button type="button" class="login-btn" @click="storeData();login()">Login</button>
+
                 <router-link to="/createTournament">
                   <p style="font-size:10px; color:#DDE6ED;" class="other">Continue as a guest.</p>
                  </router-link>

@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import { createStore } from 'vuex'
 import { createRouter, createWebHashHistory } from 'vue-router';
 import SwissStandings from './components/SwissStandings.vue';
 import About from './components/about-us.vue';
@@ -27,6 +28,18 @@ const router = createRouter({
         { path: '/NewAccount', component: NewAccount},
     ]
 });
+const store = createStore({
+    state () {
+        return {
+            id: 0
+        }
+    },
+    mutations: {
+        increment (state) {
+            state.count++
+        }
+    }
+})
 
 const app = createApp({
     template: `
@@ -42,6 +55,7 @@ const app = createApp({
     </div>
   `
 });
-
+app.config.globalProperties.foo = '7';
 app.use(router);
+app.use(store);
 app.mount("#app");
