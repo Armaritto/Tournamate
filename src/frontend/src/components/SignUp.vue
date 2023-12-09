@@ -99,11 +99,10 @@ export default ({
               this.condition=this.fromBack;
             }
             else{
-              alert("Welcome to TournaMate!")
               location.replace("http://localhost:3000/#/createTournament")
             }
           });
-        
+
      },
     }
 })

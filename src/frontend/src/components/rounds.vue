@@ -72,13 +72,11 @@
 </template>
 
 <script>
-import myMixin from "@/components/myMixin";
 import {defineComponent} from "vue";
 import Header from "@/components/Header.vue";
 export default defineComponent({
   props: ['tournamentID'],
   components: {Header},
-  mixins: [myMixin],
   data(){
     return{
       roundNumber: 1,
@@ -86,7 +84,7 @@ export default defineComponent({
       matches:[
       ],
       setScore: function (status,matchNumber){
-        fetch("http://localhost:8080/swiss/setMatch?" + new URLSearchParams({
+        fetch("http://localhost:9190/swiss/setMatch?" + new URLSearchParams({
           roundNumber:this.roundNumber.toString(),
           matchNumber:matchNumber,
           matchStatus:status.toString(),
@@ -110,8 +108,7 @@ export default defineComponent({
         }
       },
       generateNewRound: function(){
-        console.log(myMixin.data().id)
-        fetch("http://localhost:8080/swiss/newSwissRound?" + new URLSearchParams({
+        fetch("http://localhost:9190/swiss/newSwissRound?" + new URLSearchParams({
           id:this.tournamentID
         }),{
           method: 'POST'

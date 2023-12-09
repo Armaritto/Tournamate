@@ -63,7 +63,7 @@ export default {
       teams: [],
       screenWidth: window.innerWidth,
       getResults: function(){
-        fetch("http://localhost:8080/swiss/?" + new URLSearchParams({
+        fetch("http://localhost:9190/swiss/?" + new URLSearchParams({
           id:this.tournamentID
         }),{
           method: 'GET'

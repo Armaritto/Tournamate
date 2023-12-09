@@ -107,7 +107,6 @@
 
 
 <script>
-import myMixin from "@/components/myMixin";
 function arrayRemove(arr, value) {
   return arr.filter(function (v) {
     return v != value;
@@ -118,7 +117,6 @@ import rounds from "@/components/rounds.vue";
 export default {
   name: 'SwissStandings',
   components: {Header},
-  mixins: [myMixin],
   data(){
     return{
       roomName: '',
@@ -135,7 +133,7 @@ export default {
       finalizeParameters: function(){
         this.roomName = document.getElementById('room-name').value
         this.numberOfRounds = document.getElementById('NUMBEROFROUNDS').value
-        fetch("http://localhost:8080/swiss/newSwissTournament?"+ new URLSearchParams({
+        fetch("http://localhost:9190/swiss/newSwissTournament?"+ new URLSearchParams({
           name: this.roomName,
           numOfRound: this.numberOfRounds,
           list: this.teams
@@ -146,15 +144,12 @@ export default {
               return response.json()
             })
             .then((data) => {
-              //this.tournamentID = Number(data)
-              //this.id = data;
-
-              myMixin.data().id = data;
-              console.log(myMixin.data().id)
+              this.tournamentID = Number(data)
+              this.id = data;
             })
       },
       shuffle: function (){
-        fetch("http://localhost:8080/shuffle?"+ new URLSearchParams({
+        fetch("http://localhost:9190/shuffle?"+ new URLSearchParams({
           list: this.teams
         }),{
           method: 'POST'

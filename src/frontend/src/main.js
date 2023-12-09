@@ -55,7 +55,6 @@ const app = createApp({
     </div>
   `
 });
-app.config.globalProperties.foo = '7';
 app.use(router);
 app.use(store);
 app.mount("#app");
