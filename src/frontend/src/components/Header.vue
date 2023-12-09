@@ -4,7 +4,7 @@
   </head>
 
   <div>
-    <router-link to="/about">
+    <router-link to="/createTournament">
       <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
     </router-link>
     <br>

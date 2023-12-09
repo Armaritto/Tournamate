@@ -6,8 +6,11 @@
   <Header></Header>
   <body>
   <div>
-    <div class="title">
-      Lorem Ipsum
+    <div class="title" v-if="roomName !== ''">
+      {{roomName}}
+    </div>
+    <div class="title" v-else>
+      Room
     </div>
     <div class="content">
       <table class="my-table">
@@ -34,7 +37,6 @@
       </table>
     </div>
   </div>
-  <button @click="update()"> update</button>
   </body>
 </template>
 
@@ -50,14 +52,17 @@ defineElement(lottie.loadAnimation);
 export default {
   name: 'SwissStandings',
   components: {Header},
+  props: {
+    tournamentID: Number
+  },
   data(){
     return{
       roomName: '',
       fantasyScore: '',
-      tournamentID:  rounds.data().tournamentID,  // very important
+      tournamentID: 13,
       teams: [],
       screenWidth: window.innerWidth,
-      update: function(){
+      getResults: function(){
         fetch("http://localhost:8080/swiss/?" + new URLSearchParams({
           id:this.tournamentID
         }),{
@@ -82,27 +87,8 @@ export default {
       }
     }
   },
-  methods:{
-    action(){
-      callBackend();
-      function callBackend(){
-        fetch("/api/messages/backend", {
-          method: 'POST',
-          body: JSON.stringify({
-            msg: ''
-          }),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-          }
-        })
-            .then(function(response){
-              return response.json()})
-            .then(function(data){
-              console.log(data)
-              document.getElementById('board').innerHTML = data.msg;
-            })
-      }
-    },
+  mounted() {
+    this.getResults();
   }
 }
 </script>
@@ -147,21 +133,16 @@ body {
   font-size: small;
 }
 .title{
-  font-size: 50px;
+  font-size: 40px;
   color: #213555;
   font-family: ubuntu-bold;
   display: flex;
   justify-content: center;
   padding-top: 20px;
-  padding-bottom: 40px;
-}
-  ////////////////////////////
-.header {
-  position: relative;
-  overflow: hidden;
-  padding: 20px 10px;
-  max-width: 200px;
-  display: grid;
+
+  padding-bottom: 20px;
+
+
 }
 .header a {
   float: left;

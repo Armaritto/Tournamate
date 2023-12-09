@@ -12,9 +12,7 @@
     <router-link to="/createGroups">
       <p style="color: #27374D;">Groups</p>
     </router-link>
-
   </div>
-
 </template>
 <script setup>
   import Header from "@/components/Header.vue";
@@ -35,6 +33,10 @@
 .types router-link {
   text-align: center;
   flex-grow: 1;
-
 }
+body {
+  font-family: Arial, sans-serif;
+}
+
+
 </style>
