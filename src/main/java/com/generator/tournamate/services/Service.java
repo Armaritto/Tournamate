@@ -7,4 +7,10 @@ public class Service {
         Collections.shuffle(list);
         return list;
     }
+    public static List sort(List list){
+        Collections.sort(list);
+        return list;
+    }
+
+
 }

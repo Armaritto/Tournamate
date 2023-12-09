@@ -1,5 +1,7 @@
 package com.generator.tournamate.controllers;
-
+import com.generator.tournamate.PairComparator;
+import com.generator.tournamate.ParticipantComparator;
+import com.generator.tournamate.services.Service;
 import com.generator.tournamate.RoundNotFoundException;
 import com.generator.tournamate.RoundStillRunningException;
 import com.generator.tournamate.entities.*;
@@ -8,6 +10,7 @@ import com.generator.tournamate.services.RoundRobinService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 @CrossOrigin
@@ -19,7 +22,7 @@ public class RoundRobinController {
   //  List<RoundRobinTeam> teams =new ArrayList<>();
     RoundRobin myTournament = null;
     @PostMapping(path = "/newRoundRobinTournament")
-    public Long generateTournament(@RequestParam("name") String name, @RequestParam("numOfRound") int numOfRounds, @RequestParam("list") List list) throws RoundNotFoundException {
+    public Long generateTournament(@RequestParam("name") String name, @RequestParam("list") List list) throws RoundNotFoundException {
 //        teams.add(new RoundRobinTeam("11"));
 //        teams.add(new RoundRobinTeam("22"));
 //        teams.add(new RoundRobinTeam("33"));
@@ -89,6 +92,14 @@ public class RoundRobinController {
 
     @GetMapping("/")
     public List getRoundRobinTeams(@RequestParam("id") Long id){
-        return myTournament.getTeams();
+        List tmp = new ArrayList();
+        for(int i=0; i<myTournament.getTeams().size(); i++){
+            tmp.add(myTournament.getTeams().get(i));
+        }
+
+        Collections.sort(tmp, new ParticipantComparator());
+        Collections.reverse(tmp);
+        System.out.println(tmp);
+        return tmp;
     }
 }
