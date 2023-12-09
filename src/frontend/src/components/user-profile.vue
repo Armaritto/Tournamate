@@ -1,17 +1,11 @@
 <template>
+  <Header></Header>
   <head>
     <meta charset="UTF-8">
     <title>Swiss Standings</title>
   </head>
   <body>
   <div>
-    <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
-    <br>
-    <br>
-    <div class="header">
-      <a class="logo">TournaMate</a>
-    </div>
-    <hr style="margin-top: 100px">
     <div class="title">
       User Profile
     </div>
@@ -48,7 +42,7 @@
           <td style="font-size: 18px;font-family: ubuntu-bold">
             Player Name
           </td>
-            <td>
+          <td>
             <div>
               <div class="active header-right header-rightHovered" style="text-decoration: none; margin-left: 5px;width:135px;text-align: center;">
                 Change name
@@ -84,43 +78,45 @@
 </template>
 
 <script>
-  import lottie from "lottie-web";
-  import { defineElement } from "@lordicon/element";
-  // define "lord-icon" custom element with default properties
-  defineElement(lottie.loadAnimation);
-  export default {
-    data() {
-      return {
-        imageUrl: null,
-        username: "",
-        name: "",
-      };
+import lottie from "lottie-web";
+import { defineElement } from "@lordicon/element";
+import Header from "@/components/Header.vue";
+// define "lord-icon" custom element with default properties
+defineElement(lottie.loadAnimation);
+export default {
+  components: {Header},
+  data() {
+    return {
+      imageUrl: null,
+      username: "",
+      name: "",
+    };
+  },
+  methods: {
+    pickFile() {
+      this.$refs.fileInput.click();
     },
-    methods: {
-      pickFile() {
-        this.$refs.fileInput.click();
-      },
-      onFilePicked(event) {
-        const files = event.target.files;
-        let filename = files[0].name;
-        if (filename.lastIndexOf(".") <= 0) {
-          return alert("Please add a valid image file!");
-        }
-        const fileReader = new FileReader();
-        fileReader.addEventListener("load", () => {
-          this.imageUrl = fileReader.result;
-        });
-        fileReader.readAsDataURL(files[0]);
-        this.image = files[0];
-      },
-      save() {
-        // Perform your save operation here
-        console.log("Image URL: ", this.imageUrl);
-        console.log("Username: ", this.username);
-        console.log("Player Name: ", this.name);
-      },
+    onFilePicked(event) {
+      const files = event.target.files;
+      let filename = files[0].name;
+      if (filename.lastIndexOf(".") <= 0) {
+        return alert("Please add a valid image file!");
+      }
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        this.imageUrl = fileReader.result;
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
     },
-  };
+    save() {
+      // Perform your save operation here
+      console.log("Image URL: ", this.imageUrl);
+      console.log("Username: ", this.username);
+      console.log("Player Name: ", this.name);
+    },
+  },
+};
 </script>
 
 <style scoped>

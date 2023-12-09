@@ -19,24 +19,26 @@ import com.generator.tournamate.entities.SwissPlayer;
 import com.generator.tournamate.entities.SwissTournament;
 import com.generator.tournamate.services.KnockoutTournamentService;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path= "/knockout")
 public class KnockoutController {
-	KnockoutTournamentService knockoutTournamentService= new KnockoutTournamentService(); 
-	List<KnockoutPlayer> knockoutPlayerList =List.of(new KnockoutPlayer("player0"),
+	KnockoutTournamentService knockoutTournamentService= new KnockoutTournamentService();
+	List<KnockoutPlayer> knockoutPlayerList =List.of(
+            new KnockoutPlayer("player0"),
             new KnockoutPlayer( "player1"),
             new KnockoutPlayer( "player2"),
             new KnockoutPlayer("player3")
          );
 	KnockoutTournament myKnockoutTournament = null;
-	
+
     @PostMapping(path= "/newKnockoutTournament")
     public KnockoutTournament generateTournament(@RequestBody String name) throws RoundNotFoundException {
     	myKnockoutTournament = knockoutTournamentService.startNewTournament(name, knockoutPlayerList);
         System.out.println(myKnockoutTournament);
         return myKnockoutTournament;
     }
-    
+
     @PutMapping(path= "/updateScores")
     public void updateScores(@RequestBody int[] scores) {
     	int k=0;
@@ -45,18 +47,18 @@ public class KnockoutController {
     		k++;
     	}
     }
-    
+
     @GetMapping(path= "/getTournament")
     public KnockoutTournament getTournament() {
     	return myKnockoutTournament;
     }
-    
+
     @DeleteMapping(path= "/deleteTournament")
     public void deleteTournament() {
     	myKnockoutTournament= null;
     	System.out.print("Deleted Succesfully");
     }
-    
+
     @PutMapping(path= "/proceedToNextRound")
     public void nextRound(){
     	knockoutTournamentService.proceedToNextRound(myKnockoutTournament);

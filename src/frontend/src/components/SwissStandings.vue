@@ -3,37 +3,14 @@
     <meta charset="UTF-8">
     <title>Swiss Standings</title>
   </head>
+  <Header></Header>
   <body>
   <div>
-    <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
-    <br>
-    <br>
-    <div class="header">
-      <a class="logo">TournaMate</a>
-      <div class="header-right header-rightHovered">
-        <div>
-            <router-link to="/profile" class="nav-link">
-              <lord-icon class = "icon"
-                         src="https://cdn.lordicon.com/kthelypq.json"
-                         trigger="hover"
-                         style="width:50px;height:50px">
-              </lord-icon>
-          </router-link>
-        </div>
-      </div>
-      <div class="header-right header-rightHovered">
-        <div>
-          <router-link to="/about">
-            <div class="active" style="text-decoration: none;">
-              About
-            </div>
-          </router-link>
-        </div>
-      </div>
+    <div class="title" v-if="roomName !== ''">
+      {{roomName}}
     </div>
-    <hr style="margin-top: 100px">
-    <div class="title">
-      Lorem Ipsum
+    <div class="title" v-else>
+      Room
     </div>
     <div class="content">
       <table class="my-table">
@@ -63,61 +40,55 @@
   </body>
 </template>
 
-
 <script>
 /////
 import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
+import Header from "@/components/Header.vue";
+import rounds from "@/components/rounds.vue";
 // define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
 ////
 export default {
   name: 'SwissStandings',
+  components: {Header},
+  props: {
+    tournamentID: Number
+  },
   data(){
     return{
       roomName: '',
       fantasyScore: '',
-      teams: [
-        {name: 'Team A', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-        {name: 'Team E', points: 25, win: 20, draw: 5, lose: 0 },
-      ],
+      tournamentID: 13,
+      teams: [],
       screenWidth: window.innerWidth,
-    }
-  },
-  methods:{
-    action(){
-      callBackend();
-      function callBackend(){
-        fetch("/api/messages/backend", {
-          method: 'POST',
-          body: JSON.stringify({
-            msg: ''
-          }),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-          }
+      getResults: function(){
+        fetch("http://localhost:8080/swiss/?" + new URLSearchParams({
+          id:this.tournamentID
+        }),{
+          method: 'GET'
         })
-            .then(function(response){
-              return response.json()})
-            .then(function(data){
+            .then(function (response) {
+              return response.json()
+            })
+            .then((data) => {
               console.log(data)
-              document.getElementById('board').innerHTML = data.msg;
+              this.teams = [];
+              for(var index in data){
+                this.teams.push({
+                  name: data[index].name,
+                  points: data[index].score / 2,
+                  win: data[index].numOfWins,
+                  draw: data[index].numOfDraws,
+                  lose: data[index].numOfLosses,
+                })
+              }
             })
       }
-    },
+    }
+  },
+  mounted() {
+    this.getResults();
   }
 }
 </script>
@@ -162,21 +133,16 @@ body {
   font-size: small;
 }
 .title{
-  font-size: 50px;
+  font-size: 40px;
   color: #213555;
   font-family: ubuntu-bold;
   display: flex;
   justify-content: center;
   padding-top: 20px;
-  padding-bottom: 40px;
-}
-////////////////////////////
-.header {
-  position: relative;
-  overflow: hidden;
-  padding: 20px 10px;
-  max-width: 200px;
-  display: grid;
+
+  padding-bottom: 20px;
+
+
 }
 .header a {
   float: left;

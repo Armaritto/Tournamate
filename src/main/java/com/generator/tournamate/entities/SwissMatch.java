@@ -24,15 +24,27 @@ public class SwissMatch {
     public void setStatusP1(){
         matchStatus = "P1";
         player1.incrementScoreW();
+
+        player1.setNumOfWins(player1.getNumOfWins()+1);
+        player2.setNumOfLosses(player2.getNumOfLosses()+1);
+
     }
     public void setStatusP2(){
         matchStatus = "P2";
         player2.incrementScoreW();
+
+        player2.setNumOfWins(player2.getNumOfWins()+1);
+        player1.setNumOfLosses(player1.getNumOfLosses()+1);
+
     }
     public void setStatusD(){
         matchStatus = "D";
         player1.incrementScoreD();
         player2.incrementScoreD();
+
+        player1.setNumOfDraws(player1.getNumOfDraws()+1);
+        player2.setNumOfDraws(player2.getNumOfDraws()+1);
+
     }
 
     public String getMatchStatus() {
