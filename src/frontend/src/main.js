@@ -11,6 +11,8 @@ import CreateKnockout from './components/Create-Knockout.vue';
 import CreateRobin from './components/Create-Robin.vue';
 import CreateGroups from './components/Create-Groups.vue';
 import NewAccount from './components/SignUp.vue';
+import rnds_Robin from './components/rounds-Robin.vue'
+import RoundRobinStandings from "@/components/RoundRobinStandings.vue";
 const router = createRouter({
     mode: 'history',
     history: createWebHashHistory(),
@@ -26,6 +28,8 @@ const router = createRouter({
         { path: '/createRoundRobin', component: CreateRobin},
         { path: '/createGroups', component: CreateGroups},
         { path: '/NewAccount', component: NewAccount},
+        { path: '/roundsRobin', component: rnds_Robin},
+        { path: '/RoundRobinStandings', component: RoundRobinStandings}
     ]
 });
 const store = createStore({

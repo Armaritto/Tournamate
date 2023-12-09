@@ -1,44 +1,45 @@
 package com.generator.tournamate.entities;
 
-public class RoundRobinTeam extends Participant{
+public class RoundRobinTeam extends Participant {
    public int teamRank = 0;
 
-   private int Loss = 0;
+   private int Losses = 0;
 
-   private int Win = 0;
+   private int Wins = 0;
 
-   private int Draw = 0;
+   private int Draws = 0;
 
-   public RoundRobinTeam(){
+   public RoundRobinTeam() {
 
    }
-   public RoundRobinTeam(String name)
-   {
-      this.name=name;
+
+   public RoundRobinTeam(String name) {
+      this.name = name;
    }
 
-   public int getLoss() {
-      return Loss;
+   public int getLosses() {
+      return Losses;
    }
 
-   public void setLoss(int loss) {
-      Loss += loss;
+   public void setLosses(int losses) {
+      Losses = losses;
    }
 
-   public int getDraw() {
-      return Draw;
+   public int getWins() {
+      return Wins;
    }
 
-
-   public int getWin() {
-      return Win;
+   public void setWins(int wins) {
+      Wins = wins;
    }
 
-   public void setWin(int win) {
-      Win = win;
-      this.score+= 3;
+   public int getDraws() {
+      return Draws;
    }
 
+   public void setDraws(int draws) {
+      Draws = draws;
+   }
 
    public void setTeamPoints(int teamPoints) {
       this.score += teamPoints;
@@ -47,6 +48,7 @@ public class RoundRobinTeam extends Participant{
    public int getTeamRank() {
       return teamRank;
    }
+
    public void setTeamRank(int teamRank) {
       this.teamRank = teamRank;
    }
@@ -54,13 +56,12 @@ public class RoundRobinTeam extends Participant{
    @Override
    public String toString() {
       return "RoundRobinTeam{" +
-
-              "name='" + name + '\'' +
               "teamRank=" + teamRank +
-              ", Loss=" + Loss +
-              ", Win=" + Win +
-              ", Draw=" + Draw +
-              ", score=" + score +
+              ", Losses=" + Losses +
+              ", Wins=" + Wins +
+              ", Draws=" + Draws +
               '}';
    }
 }
+
+
