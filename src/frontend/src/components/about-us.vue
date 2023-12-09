@@ -7,10 +7,10 @@
   <body>
   <div>
     <div class="about">
-      <h1 style="color: #095f59">About Tournament Generator</h1>
+      <h1 style="color: #213555">About Tournament Generator</h1>
       <p>Tournament Generator is a web application that helps you generate tournament brackets for any game, match, or competition. We offer a variety of bracket styles and sizes to fit your needs.</p>
 
-      <h2 style="color: #095f59">Key Features</h2>
+      <h2 style="color: #213555">Key Features</h2>
       <ul>
         Choose from various bracket styles and sizes
         <br>
@@ -25,17 +25,17 @@
 
 
 
-      <h2 style="color: #095f59">Built with Vue.js</h2>
+      <h2 style="color: #213555">Built with Vue.js</h2>
       <p>Tournament Generator is built using Vue.js, a popular JavaScript framework for building user interfaces. Vue.js is known for its simplicity and efficiency, making it a great choice for creating this web application.</p>
 
 
-        <h2 style="color: #095f59">Contribute to the Project</h2>
+        <h2 style="color: #213555">Contribute to the Project</h2>
         <p>We welcome contributions from the community! If you have a feature request, bug report, or would like to contribute code, please visit our
           <a href="https://github.com/Armaritto/Tournamate" target="_blank">GitHub</a>
           repository</p>
         <p></p>
       <section>
-        <h2 style="color: #095f59">Our Team</h2>
+        <h2 style="color: #213555">Our Team</h2>
         <table style="display: flex; justify-content: center;">
           <tr>
             <td>

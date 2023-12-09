@@ -2,64 +2,72 @@
     <body>
         <div id="left">
             <div class="welcome">
-              <table>
-                <tr>
-                  <h1 class="title">Welcome to your
-                    TournaMate!!
-                  </h1>
-                </tr>
-                <tr>
-                  <router-link to="/about">
-                    <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="width:500px;height:500px;" class="img-fluid">
-                  </router-link>
-                </tr>
-                <tr>
-                  <p style="color: #27374D;">Enjoy your rounds!</p>
-                </tr>
-              </table>
-            </div>
-<!--          <div class="footer">-->
-<!--              <p >About us</p>-->
-<!--          </div>-->
+                <h1 class="title">Welcome to your
+                   TournaMate!!</h1>
+                 <p style="color: #27374D;">Enjoy your rounds!</p>
+            </div>   
+            <p class="footer"><a href="#" style="color:#27374D;">About us</a></p>
         </div>
+
         <div id="right">
         <meta charset="UTF-8">
         <h1 style="color:#e2f4ff; font-size: 50px;">Login</h1>
         <div class="log-in">
-            <form>
-                <input type="text" class="input-box" placeholder="Username"/>
+            <form>                
+                <input type="text" class="input-box" placeholder="Username/Email"/>
                 <input type="password" class="input-box" placeholder="Password"/>
-                <p style="font-size:10px" class="other"><a href="#" style=" color:#DDE6ED;">Create new account? Sign up.</a></p>
+                <router-link to="/NewAccount">
+                  <p style="font-size:10px; color:#DDE6ED;" class="other">Create new account? Sign up.</p>
+                 </router-link>
+                <!-- <p style="font-size:10px" class="other"><a href="#" style=" color:#DDE6ED;">Create new account? Sign up.</a></p> -->
                 <button type="button" class="login-btn">Login</button>
-                <p style="font-size:10px" class="other"><a href="#" style=" color: #DDE6ED">Continue as a guest.</a></p>
+
+                <router-link to="/createTournament">
+                  <p style="font-size:10px; color:#DDE6ED;" class="other">Continue as a guest.</p>
+                 </router-link>
+                <!-- <p style="font-size:10px" class="other"><a href="#" style=" color: #DDE6ED">Continue as a guest.</a></p> -->
+
             </form>
         </div>
      </div>
+
     </body>
+
+<!-- <div class="background">
+    <meta charset="UTF-8">
+    <h1>Log In</h1>
+</div> -->
 </template>
 <script>
 
-  // const width = window.innerWidth
-  // const height = window.innerHeight
+
 export default ({
+    
+
     methods:{
         login(){
 
         }
+
     }
 })
 </script>
 
+
+
+
 <style scoped>
+
 #body{
     margin: 0;
-    padding: 0;
+    padding: 0;    
 }
+
 #left {
     width:50%;
-    height:98vh;
+    height:100vh;
     float:left;
-    background-color:#DDE6ED;
+    background-color:#bbccd7;
     display: flex;
     justify-content:center;
     align-items:center;
@@ -67,7 +75,7 @@ export default ({
 }
 #right {
     width:50%;
-    height:96vh;
+    height:100vh;
     float:left;
     background-color:#27374D;
     /* display: block; */
@@ -76,9 +84,10 @@ export default ({
     align-items:center;
     text-align: center;
     flex-direction: column;
-    border-radius: 40px;
+
     /* margin-top:26px; */
 }
+
 
 .title{
     color: #27374D;
@@ -87,8 +96,9 @@ export default ({
 }
 
 .footer{
-    position: absolute;
-    bottom: 0;
+    position: absolute; 
+    bottom: 0; 
+    
     /* left: 0;  */
     /* z-index: 10; */
 }
