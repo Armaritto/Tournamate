@@ -10,11 +10,26 @@ import static java.lang.Long.valueOf;
 
 public class SwissTournament {
     Long id;
+    String name;
     int numberOfRounds;
     int currentRoundNumber =1;
     List<SwissPlayer> players = new ArrayList<>();
     ArrayList<SwissRound> rounds = new ArrayList<>(Arrays.asList(new SwissRound(1, players)));
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public SwissTournament(Long id, String name, int numberOfRounds, List<SwissPlayer> players) {
+        this.id = id;
+        this.name = name;
+        this.numberOfRounds = numberOfRounds;
+        this.players = players;
+    }
     public Long getId() {
         return id;
     }
