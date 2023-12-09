@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RoundRobinService {
         public static RoundRobinRound generateNextRound(RoundRobinRound currentRound, List<RoundRobinTeam> teams) throws RoundStillRunningException {
-            //if(currentRound.finishRound()) throw new RoundStillRunningException();
+          //  if(!currentRound.finishRound()) throw new RoundStillRunningException();
             return new RoundRobinRound(new LinkedList<>(teams), currentRound.getRoundNum()+1, currentRound.getNumOfMatches());
         }
 }

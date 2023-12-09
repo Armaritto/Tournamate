@@ -9,13 +9,26 @@ import java.util.concurrent.LinkedBlockingDeque;
 
 
 public class RoundRobin {
- private int numberOfRounds=0;
+    Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    private int numberOfRounds=0;
 private List<RoundRobinRound> rounds;
 private Deque<RoundRobinTeam> teams;
 private int currentRound=1;
 
+    public void setCurrentRound(int currentRound) {
+        this.currentRound = currentRound;
+    }
 
-public RoundRobin(List<RoundRobinTeam> RoundRobinTeams)
+    public RoundRobin(List<RoundRobinTeam> RoundRobinTeams)
 {
     this.teams = new LinkedBlockingDeque<>(RoundRobinTeams);
     rounds=new ArrayList<>();
@@ -73,13 +86,13 @@ public RoundRobin(List<RoundRobinTeam> RoundRobinTeams)
     public void setRounds(List<RoundRobinRound> rounds) {
         this.rounds = rounds;
     }
+
     @Override
     public String toString() {
-        return "SwissTournament{" +
-                "numberOfRounds=" + rounds.size() +
-                ", currentRound=" + currentRound +
-                ", Teams=" + teams+
+        return "RoundRobin{" +'\n'+
+                "numberOfRounds=" + numberOfRounds +
                 ", rounds=" + rounds +
+                ", currentRound=" + currentRound +
                 '}';
     }
 

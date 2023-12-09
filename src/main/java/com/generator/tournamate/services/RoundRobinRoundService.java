@@ -14,11 +14,12 @@ import java.util.List;
 
                round =new RoundRobinRound(teams,roundNum,num);
                 List<RoundRobinMatch> roundMatches =new ArrayList<>();
+                RoundRobinTeam first = teams.removeFirst();
                 for(int i=1; i<roundNum; i++){
-                    RoundRobinTeam first = teams.removeFirst();
                     teams.add(teams.removeFirst());
-                    teams.add(first);
                 }
+                teams.add(first);
+           // System.out.println(teams);
                 for(int i=0; i<round.getNumOfMatches(); i++)
                 {
                     if(teams.size()%2==1 &&roundNum==teams.size() )

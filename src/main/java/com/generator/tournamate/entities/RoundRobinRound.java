@@ -66,7 +66,7 @@ public RoundRobinRound(Deque<RoundRobinTeam> teams, int roundNum,int num)
                 ", roundNum=" + roundNum +
                 ", finished=" + finished +
                 ", roundMatches=" + roundMatches +
-                ", teams=" + teams +
+               // ", teams=" + teams +
                 '}';
     }
 }

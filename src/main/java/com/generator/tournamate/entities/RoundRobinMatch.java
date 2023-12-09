@@ -39,11 +39,18 @@ public class RoundRobinMatch {
         if (stat.equals("D")) {
             matchTeam1.setTeamPoints(1);
             matchTeam2.setTeamPoints(1);
+            matchTeam1.setDraws(matchTeam1.getDraws()+1);
+            matchTeam2.setDraws(matchTeam2.getDraws()+1);
+
 
         } else if (stat.equals("P1")) {
             matchTeam1.setTeamPoints(3);
+            matchTeam1.setWins(matchTeam1.getWins()+1);
+            matchTeam2.setLosses(matchTeam2.getLosses()+1);
         } else if (stat.equals("P2")) {
             matchTeam2.setTeamPoints(3);
+            matchTeam2.setWins(matchTeam2.getWins()+1);
+            matchTeam1.setLosses(matchTeam1.getLosses()+1);
         }
     }
 
