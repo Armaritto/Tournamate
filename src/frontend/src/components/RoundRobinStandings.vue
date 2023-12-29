@@ -94,7 +94,9 @@ export default {
 </script>
 
 <style scoped>
-
+body {
+  font-family: ubuntu-regular;
+}
 @font-face {
   font-family: ubuntu-bold;
   src: url("../../Ubuntu/Ubuntu-Bold.ttf");

@@ -13,6 +13,7 @@ import CreateGroups from './components/Create-Groups.vue';
 import NewAccount from './components/SignUp.vue';
 import rnds_Robin from './components/rounds-Robin.vue'
 import RoundRobinStandings from "@/components/RoundRobinStandings.vue";
+import ViewPlayerStandingMobile from "@/components/ViewPlayerStandingMobile.vue";
 const router = createRouter({
     mode: 'history',
     history: createWebHashHistory(),
@@ -29,7 +30,9 @@ const router = createRouter({
         { path: '/createGroups', component: CreateGroups},
         { path: '/NewAccount', component: NewAccount},
         { path: '/roundsRobin', component: rnds_Robin},
-        { path: '/RoundRobinStandings', component: RoundRobinStandings}
+        { path: '/RoundRobinStandings', component: RoundRobinStandings},
+        { path: '/ViewStats', component: ViewPlayerStandingMobile}
+
     ]
 });
 const store = createStore({
@@ -48,14 +51,7 @@ const store = createStore({
 const app = createApp({
     template: `
     <div>
-      <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-           
-          </ul>
-        </div>
-      </nav>
-      <router-view class="view"></router-view>
+      <router-view></router-view>
     </div>
   `
 });

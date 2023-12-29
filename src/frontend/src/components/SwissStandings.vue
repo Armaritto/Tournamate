@@ -93,7 +93,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @font-face {
   font-family: ubuntu-bold;
   src: url("../../Ubuntu/Ubuntu-Bold.ttf");
@@ -212,6 +212,9 @@ body {
   test{
     grid-template-columns: minmax(100px,1fr);
   }
+}
+body {
+  font-family: ubuntu-regular;
 }
 </style>
 
