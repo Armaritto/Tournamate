@@ -1,14 +1,17 @@
 <template>
+  <head>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script> -->
+  </head>
   <Header></Header>
   <div class="types">
       <p style="font-family: ubuntu-bold">Swiss</p>
-    <router-link to="/createKnockout">
+    <router-link to="/createKnockout" style="text-decoration: none;">
       <p style="color: #27374D;">Knockout</p>
     </router-link>
-    <router-link to="/createRoundRobin">
+    <router-link to="/createRoundRobin" style="text-decoration: none;">
       <p style="color: #27374D;">Round Robin</p>
     </router-link>
-    <router-link to="/createGroups">
+    <router-link to="/createGroups" style="text-decoration: none;">
       <p style="color: #27374D;">Groups</p>
     </router-link>
   </div>
@@ -31,15 +34,21 @@
             Add Team
           </div>
         </div>
-      </div>
+        
+        <!-- <input type="file" id="my_file_input" />load from excel
+        <div id='my_file_output'></div> -->
+        </div>
         <label for="team-name">Team Name:</label>
         <input type="textbox" id="team-name" name="team-name">
-
+        <br>
+        <label for="team-name">Load from Excel:</label>
+        <input type="file" id="my_file_input" @change="onChange"/>
+        <br>
         <br>
         <label for="total-rounds">Total number of Rounds:</label>
         <input type="text" id="NUMBEROFROUNDS" name="number of rounds">
         <br>
-        <router-link to="/rounds">
+        <router-link to="/rounds" style="text-decoration: none; color: black">
           <div class="delete deleteH" style="border: none;" @click="finalizeParameters()">
             <div style="display: flex; flex-direction: column; align-items: center">
               <lord-icon
@@ -107,6 +116,39 @@
 
 
 <script>
+// import jquery from 'jquery';
+import XLSX from 'xlsx';
+
+// var oFileIn;
+// jquery(function() {
+//     oFileIn = document.getElementById('my_file_input');
+//     if(oFileIn.addEventListener) {
+//         oFileIn.addEventListener('change', filePicked, false);
+//     }
+// });
+
+// document.querySelector('input').addEventListener('change', function() {
+//             var reader = new FileReader();
+//             reader.onload = function() {
+//                 var arrayBuffer = this.result,
+//                     array = new Uint8Array(arrayBuffer),
+//                     binaryString = String.fromCharCode.apply(null, array);
+//                 var workbook = XLSX.read(binaryString, {
+//                     type: "binary"
+//                 });
+//                 /* DO SOMETHING WITH workbook HERE */
+//                 var first_sheet_name = workbook.SheetNames[0];
+//                 /* Get worksheet */
+//                 var worksheet = workbook.Sheets[first_sheet_name];
+//                 console.log(XLSX.utils.sheet_to_json(worksheet, {
+//                     raw: true
+//                 }));
+//                 // }
+//                 // oReq.send();
+//             }
+//             reader.readAsArrayBuffer(this.files[0]);
+// })
+
 function arrayRemove(arr, value) {
   return arr.filter(function (v) {
     return v != value;
@@ -161,13 +203,51 @@ export default {
               console.log(data)
               this.teams = data
             })
-      }
+      },
     }
+  },
+  methods: {
+    onChange(event) {
+      this.file = event.target.files ? event.target.files[0] : null;
+      if (this.file) {
+        console.log("loaded")
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          /* Parse data */
+          const bstr = e.target.result;
+          const wb = XLSX.read(bstr, { type: 'binary' });
+          /* Get first worksheet */
+          const wsname = wb.SheetNames[0];
+          const ws = wb.Sheets[wsname];
+          /* Convert array of arrays */
+          const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+          console.log(data);
+          data.forEach((plyr) => {
+              this.teams.push(plyr[0]);
+          });
+        }
+        reader.readAsBinaryString(this.file);
+      }
+    },
   }
 }
 </script>
 
 <style>
+input[type=file]::file-selector-button {
+  border: 0;
+  padding: .4em .4em;
+  border-radius: .2em;
+  background-color: #bbccd7;
+  color: black;
+  margin-right: 10px;
+}
+
+input[type=file]::file-selector-button:hover {
+  border: 0;
+  background-color: #bcc5cc;
+  cursor: pointer;
+}
 .types{
   color: #213555;
   font-size: 17px;
