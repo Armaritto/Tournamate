@@ -24,12 +24,23 @@
       </div>
       <div class="header-right header-rightHovered">
         <div>
-          <router-link to="/about">
+          
             <div class="active" style="text-decoration: none;">
-              About
-            </div>
-          </router-link>
-        </div>
+              <router-link to="/about">
+                About
+              </router-link>
+            </div>        
+        </div>       
+      </div>
+      <div class="header-right header-rightHovered">
+        <div>
+          
+            <div class="active" style="text-decoration: none;">
+              <router-link to="/">
+                Log out
+              </router-link>
+            </div>        
+        </div>       
       </div>
     </div>
   </div>

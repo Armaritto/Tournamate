@@ -1,5 +1,51 @@
 <template>
-  <Header></Header>
+  <!-- <Header></Header> -->
+  <head>
+    <meta charset="UTF-8">
+  </head>
+
+  <div>
+    <router-link to="/createTournament">
+      <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
+    </router-link>
+    <br>
+    <br>
+    <div class="header">
+      <a class="logo">TournaMate</a>
+      <div class="header-right header-rightHovered">
+        <div>
+          <router-link v-if="checkGuest()" :to="'/' + username + '/profile'" class="nav-link">
+            <lord-icon class = "icon"
+                       src="https://cdn.lordicon.com/kthelypq.json"
+                       trigger="hover"
+                       style="width:50px;height:50px">
+            </lord-icon>
+          </router-link>
+        </div>
+      </div>
+      <div class="header-right header-rightHovered">
+        <div>
+          
+            <div class="active" style="text-decoration: none;">
+              <router-link to="/about">
+                About
+              </router-link>
+            </div>        
+        </div>       
+      </div>
+      <div class="header-right header-rightHovered">
+        <div>
+          
+            <div class="active" style="text-decoration: none;">
+              <router-link to="/">
+                Log out
+              </router-link>
+            </div>        
+        </div>       
+      </div>
+    </div>
+  </div>
+  <hr style="margin-top: 100px">
   <div class="types">
       <p style="font-family: ubuntu-bold">Swiss</p>
     <router-link to="/createKnockout">
@@ -119,6 +165,7 @@ export default {
   components: {Header},
   data(){
     return{
+      username:"",
       roomName: '',
       teams: [],
       tournamentID: 13,
@@ -163,7 +210,17 @@ export default {
             })
       }
     }
-  }
+  },
+  methods:{
+    checkGuest(){
+      return this.username!==":username"
+    }
+  },
+  mounted() {
+    // Access the attribute in the component's lifecycle hooks
+    this.username = this.$route.params.username;
+    console.log('Received Attribute:', this.username);
+  },
 }
 </script>
 

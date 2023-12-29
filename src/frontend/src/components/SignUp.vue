@@ -5,12 +5,49 @@
         <h1 style="color:#e2f4ff; font-size: 50px;">Sign up</h1>
         <div class="sign-up">
             <form>
-                <input type="text" id="fname" class="input-box" placeholder="First Name"/>
+              
+              <!-- <label for="fname"> first Name</label> -->
+              <!-- <label for="fname">First Name:  </label> -->
+                <!-- <input type="text" id="fname" class="input-box" placeholder="First Name"/>
                 <input type="text" id="lname" class="input-box" placeholder="Last Name"/>
                 <input type="text" id="username" class="input-box" placeholder="Username"/>
                 <input type="email" id="email" class="input-box" placeholder="Your Email"/>
                 <input type="password" id="pass" class="input-box" placeholder="Password"/>
-                <input type="password" id="confPass" class="input-box" placeholder="Confrim Password"/>
+                <input type="password" id="confPass" class="input-box" placeholder="Confrim Password"/> -->
+
+              <div class="form-container">
+                <div class="input-group">
+                  <label for="fname">First Name:</label>
+                  <input type="text" id="fname" class="input-box" placeholder="First Name"/>
+                </div>
+
+                <div class="input-group">
+                  <label for="lname">Last Name:</label>
+                  <input type="text" id="lname" class="input-box" placeholder="Last Name"/>
+                </div>
+
+                <div class="input-group">
+                  <label for="username">Username:</label>
+                  <input type="text" id="username" class="input-box" placeholder="Username"/>
+                </div>
+
+                <div class="input-group">
+                  <label for="email">Your Email:</label>
+                  <input type="email" id="email" class="input-box" placeholder="Your Email"/>
+                </div>
+
+                <div class="input-group">
+                  <label for="pass">Password:</label>
+                  <input type="password" id="pass" class="input-box" placeholder="Password"/>
+                </div>
+
+                <div class="input-group">
+                  <label for="confPass">Confirm Password:</label>
+                  <input type="password" id="confPass" class="input-box" placeholder="Confirm Password"/>
+                </div>
+              </div>
+
+                
                 <div class="display" style="color: #CC7469">{{ condition }}</div>
                 <router-link to="/">
                   <p style="font-size:10px; color:#DDE6ED;" class="other">Already have an account? Login.</p>
@@ -18,7 +55,7 @@
 
                 <button type="button" class="signUp-btn" style="font-family: bold;" @click="storeData();signUp()">Cerate Account</button>
 
-                <router-link to="/createTournament">
+                <router-link to="/:username/createTournament">
                   <p style="font-size:10px; color:#DDE6ED;" class="other">Continue as a guest.</p>
                  </router-link>
             </form>
@@ -99,7 +136,7 @@ export default ({
               this.condition=this.fromBack;
             }
             else{
-              location.replace("http://localhost:3000/#/createTournament")
+              location.replace("http://localhost:3000/#/"+this.username+"/createTournament")
             }
           });
 
@@ -170,9 +207,45 @@ export default ({
 .signUp-btn:hover{
     background-color: #bbccd7;
 }
+/* label {
+        display: inline-block;
+        width: 150px;
+        text-align: left;
+      } */
 
+      label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
 
+.input-box {
+  width: 200px; /* Adjust the width as needed */
+  padding: 5px;
+  margin-bottom: 10px;
+}
 
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  color: #DDE6ED;
+  width: 150px; /* Adjust the width as needed */
+  margin-right: 10px;
+}
+
+.input-box {
+  width: 200px; /* Adjust the width as needed */
+  padding: 5px;
+}
 
 
 </style>
