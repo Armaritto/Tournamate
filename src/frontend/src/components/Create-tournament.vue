@@ -119,36 +119,6 @@
 // import jquery from 'jquery';
 import XLSX from 'xlsx';
 
-// var oFileIn;
-// jquery(function() {
-//     oFileIn = document.getElementById('my_file_input');
-//     if(oFileIn.addEventListener) {
-//         oFileIn.addEventListener('change', filePicked, false);
-//     }
-// });
-
-// document.querySelector('input').addEventListener('change', function() {
-//             var reader = new FileReader();
-//             reader.onload = function() {
-//                 var arrayBuffer = this.result,
-//                     array = new Uint8Array(arrayBuffer),
-//                     binaryString = String.fromCharCode.apply(null, array);
-//                 var workbook = XLSX.read(binaryString, {
-//                     type: "binary"
-//                 });
-//                 /* DO SOMETHING WITH workbook HERE */
-//                 var first_sheet_name = workbook.SheetNames[0];
-//                 /* Get worksheet */
-//                 var worksheet = workbook.Sheets[first_sheet_name];
-//                 console.log(XLSX.utils.sheet_to_json(worksheet, {
-//                     raw: true
-//                 }));
-//                 // }
-//                 // oReq.send();
-//             }
-//             reader.readAsArrayBuffer(this.files[0]);
-// })
-
 function arrayRemove(arr, value) {
   return arr.filter(function (v) {
     return v != value;
@@ -233,7 +203,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 input[type=file]::file-selector-button {
   border: 0;
   padding: .4em .4em;
@@ -247,6 +218,41 @@ input[type=file]::file-selector-button:hover {
   border: 0;
   background-color: #bcc5cc;
   cursor: pointer;
+}
+  @font-face {
+  font-family: ubuntu-bold;
+  src: url("../../Ubuntu/Ubuntu-Bold.ttf");
+}
+@font-face {
+  font-family: ubuntu-bold-italic;
+  src: url("../../Ubuntu/Ubuntu-BoldItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-italic;
+  src: url("../../Ubuntu/Ubuntu-Italic.ttf");
+}
+@font-face {
+  font-family: ubuntu-light;
+  src: url("../../Ubuntu/Ubuntu-Light.ttf");
+}
+@font-face {
+  font-family: ubuntu-lightItalic;
+  src: url("../../Ubuntu/Ubuntu-LightItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-medium;
+  src: url("../../Ubuntu/Ubuntu-Medium.ttf");
+}
+@font-face {
+  font-family: ubuntu-medium-italic;
+  src: url("../../Ubuntu/Ubuntu-MediumItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-regular;
+  src: url("../../Ubuntu/Ubuntu-Regular.ttf");
+}
+body {
+  font-family: ubuntu-regular;
 }
 .types{
   color: #213555;
