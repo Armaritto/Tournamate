@@ -50,7 +50,7 @@
             </div>
           </div>
         </button>
-        <router-link to="/swissStandings">
+        <router-link to="/swissStandings" style="text-decoration: none">
           <button class="blue-button">
             <div style="display: flex; flex-direction: column; align-items: center">
               <lord-icon

@@ -35,7 +35,7 @@
       <label for="team-name">Team Name:</label>
       <input type="textbox" id="team-name" name="team-name">
       <br>
-      
+
         <label for="team-name">Load from Excel:</label>
         <input type="file" id="my_file_input" @change="onChange"/>
         <br>
@@ -336,5 +336,19 @@ button[type="submit"]:hover {
 }
 .blue-buttonH:hover {
   background-color: #bcc5cc;
+}
+input[type=file]::file-selector-button {
+  border: 0;
+  padding: .4em .4em;
+  border-radius: .2em;
+  background-color: #bbccd7;
+  color: black;
+  margin-right: 10px;
+}
+
+input[type=file]::file-selector-button:hover {
+  border: 0;
+  background-color: #bcc5cc;
+  cursor: pointer;
 }
 </style>
