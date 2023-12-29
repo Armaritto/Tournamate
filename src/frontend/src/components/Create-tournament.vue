@@ -34,7 +34,7 @@
             Add Team
           </div>
         </div>
-        
+
         <!-- <input type="file" id="my_file_input" />load from excel
         <div id='my_file_output'></div> -->
         </div>
@@ -48,7 +48,7 @@
         <label for="total-rounds">Total number of Rounds:</label>
         <input type="text" id="NUMBEROFROUNDS" name="number of rounds">
         <br>
-        <router-link to="/rounds" style="text-decoration: none; color: black">
+<!--        <router-link :to="{path: '/' + this.tournamentID + '/rounds/'}" style="text-decoration: none; color: black">-->
           <div class="delete deleteH" style="border: none;" @click="finalizeParameters()">
             <div style="display: flex; flex-direction: column; align-items: center">
               <lord-icon
@@ -62,7 +62,10 @@
               </div>
             </div>
           </div>
-        </router-link>
+<!--        </router-link>-->
+              <router-link :to="{path: '/' + this.tournamentID + '/rounds/'}" style="text-decoration: none; color: black"> goto
+              </router-link>
+
 
     </div>
     <div style="padding-left: 300px">
@@ -118,7 +121,7 @@
 <script>
 // import jquery from 'jquery';
 import XLSX from 'xlsx';
-
+import swal from 'sweetalert';
 function arrayRemove(arr, value) {
   return arr.filter(function (v) {
     return v != value;
@@ -156,8 +159,16 @@ export default {
               return response.json()
             })
             .then((data) => {
-              this.tournamentID = Number(data)
-              this.id = data;
+              this.tournamentID = data.toString()
+              console.log(this.tournamentID.toString())
+              //this.$router.push({path: '/' + this.tournamentID + '/rounds/'})
+              // swal("Tournament ID: " + this.tournamentID.toString(), {
+              //   icon: "success",
+              //   html:
+              //
+              //       <router-link :to="{path: '/' + this.tournamentID + '/rounds/'}" style="text-decoration: none; color: black"> goto
+              //       </router-link>,
+              // });
             })
       },
       shuffle: function (){

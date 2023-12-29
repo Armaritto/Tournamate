@@ -40,7 +40,7 @@
         <input type="file" id="my_file_input" @change="onChange"/>
         <br>
         <br>
-      <router-link to="/roundsRobin" style="text-decoration: none; color: black">
+
         <div class="delete deleteH" style="border: none;" @click="finalizeParameters()">
           <div style="display: flex; flex-direction: column; align-items: center">
             <lord-icon
@@ -54,6 +54,7 @@
             </div>
           </div>
         </div>
+      <router-link :to="{path: '/' + this.tournamentID + '/roundsRobin/'}" style="text-decoration: none; color: black"> goto
       </router-link>
 
     </div>
@@ -143,8 +144,7 @@ export default {
               return response.json()
             })
             .then((data) => {
-              this.tournamentID = Number(data)
-              this.id = data;
+              this.tournamentID = data
             })
       },
       shuffle: function (){

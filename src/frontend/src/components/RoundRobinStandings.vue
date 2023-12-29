@@ -52,14 +52,12 @@ defineElement(lottie.loadAnimation);
 export default {
   name: 'SwissStandings',
   components: {Header},
-  props: {
-    tournamentID: Number
-  },
+  props: ['id'],
   data(){
     return{
       roomName: '',
       fantasyScore: '',
-      tournamentID: 13,
+      tournamentID: this.id,
       teams: [],
       screenWidth: window.innerWidth,
       getResults: function(){

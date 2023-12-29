@@ -6,15 +6,15 @@
       <img class="profile-pic" src="./images/image-victor.jpg" alt="profile pic" />
     </div>
     <div class="profile-info">
-<!--      <div style="position: absolute">-->
-<!--        <lord-icon-->
-<!--            src="https://cdn.lordicon.com/rqptwppx.json"-->
-<!--            trigger="hover"-->
-<!--            stroke="bold"-->
-<!--            colors="primary:#081234,secondary:#cc7469"-->
-<!--            style="width:30px;height:30px">-->
-<!--        </lord-icon>-->
-<!--      </div>-->
+      <!--      <div style="position: absolute">-->
+      <!--        <lord-icon-->
+      <!--            src="https://cdn.lordicon.com/rqptwppx.json"-->
+      <!--            trigger="hover"-->
+      <!--            stroke="bold"-->
+      <!--            colors="primary:#081234,secondary:#cc7469"-->
+      <!--            style="width:30px;height:30px">-->
+      <!--        </lord-icon>-->
+      <!--      </div>-->
       <p class="name">{{this.teamName}}</p>
     </div>
 
