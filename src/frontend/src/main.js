@@ -23,6 +23,7 @@ const router = createRouter({
     // base: __dirname,
     routes: [
         { path: '/', component: logIn },
+        { path: '/:username/myTournaments', component: passedTournaments, props:true},
         { path: '/:id/SwissStandings', component: SwissStandings, props:true},
         { path: '/about', component: About},
 

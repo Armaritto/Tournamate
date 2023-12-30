@@ -200,7 +200,13 @@ export default {
               //       <router-link :to="{path: '/' + this.tournamentID + '/rounds/'}" style="text-decoration: none; color: black"> goto
               //       </router-link>,
               // });
+              fetch("/AddSwissTournament/" +this.username +"/"+ this.id + "{tourname}?",{
+                method: 'POST'
+              })
+                  .then(res=> console.log(res))
+
             })
+
         this.finalized = true
       },
       shuffle: function (){

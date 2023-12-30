@@ -5,7 +5,7 @@
         <h1 style="color:#e2f4ff; font-size: 50px;">Sign up</h1>
         <div class="sign-up">
             <form>
-              
+
               <!-- <label for="fname"> first Name</label> -->
               <!-- <label for="fname">First Name:  </label> -->
                 <!-- <input type="text" id="fname" class="input-box" placeholder="First Name"/>
@@ -47,7 +47,7 @@
                 </div>
               </div>
 
-                
+
                 <div class="display" style="color: #CC7469">{{ condition }}</div>
                 <router-link to="/">
                   <p style="font-size:10px; color:#DDE6ED;" class="other">Already have an account? Login.</p>
@@ -55,8 +55,8 @@
 
                 <button type="button" class="signUp-btn" style="font-family: bold;" @click="storeData();signUp()">Cerate Account</button>
 
-                <router-link to="/:username/createTournament">
-                  <p style="font-size:10px; color:#DDE6ED;" class="other">Continue as a guest.</p>
+                <router-link :to="{path: '/' + this.username + '/createRoundRobin'}">
+                  <p  @click="makeGuest()" style="font-size:10px; color:#DDE6ED;" class="other">Continue as a guest.</p>
                  </router-link>
             </form>
         </div>
@@ -100,6 +100,10 @@ export default ({
   },
     methods:{
 
+      makeGuest(){
+        this.username = "Guest";
+
+      },
         storeData(){
           this.firstName = document.getElementById("fname").value
           this.lastName = document.getElementById("lname").value

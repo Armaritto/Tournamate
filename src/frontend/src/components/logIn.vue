@@ -45,8 +45,8 @@
 
                 <button type="button" class="login-btn" @click="storeData();login()">Login</button>
 
-                <router-link to="/:username/createTournament">
-                  <p style="font-size:10px; color:#DDE6ED;" class="other">Continue as a guest.</p>
+                <router-link :to="{path: '/' + this.username + '/createRoundRobin'}">
+                  <p @click="makeGuest()" style="font-size:10px; color:#DDE6ED;" class="other">Continue as a guest.</p>
                  </router-link>
                 <!-- <p style="font-size:10px" class="other"><a href="#" style=" color: #DDE6ED">Continue as a guest.</a></p> -->
 
@@ -69,6 +69,10 @@
     };
   },
     methods:{
+        makeGuest(){
+          this.username = "Guest";
+
+        },
         storeData(){
           this.username = document.getElementById("username").value
           this.password = document.getElementById("pass").value
@@ -97,7 +101,7 @@
               this.condition=this.fromBack;
             }
             else{
-                 location.replace("http://localhost:3000/#/"+this.username+"/createTournament")
+                 location.replace("http://localhost:3000/#/"+this.username+"/myTournaments")
               // window.location.href = "http://localhost:3000/createTournament"
               // window.open("http://localhost:3000/#/createTournament")
             }
