@@ -34,9 +34,10 @@
         </tr>
       </table>
     </div>
-    <div class="bigBUTTONCLASS">
-      <div class="bigBUTTONS">
-        <button class="blue-button" @click="generateNewRound() ">
+    <div class="bigBUTTONCLASS" style="position: fixed; margin-left: 1000px; margin-top: 100px">
+      <qrcode-vue  :value = "valueQR" :size = "300" :level="H" :background="'#DDE6ED'" :foreground="'#213555'"></qrcode-vue>
+      <div class="bigBUTTONS" style="margin-right: 205px">
+        <button class="blue-button" @click="generateNewRound()">
           <div style="display: flex; flex-direction: column; align-items: center">
             <lord-icon
                 src="https://cdn.lordicon.com/nizfqlnk.json"
@@ -50,7 +51,7 @@
             </div>
           </div>
         </button>
-        <router-link :to="{path: '/' + this.tournamentID + '/RoundRobinStandings/'}">
+        <router-link :to="{path: '/' + this.tournamentID + '/RoundRobinStandings/'}" style="text-decoration: none">
           <button class="blue-button">
             <div style="display: flex; flex-direction: column; align-items: center">
               <lord-icon
@@ -74,19 +75,22 @@
 <script>
 import {defineComponent} from "vue";
 import Header from "@/components/Header.vue";
+import QrcodeVue from "qrcode.vue";
 export default defineComponent({
   props: ['id'],
-  components: {Header},
+  components: {QrcodeVue, Header},
   data(){
     return{
+      valueQR: '192.168.1.3:3000/#/' +this.id+ '/viewstatsRobin/',
+      size: 300,
       maxRounds: 3,
-      roundNumber: {value:0},
+      roundNumber: 0,
       tournamentID: this.id ,
       matches:[
       ],
       setScore: function (status,matchNumber){
         fetch("http://localhost:9190/RoundRobintournament/setMatch?" + new URLSearchParams({
-          roundNumber:this.roundNumber.value.toString(),
+          roundNumber:this.roundNumber,
           matchNumber:matchNumber,
           matchStatus:status.toString(),
           id:this.tournamentID
@@ -163,25 +167,27 @@ export default defineComponent({
       //
       // }
       generateNewRound: function(){
-        this.roundNumber.value = this.roundNumber.value + 1;
+        console.log(typeof this.roundNumber+ "noooooooooo")
+        this.roundNumber +=  1;
         fetch("http://localhost:9190/RoundRobintournament/numOfRounds?" + new URLSearchParams({
           id:this.tournamentID
         }),{
           method: 'GET'
         })
             .then(function (response) {
+
               return response.json()
             })
             .then((data) => {
               console.log(data)
               this.maxRounds = data;
             })
-        if((this.maxRounds < this.roundNumber.value) && (this.maxRounds !== '')){
+        if((this.maxRounds < this.roundNumber) && (this.maxRounds !== '')){
           alert("tournament is finished")
         }
         else{
           console.log(this.maxRounds, 'maxRounds')
-          console.log(this.roundNumber.value, 'roundNumber')
+          console.log(this.roundNumber, 'roundNumber')
           fetch("http://localhost:9190/RoundRobintournament/newRoundRobinRound?" + new URLSearchParams({
             id:this.tournamentID
           }),{
@@ -223,6 +229,8 @@ export default defineComponent({
     //
     //     })
     // }
+    console.log(this.id)
+    console.log("ID")
   }
 })
 </script>

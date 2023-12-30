@@ -4,7 +4,7 @@
   </head>
 
   <div>
-    <router-link to="/createTournament">
+    <router-link :to="{path: '/' + this.username + '/createRoundRobin'}">
       <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
     </router-link>
     <br>

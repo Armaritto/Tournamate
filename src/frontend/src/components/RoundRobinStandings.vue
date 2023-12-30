@@ -35,6 +35,9 @@
         </tr>
         </tbody>
       </table>
+      <div style="margin-left: 50px">
+        <qrcode-vue  :value = "valueQR" :size = "300" :level="H" :background="'#DDE6ED'" :foreground="'#213555'"></qrcode-vue>
+      </div>
     </div>
   </div>
   </body>
@@ -46,18 +49,21 @@ import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
 import Header from "@/components/Header.vue";
 import rounds from "@/components/rounds.vue";
+import QrcodeVue from "qrcode.vue";
 // define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
 ////
 export default {
   name: 'SwissStandings',
-  components: {Header},
+  components: {QrcodeVue, Header},
   props: ['id'],
   data(){
     return{
+      size: 300,
       roomName: '',
       fantasyScore: '',
       tournamentID: this.id,
+      valueQR: '192.168.1.3:3000/#/' +this.id+ '/viewstatsRobin/',
       teams: [],
       screenWidth: window.innerWidth,
       getResults: function(){

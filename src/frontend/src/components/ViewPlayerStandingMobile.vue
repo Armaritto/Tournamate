@@ -54,9 +54,10 @@ export default {
       fantasyScore: '',
       teams: [],
       screenWidth: window.innerWidth,
-      getResults: function(){
-        fetch("http://localhost:9190/swiss/?" + new URLSearchParams({
-          id:this.tournamentID
+      getResults: async function(){
+        console.log(this.id)
+        await fetch("http://localhost:9190/swiss/?" + new URLSearchParams({
+          id:Number(this.id)
         }),{
           method: 'GET'
         })
@@ -77,7 +78,15 @@ export default {
             })
       },
       getParam: async function(){
-        this.getResults();
+        await this.getResults();
+        if(this.teams.length === 0){
+          swal({
+            title: this.id + "No teams in tournament!",
+            icon: "error",
+            button: "Ok!",
+          });
+          return
+        }
         swal("Enter Your Name in tournament:", {
           content: "input",
         })

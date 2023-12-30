@@ -54,9 +54,9 @@ export default {
       fantasyScore: '',
       teams: [],
       screenWidth: window.innerWidth,
-      getResults: function(){
-        fetch("http://localhost:9190/swiss/?" + new URLSearchParams({
-          id:this.tournamentID
+      getResults: async function(){
+        await fetch("http://localhost:9190/RoundRobintournament/?" + new URLSearchParams({
+          id:Number(this.id)
         }),{
           method: 'GET'
         })
@@ -64,25 +64,35 @@ export default {
               return response.json()
             })
             .then((data) => {
+              console.log(data)
               this.teams = [];
               for(var index in data){
                 this.teams.push({
                   name: data[index].name,
-                  points: data[index].score / 2,
-                  win: data[index].numOfWins,
-                  draw: data[index].numOfDraws,
-                  lose: data[index].numOfLosses,
+                  points: data[index].score,
+                  win: data[index].wins,
+                  draw: data[index].draws,
+                  lose: data[index].losses,
                 })
               }
             })
       },
       getParam: async function(){
-        this.getResults();
+        await this.getResults();
+
+        if(this.teams.length === 0){
+          swal({
+            title: "No teams in tournament!",
+            icon: "error",
+            button: "Ok!",
+          });
+          return
+        }
         swal("Enter Your Name in tournament:", {
           content: "input",
         })
             .then((value) => {
-              console.log("debug")
+              console.log(value)
               this.teamName = value;
               for(let i=0; i < this.teams.length; i++){
                 if(this.teams[i].name.toLowerCase() === this.teamName.toLowerCase()){

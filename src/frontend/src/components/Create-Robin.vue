@@ -1,24 +1,18 @@
 <template>
   <Header></Header>
   <div class="types">
-    <router-link to="/createTournament" style="text-decoration: none;">
+    <router-link :to="{path: '/' + this.username + '/createTournament'}" style="text-decoration: none;">
       <p style="color: #27374D;">Swiss</p>
     </router-link>
-    <router-link to="/createKnockout" style="text-decoration: none;">
-      <p style="color: #27374D;">Knockout</p>
-    </router-link>
+
       <p style="font-family: ubuntu-bold">Round Robin</p>
-    <router-link to="/createGroups" style="text-decoration: none;">
-      <p style="color: #27374D;" >Groups</p>
-    </router-link>
+
   </div>
   <body>
   <div class="flex-container">
     <div class="create-room">
       <h1>Create Room</h1>
-      <label for="room-name">Room Name:</label>
-      <input type="text" id="room-name" name="room-name">
-      <br>
+
       <div class="delete deleteH" style="border: none; position: absolute;margin-left: 430px; margin-top: 10px"  @click="addTeam()">
         <div style="display: flex; flex-direction: column; align-items: center">
           <lord-icon
@@ -41,7 +35,7 @@
         <br>
         <br>
 
-        <div class="delete deleteH" style="border: none;" @click="finalizeParameters()">
+        <div v-if="this.finalized === false" class="delete deleteH" style="border: none;" @click="finalizeParameters()">
           <div style="display: flex; flex-direction: column; align-items: center">
             <lord-icon
                 src="https://cdn.lordicon.com/oqdmuxru.json"
@@ -54,11 +48,25 @@
             </div>
           </div>
         </div>
-      <router-link :to="{path: '/' + this.tournamentID + '/roundsRobin/'}" style="text-decoration: none; color: black"> goto
-      </router-link>
+        <div v-else-if="this.finalized === true" class="delete deleteH" style="border: none;">
+          <router-link :to="{path: '/' + this.tournamentID + '/roundsRobin'}" style="text-decoration: none; color: black">
+            <div style="display: flex; flex-direction: column; align-items: center">
+              <lord-icon
+                  src="https://cdn.lordicon.com/frbjtwdl.json"
+                  trigger="hover"
+                  stroke="bold"
+                  colors="primary:#121331,secondary:#c8756d"
+                  style="width:50px;height:50px">
+              </lord-icon>
+              <div>
+                Enter Room
+              </div>
+            </div>
+          </router-link>
+        </div>
 
     </div>
-    <div style="padding-left: 300px">
+    <div v-if="!this.finalized" style="padding-left: 300px">
       <div class="create-room-teams">
         <table>
           <tr>
@@ -116,24 +124,42 @@ function arrayRemove(arr, value) {
 }
 import Header from "@/components/Header.vue";
 import rounds from "@/components/rounds.vue";
+import swal from "sweetalert";
 export default {
   name: 'SwissStandings',
   components: {Header},
+  props:['username'],
   data(){
     return{
       roomName: '',
       teams: [],
       tournamentID: 13,
       numberOfRounds: '',
+      finalized: false,
       addTeam: function(){
         var name = document.getElementById('team-name').value
+        if(name === ''){
+          swal({
+            title: "Please Enter a Team Name!",
+            icon: "error",
+            button: "Ok!",
+          });
+          return
+        }
         this.teams.push(name)
       },
       remove: function(index){
         this.teams = arrayRemove(this.teams,this.teams[index])
       },
       finalizeParameters: function(){
-        this.roomName = document.getElementById('room-name').value
+        if(this.teams.length < 4 ){
+          swal({
+            title: "Please Enter at least 4 teams!",
+            icon: "error",
+            button: "Ok!",
+          });
+          return
+        }
         fetch("http://localhost:9190/RoundRobintournament/newRoundRobinTournament?"+ new URLSearchParams({
           name: this.roomName,
           list: this.teams
@@ -146,6 +172,7 @@ export default {
             .then((data) => {
               this.tournamentID = data
             })
+        this.finalized = true
       },
       shuffle: function (){
         fetch("http://localhost:9190/shuffle?"+ new URLSearchParams({

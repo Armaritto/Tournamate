@@ -16,6 +16,7 @@ import RoundRobinStandings from "@/components/RoundRobinStandings.vue";
 import ViewPlayerStandingMobile from "@/components/ViewPlayerStandingMobile.vue";
 import ViewPlayerStandingMobileRobin from "@/components/ViewPlayerStandingMobileRobin.vue";
 import FinalStandings from "@/components/FinalStandings.vue";
+import passedTournaments from "@/components/passedTournaments.vue";
 const router = createRouter({
     mode: 'history',
     history: createWebHashHistory(),
@@ -23,11 +24,11 @@ const router = createRouter({
     routes: [
         { path: '/', component: logIn },
         { path: '/:id/SwissStandings', component: SwissStandings, props:true},
-        { path: '/:username/about', component: About, props:true},
+        { path: '/about', component: About},
 
         { path: '/:username/profile', component: Profile, props:true},
 
-        { path: '/:username/rounds', component: rnds, props:true},
+        { path: '/:id/rounds', component: rnds, props:true},
 
         { path: '/:username/createTournament', component: CreateTournament, props:true},
         { path: '/:id/rounds', component: rnds, props: true},
@@ -36,10 +37,10 @@ const router = createRouter({
         { path: '/:username/createRoundRobin', component: CreateRobin, props:true},
         { path: '/:username/createGroups', component: CreateGroups},
         { path: '/NewAccount', component: NewAccount},
-        { path: '/:id/roundsRobin', component: rnds_Robin, props: true},
+        { path: '/:id/roundsRobin/', component: rnds_Robin, props: true},
         { path: '/:id/RoundRobinStandings', component: RoundRobinStandings, props: true},
-        { path: '/ViewStats', component: ViewPlayerStandingMobile, props: true},
-        { path: '/viewstats', component: ViewPlayerStandingMobileRobin, props: true},
+        { path: '/:id/ViewStats', component: ViewPlayerStandingMobile, props: true},
+        { path: '/:id/viewstatsRobin', component: ViewPlayerStandingMobileRobin, props: true},
         { path: '/:id/finalStandings', component: FinalStandings, props: true},
     ]
 });

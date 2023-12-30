@@ -34,8 +34,9 @@
         </tr>
       </table>
     </div>
-    <div class="bigBUTTONCLASS">
-      <div class="bigBUTTONS">
+    <div class="bigBUTTONCLASS" style="position: fixed; margin-left: 1000px; margin-top: 100px">
+      <qrcode-vue  :value = "valueQR" :size = "300" :level="H" :background="'#DDE6ED'" :foreground="'#213555'"></qrcode-vue>
+      <div class="bigBUTTONS" style="margin-right: 205px">
         <button class="blue-button" @click="generateNewRound() ">
           <div style="display: flex; flex-direction: column; align-items: center">
             <lord-icon
@@ -68,7 +69,6 @@
         </router-link>
       </div>
       <div>
-        <qrcode-vue  :value = "valueQR" :size = "300" :level="H"></qrcode-vue>
       </div>
     </div>
   </div>
@@ -83,7 +83,7 @@ export default defineComponent({
   components: {Header,QrcodeVue},
   data(){
     return{
-      valueQR: 'https://localhost:3000/#/ViewStats/',
+      valueQR: '192.168.1.3:3000/#/' +this.id+ '/ViewStats/',
       size: 300,
       roundNumber: 1,
       tournamentID: this.id ,
@@ -98,7 +98,6 @@ export default defineComponent({
       }),{
           method: 'PUT'
         })
-
         switch (status){
           case "D":
             this.matches[matchNumber].scoreTeamA = 0.5;
@@ -115,9 +114,10 @@ export default defineComponent({
         }
       },
       generateNewRound: function(){
+
         console.log(this.tournamentID+"rounds page haha")
         fetch("http://localhost:9190/swiss/newSwissRound?" + new URLSearchParams({
-          id:this.tournamentID
+          id:Number(this.tournamentID)
         }),{
           method: 'POST'
         })

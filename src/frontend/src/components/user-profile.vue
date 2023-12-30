@@ -105,7 +105,7 @@
         </tbody>
       </table>
 
-      <div @click="storeData(); sendData()" class="active2 header-right2 header-rightHovered2" style="text-decoration: none;margin-right: 200px;margin-top: 0px;-bottom: 50px ;width:135px;text-align: center;background: #213555;
+      <div @click="storeData(); sendData(); this.$router.replace({path:'/' + this.username + '/createTournament'});" class="active2 header-right2 header-rightHovered2" style="text-decoration: none;margin-right: 200px;margin-top: 0px;-bottom: 50px ;width:135px;text-align: center;background: #213555;
         color: #DDE6ED;">
         Save Changes
       </div>
