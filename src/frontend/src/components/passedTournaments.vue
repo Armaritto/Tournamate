@@ -3,7 +3,7 @@
   <Header :username="username"></Header>
 <h1>Past Tournaments</h1>
   <router-link :to="{path: '/' + this.username + '/createTournament'}">
-    <p>New Tournament</p>
+    <p class="new">New Tournament</p>
   </router-link>
 
   <router-link v-for="t in this.tournamentsSwiss" :to="{path: '/' + t[1]+ '/rounds/'}">
@@ -57,5 +57,7 @@ export default{
 </script>
 
 <style>
-
+  p .new{
+    font-size: large;
+  }
 </style>

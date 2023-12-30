@@ -56,7 +56,7 @@
           <button class="blue-button">
             <div style="display: flex; flex-direction: column; align-items: center">
               <lord-icon
-                  src="https://cdn.lordicon.com/whrxobsb.json"
+                  src="https://cdn.lordicon.com/utpmnzxz.json"
                   trigger="hover"
                   colors="primary:#213555"
                   style="width:100px;height:100px">

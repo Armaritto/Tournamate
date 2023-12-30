@@ -41,7 +41,7 @@
         <button v-if="roundNumber<maxRounds" class="blue-button" @click="generateNewRound() ">
           <div style="display: flex; flex-direction: column; align-items: center">
             <lord-icon
-                src="https://cdn.lordicon.com/nizfqlnk.json"
+                src="https://cdn.lordicon.com/utpmnzxz.json"
                 trigger="hover"
                 colors="primary:#213555"
                 style="width:100px;height:100px">
