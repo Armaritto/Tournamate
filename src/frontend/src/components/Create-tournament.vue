@@ -189,6 +189,7 @@ export default {
               return response.json()
             })
             .then((data) => {
+              console.log("sending...........")
               this.tournamentID = data.toString()
               console.log(this.tournamentID.toString())
               console.log("ID")
@@ -200,8 +201,8 @@ export default {
               //       <router-link :to="{path: '/' + this.tournamentID + '/rounds/'}" style="text-decoration: none; color: black"> goto
               //       </router-link>,
               // });
-              fetch("/AddSwissTournament/" +this.username +"/"+ this.id + "{tourname}?",{
-                method: 'POST'
+              fetch("http://localhost:9190/AddSwissTournament/" +this.username +"/"+ this.tournamentID.toString() + "/Swiss:"+this.tournamentID.toString()+"?",{
+                method: 'GET'
               })
                   .then(res=> console.log(res))
 

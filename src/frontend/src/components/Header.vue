@@ -4,7 +4,7 @@
   </head>
 
   <div>
-    <router-link :to="{path: '/' + this.username + '/createRoundRobin'}">
+    <router-link :to="{path: '/' + this.username + '/createTournament'}">
       <img src="..\Logo.jpeg" alt="logo" id="tournamatelogo" style="padding-left:70px;width:120px;height:120px;position:absolute" class="img-fluid">
     </router-link>
     <br>
@@ -13,7 +13,7 @@
       <a class="logo">TournaMate</a>
       <div class="header-right header-rightHovered">
         <div>
-          <router-link v-if="this.username !== ':username'"  :to="{path: '/' + this.username + '/profile/'}" class="nav-link">
+          <router-link v-if="this.username !== 'Guest'"  :to="{path: '/' + this.username + '/profile/'}" class="nav-link">
             <lord-icon class = "icon"
                        src="https://cdn.lordicon.com/kthelypq.json"
                        trigger="hover"

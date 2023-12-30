@@ -41,7 +41,6 @@
 <script>
 import swal from 'sweetalert';
 export default {
-  props: ['id'],
   data(){
     return{
       statusS: '',
@@ -55,7 +54,7 @@ export default {
       teams: [],
       screenWidth: window.innerWidth,
       getResults: async function(){
-        await fetch("http://localhost:9190/RoundRobintournament/?" + new URLSearchParams({
+        await fetch("http://192.168.1.3:9190/RoundRobintournament/?" + new URLSearchParams({
           id:Number(this.id)
         }),{
           method: 'GET'
@@ -78,29 +77,26 @@ export default {
             })
       },
       getParam: async function(){
-        await this.getResults();
-
-        if(this.teams.length === 0){
-          swal({
-            title: "No teams in tournament!",
-            icon: "error",
-            button: "Ok!",
-          });
-          return
-        }
-        swal("Enter Your Name in tournament:", {
+        swal("Enter Tournament ID:",{
           content: "input",
         })
             .then((value) => {
-              console.log(value)
-              this.teamName = value;
-              for(let i=0; i < this.teams.length; i++){
-                if(this.teams[i].name.toLowerCase() === this.teamName.toLowerCase()){
-                  this.ranking = i+1;
-                  this.points = this.teams[i].points;
-                  this.nWins = this.teams[i].win;
-                }
-              }
+              this.id = value;
+              this.getResults();
+              swal("Enter Your Name in tournament:", {
+                content: "input",
+              })
+                  .then((value) => {
+                    console.log("debug")
+                    this.teamName = value;
+                    for(let i=0; i < this.teams.length; i++){
+                      if(this.teams[i].name.toLowerCase() === this.teamName.toLowerCase()){
+                        this.ranking = i+1;
+                        this.points = this.teams[i].points;
+                        this.nWins = this.teams[i].win;
+                      }
+                    }
+                  });
             });
       }
     }

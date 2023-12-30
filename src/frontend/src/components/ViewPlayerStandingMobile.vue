@@ -41,12 +41,11 @@
 <script>
 import swal from 'sweetalert';
 export default {
-  props: ['id'],
   data(){
     return{
       statusS: '',
       teamName: '',
-      tournamentID: this.id,
+      tournamentID: '',
       ranking: '',
       points: '',
       roomName: '',
@@ -56,8 +55,8 @@ export default {
       screenWidth: window.innerWidth,
       getResults: async function(){
         console.log(this.id)
-        await fetch("http://localhost:9190/swiss/?" + new URLSearchParams({
-          id:Number(this.id)
+        await fetch("http://192.168.1.3:9190/swiss/?" + new URLSearchParams({
+          id:this.id
         }),{
           method: 'GET'
         })
@@ -78,28 +77,26 @@ export default {
             })
       },
       getParam: async function(){
-        await this.getResults();
-        if(this.teams.length === 0){
-          swal({
-            title: this.id + "No teams in tournament!",
-            icon: "error",
-            button: "Ok!",
-          });
-          return
-        }
-        swal("Enter Your Name in tournament:", {
+        swal("Enter Tournament ID:",{
           content: "input",
         })
             .then((value) => {
-              console.log("debug")
-              this.teamName = value;
-              for(let i=0; i < this.teams.length; i++){
-                if(this.teams[i].name.toLowerCase() === this.teamName.toLowerCase()){
-                  this.ranking = i+1;
-                  this.points = this.teams[i].points;
-                  this.nWins = this.teams[i].win;
-                }
-              }
+              this.id = value;
+              this.getResults();
+              swal("Enter Your Name in tournament:", {
+                content: "input",
+              })
+                  .then((value) => {
+                    console.log("debug")
+                    this.teamName = value;
+                    for(let i=0; i < this.teams.length; i++){
+                      if(this.teams[i].name.toLowerCase() === this.teamName.toLowerCase()){
+                        this.ranking = i+1;
+                        this.points = this.teams[i].points;
+                        this.nWins = this.teams[i].win;
+                      }
+                    }
+                  });
             });
       }
     }

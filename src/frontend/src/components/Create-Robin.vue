@@ -1,5 +1,6 @@
 <template>
-  <Header></Header>
+
+  <Header :username="username"></Header>
   <div class="types">
     <router-link :to="{path: '/' + this.username + '/createTournament'}" style="text-decoration: none;">
       <p style="color: #27374D;">Swiss</p>
@@ -8,6 +9,7 @@
       <p style="font-family: ubuntu-bold">Round Robin</p>
 
   </div>
+
   <body>
   <div class="flex-container">
     <div class="create-room">
@@ -128,10 +130,11 @@ import swal from "sweetalert";
 export default {
   name: 'SwissStandings',
   components: {Header},
-  props:['username'],
+  //props:['username'],
   data(){
     return{
       roomName: '',
+      username:"",
       teams: [],
       tournamentID: 13,
       numberOfRounds: '',
@@ -171,6 +174,12 @@ export default {
             })
             .then((data) => {
               this.tournamentID = data
+              console.log(this.username, "usernaaaaame")
+
+              fetch("http://localhost:9190/AddRoundRobinTournament/" + this.username +"/"+ this.tournamentID.toString() + "/RoundRobin:"+this.tournamentID.toString()+"?",{
+                method: 'GET'
+              })
+                  .then(res=> console.log(res))
             })
         this.finalized = true
       },
@@ -213,6 +222,8 @@ export default {
         reader.readAsBinaryString(this.file);
       }
     },
+  },mounted(){
+    this.username = this.$route.params.username;
   }
 }
 

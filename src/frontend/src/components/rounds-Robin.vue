@@ -1,6 +1,7 @@
 <template>
   <Header></Header>
   <div class="page">
+    <h1>Round {{roundNumber}}</h1>
     <div style="margin-top: 30px;">
       <table style="width: 50%">
         <tr v-for="(match, index) in matches" :key="index">
@@ -37,7 +38,7 @@
     <div class="bigBUTTONCLASS" style="position: fixed; margin-left: 1000px; margin-top: 100px">
       <qrcode-vue  :value = "valueQR" :size = "300" :level="H" :background="'#DDE6ED'" :foreground="'#213555'"></qrcode-vue>
       <div class="bigBUTTONS" style="margin-right: 205px">
-        <button class="blue-button" @click="generateNewRound()">
+        <button v-if="roundNumber<maxRounds" class="blue-button" @click="generateNewRound()">
           <div style="display: flex; flex-direction: column; align-items: center">
             <lord-icon
                 src="https://cdn.lordicon.com/nizfqlnk.json"
@@ -51,6 +52,22 @@
             </div>
           </div>
         </button>
+        <router-link v-if="roundNumber>=maxRounds" :to="{path: '/' + this.tournamentID + '/finalStandings/'}" style="text-decoration: none">
+          <button class="blue-button">
+            <div style="display: flex; flex-direction: column; align-items: center">
+              <lord-icon
+                  src="https://cdn.lordicon.com/whrxobsb.json"
+                  trigger="hover"
+                  colors="primary:#213555"
+                  style="width:100px;height:100px">
+              </lord-icon>
+              <div>
+                <br>
+                Final Standings
+              </div>
+            </div>
+          </button>
+        </router-link>
         <router-link :to="{path: '/' + this.tournamentID + '/RoundRobinStandings/'}" style="text-decoration: none">
           <button class="blue-button">
             <div style="display: flex; flex-direction: column; align-items: center">
@@ -67,6 +84,7 @@
             </div>
           </button>
         </router-link>
+
       </div>
     </div>
   </div>
@@ -81,7 +99,7 @@ export default defineComponent({
   components: {QrcodeVue, Header},
   data(){
     return{
-      valueQR: '192.168.1.3:3000/#/' +this.id+ '/viewstatsRobin/',
+      valueQR: '192.168.1.3:3000/#/viewstatsRobin/',
       size: 300,
       maxRounds: 3,
       roundNumber: 0,
@@ -169,6 +187,8 @@ export default defineComponent({
       generateNewRound: function(){
         console.log(typeof this.roundNumber+ "noooooooooo")
         this.roundNumber +=  1;
+        var someVarName = this.roundNumber;
+        localStorage.setItem("KEY", someVarName);
         fetch("http://localhost:9190/RoundRobintournament/numOfRounds?" + new URLSearchParams({
           id:this.tournamentID
         }),{
@@ -229,6 +249,15 @@ export default defineComponent({
     //
     //     })
     // }
+    // else{
+    var someVarName2 = this.id;
+    if(Number(localStorage.getItem("KEYid")) === this.id){
+      this.roundNumber = Number(localStorage.getItem("KEY"));
+    }
+    else{
+      this.roundNumber = 1;
+    }
+    localStorage.setItem("KEYid", someVarName2);
     console.log(this.id)
     console.log("ID")
   }

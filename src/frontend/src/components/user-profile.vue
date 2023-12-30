@@ -105,11 +105,15 @@
         </tbody>
       </table>
 
-      <div @click="storeData(); sendData(); this.$router.replace({path:'/' + this.username + '/createTournament'});" class="active2 header-right2 header-rightHovered2" style="text-decoration: none;margin-right: 200px;margin-top: 0px;-bottom: 50px ;width:135px;text-align: center;background: #213555;
+      <div @click="storeData(); sendData(); this.$router.replace({path:'/' + this.username + '/profile'});" class="active2 header-right2 header-rightHovered2" style="text-decoration: none;margin-right: 100px;margin-top: 0px;-bottom: 50px ;width:135px;text-align: center;background: #213555;
         color: #DDE6ED;">
         Save Changes
       </div>
-      <div  style="text-decoration: none; margin-left: 1500px; margin-top: 60px; margin-bottom: 60px ;width:135px; text-align: center; color: #CC7469;">{{ state }}</div>
+      <div @click=" this.$router.replace({path:'/' + this.username + '/myTournaments'});" class="active2 header-right2 header-rightHovered2" style="text-decoration: none;margin-right: 500px;margin-top: 0px;-bottom: 50px ;width:135px;text-align: center;background: #213555;
+        color: #DDE6ED;">
+        Back to My Tournaments
+      </div>
+      <div  style="float: right;text-decoration: none;margin-right: -660px;  margin-top: 20px ;font-weight: bold;width:135px; text-align: center; color: #CC7469;">{{ state }}</div>
     </div>
 
 
@@ -171,45 +175,10 @@ export default {
           console.log(this.file);
 
       },
-    // triggerFileInput() {
-    //   // Simulate a click on the hidden file input
-    //   this.$refs.fileInput.click();
-    // },
-    // handleFileChange(event) {
-    //   // Handle file change event (called when a file is selected)
-    //   const file = event.target.files[0];
 
-    //   const formData = new FormData();
-    //   formData.append('photo', file);
 
-    //   // Assuming you have an API endpoint for photo upload
-    //   // Adjust the URL accordingly
-    //   const apiUrl = 'http://localhost:9190/setProfilePicture';
-
-    //   // Use your preferred HTTP library for making the request
-    //   // For example, using axios
-    //   axios.post(apiUrl, formData)
-    //     .then(response => {
-    //       console.log('Photo uploaded successfully:', response.data);
-    //     })
-    //     .catch(error => {
-    //       console.error('Error uploading photo:', error);
-    //     });
-    // },
     storeData(){
-      // if(document.getElementById("username").value !== null){
-      //   this.newUsername = document.getElementById("username").value
-      //   console.log(this.newUsername)
-      // }
 
-      // if(document.getElementById("oldPass").value !== null){
-      //   this.oldPassword = document.getElementById("oldPass").value
-      //   console.log(this.oldPassword)
-      // }
-      // if( document.getElementById("newPass").value !== null){
-      //   this.newPassword = document.getElementById("newPass").value
-      //   console.log(this.newPassword)
-      // }
       const usernameElement = document.getElementById("username");
       this.newUsername = usernameElement?.value || "";
       console.log(this.newUsername);
@@ -250,6 +219,7 @@ export default {
               this.state="Saved Changes";
               location.replace("http://localhost:3000/#/"+this.username+"/profile")
       }
+
       if(this.newPassword.length !== 0 && this.newPassword!==null && this.oldPassword.length !== 0 && this.oldPassword!==null ){
         console.log("hiiiii");
         fetch("http://localhost:9190/editPassword/"+this.username+"/"+this.oldPassword+"/"+this.newPassword, {
@@ -262,7 +232,7 @@ export default {
             this.fromBack = data;
             if(this.fromBack==="passwordsuccess"){
               this.oldPassword= this.newPassword;
-              this.state=this.fromBack;
+              this.state="Saved Changes";
             }
             else{
               this.state=this.fromBack;

@@ -45,28 +45,28 @@ public class UserController {
 	{
 	    userservice.AddSwissTournament(username,id,tourname);
 	}
-	
+
 	@GetMapping(path ="/AddRoundRobinTournament/{username}/{id}/{tourname}")
 	public void AddRoundRobinTournament (@PathVariable("username") String username,@PathVariable("id") String id,
             @PathVariable("tourname") String tourname)
 	{
-		userservice.AddSwissTournament(username,id,tourname);
+		userservice.AddRoundRobinTournament(username,id,tourname);
 
 	}
 	@GetMapping(path ="/getSwissTournament/{username}")
 	public ArrayList<String[]> getSwissTournament(@PathVariable("username") String username){
-		
-		return userservice.getSwissTournaments(username);	
+
+		return userservice.getSwissTournaments(username);
 	}
 	@GetMapping(path ="/getRoundRobinTournament/{username}")
 	public ArrayList<String[]> getRoundRobinTournament(@PathVariable("username") String username){
-		
-		return userservice.getRoundRobinTournament(username);	
-	}	
+
+		return userservice.getRoundRobinTournament(username);
+	}
 	@GetMapping(path="/editUsername/{username}/{newusername}")
 	public String editUserName(@PathVariable("username") String username ,@PathVariable("newusername") String newUserName) {
 		return userservice.editUserName(username , newUserName);
-	
+
 }
 	@GetMapping(path="/editPassword/{username}/{oldpass}/{newpass}")
 	public String editPassword(@PathVariable("username") String username ,@PathVariable("oldpass") String oldpass ,
@@ -74,9 +74,9 @@ public class UserController {
 	{
 		return userservice.editPassword(username,oldpass,newpass);
 	}
-	
+
 	@GetMapping(path="/getuser/{username}")
-	public Profile editPassword(@PathVariable("username") String username)		                 
+	public Profile editPassword(@PathVariable("username") String username)
 	{
 		return Database.getInstance().getProfile(username);
 	}
@@ -85,13 +85,13 @@ public class UserController {
 	public String setProfilePicture(@PathVariable("username") String username,
 			@RequestParam("image") MultipartFile file) {
 		return userservice.setProfilePicture(username , file);
-		
+
 	}
 	@GetMapping("/getProfilePicture/{username}")
 	public byte[] getProfilePicture(@PathVariable("username") String username) {
 		return userservice.getProfilePicture(username );
-		
+
 	}
- 
+
 
 }

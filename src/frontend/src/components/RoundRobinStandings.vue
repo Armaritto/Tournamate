@@ -10,7 +10,7 @@
       {{roomName}}
     </div>
     <div class="title" v-else>
-      Room
+      Room ID is {{this.tournamentID}}
     </div>
     <div class="content">
       <table class="my-table">
@@ -63,7 +63,7 @@ export default {
       roomName: '',
       fantasyScore: '',
       tournamentID: this.id,
-      valueQR: '192.168.1.3:3000/#/' +this.id+ '/viewstatsRobin/',
+      valueQR: '192.168.1.3:3000/#/viewstatsRobin/',
       teams: [],
       screenWidth: window.innerWidth,
       getResults: function(){

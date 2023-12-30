@@ -40,8 +40,8 @@ const router = createRouter({
         { path: '/NewAccount', component: NewAccount},
         { path: '/:id/roundsRobin/', component: rnds_Robin, props: true},
         { path: '/:id/RoundRobinStandings', component: RoundRobinStandings, props: true},
-        { path: '/:id/ViewStats', component: ViewPlayerStandingMobile, props: true},
-        { path: '/:id/viewstatsRobin', component: ViewPlayerStandingMobileRobin, props: true},
+        { path: '/ViewStats', component: ViewPlayerStandingMobile},
+        { path: '/viewstatsRobin', component: ViewPlayerStandingMobileRobin},
         { path: '/:id/finalStandings', component: FinalStandings, props: true},
     ]
 });

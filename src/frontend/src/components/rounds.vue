@@ -1,6 +1,7 @@
 <template>
   <Header></Header>
   <div class="page">
+    <h1>Round {{roundNumber}}</h1>
     <div style="margin-top: 30px;">
       <table style="width: 50%">
         <tr v-for="(match, index) in matches" :key="index">
@@ -37,7 +38,7 @@
     <div class="bigBUTTONCLASS" style="position: fixed; margin-left: 1000px; margin-top: 100px">
       <qrcode-vue  :value = "valueQR" :size = "300" :level="H" :background="'#DDE6ED'" :foreground="'#213555'"></qrcode-vue>
       <div class="bigBUTTONS" style="margin-right: 205px">
-        <button class="blue-button" @click="generateNewRound() ">
+        <button v-if="roundNumber<maxRounds" class="blue-button" @click="generateNewRound() ">
           <div style="display: flex; flex-direction: column; align-items: center">
             <lord-icon
                 src="https://cdn.lordicon.com/nizfqlnk.json"
@@ -51,6 +52,22 @@
             </div>
           </div>
         </button>
+        <router-link v-if="roundNumber>=maxRounds" :to="{path: '/' + this.tournamentID + '/finalStandings/'}" style="text-decoration: none">
+          <button class="blue-button">
+            <div style="display: flex; flex-direction: column; align-items: center">
+              <lord-icon
+                  src="https://cdn.lordicon.com/whrxobsb.json"
+                  trigger="hover"
+                  colors="primary:#213555"
+                  style="width:100px;height:100px">
+              </lord-icon>
+              <div>
+                <br>
+                Final Standings
+              </div>
+            </div>
+          </button>
+        </router-link>
         <router-link :to="{path: '/' + this.tournamentID + '/swissStandings/'}" style="text-decoration: none">
           <button class="blue-button">
             <div style="display: flex; flex-direction: column; align-items: center">
@@ -63,6 +80,22 @@
               <div>
                 <br>
                 View Standings
+              </div>
+            </div>
+          </button>
+        </router-link>
+        <router-link :to="{path: '/' + this.tournamentID + '/finalStandings/'}" style="text-decoration: none">
+          <button class="blue-button">
+            <div style="display: flex; flex-direction: column; align-items: center">
+              <lord-icon
+                  src="https://cdn.lordicon.com/whrxobsb.json"
+                  trigger="hover"
+                  colors="primary:#213555"
+                  style="width:100px;height:100px">
+              </lord-icon>
+              <div>
+                <br>
+                Final Standings
               </div>
             </div>
           </button>
@@ -83,9 +116,10 @@ export default defineComponent({
   components: {Header,QrcodeVue},
   data(){
     return{
-      valueQR: '192.168.1.3:3000/#/' +this.id+ '/ViewStats/',
+      valueQR: '192.168.1.3:3000/#/ViewStats/',
       size: 300,
       roundNumber: 1,
+      maxRounds:2,
       tournamentID: this.id ,
       matches:[
       ],
@@ -114,6 +148,11 @@ export default defineComponent({
         }
       },
       generateNewRound: function(){
+        this.roundNumber++;
+        if((this.maxRounds < this.roundNumber) && (this.maxRounds !== '')){
+          alert("tournament is finished")
+          return
+        }
 
         console.log(this.tournamentID+"rounds page haha")
         fetch("http://localhost:9190/swiss/newSwissRound?" + new URLSearchParams({
