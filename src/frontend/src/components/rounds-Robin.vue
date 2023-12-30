@@ -45,6 +45,7 @@
                 colors="primary:#213555"
                 style="width:100px;height:100px">
             </lord-icon>
+
             <div>
               <br>
               generate new round

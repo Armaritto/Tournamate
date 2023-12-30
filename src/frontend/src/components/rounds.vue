@@ -39,8 +39,9 @@
       <div class="bigBUTTONS" style="margin-right: 205px">
         <button v-if="roundNumber<maxRounds" class="blue-button" @click="generateNewRound() ">
           <div style="display: flex; flex-direction: column; align-items: center">
+
             <lord-icon
-                src="https://cdn.lordicon.com/utpmnzxz.json"
+                src="https://cdn.lordicon.com/nizfqlnk.json"
                 trigger="hover"
                 colors="primary:#213555"
                 style="width:100px;height:100px">
@@ -55,7 +56,7 @@
           <button class="blue-button">
             <div style="display: flex; flex-direction: column; align-items: center">
               <lord-icon
-                  src="https://cdn.lordicon.com/whrxobsb.json"
+                  src="https://cdn.lordicon.com/utpmnzxz.json"
                   trigger="hover"
                   colors="primary:#213555"
                   style="width:100px;height:100px">
