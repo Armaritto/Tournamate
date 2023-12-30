@@ -52,14 +52,12 @@ defineElement(lottie.loadAnimation);
 export default {
   name: 'SwissStandings',
   components: {Header},
-  props: {
-    tournamentID: Number
-  },
+  props: ['id'],
   data(){
     return{
       roomName: '',
       fantasyScore: '',
-      tournamentID: 13,
+      tournamentID: this.id,
       teams: [],
       screenWidth: window.innerWidth,
       getResults: function(){
@@ -94,7 +92,9 @@ export default {
 </script>
 
 <style scoped>
-
+body {
+  font-family: ubuntu-regular;
+}
 @font-face {
   font-family: ubuntu-bold;
   src: url("../../Ubuntu/Ubuntu-Bold.ttf");

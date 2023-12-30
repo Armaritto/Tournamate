@@ -1,14 +1,14 @@
 <template>
   <Header></Header>
   <div class="types">
-    <router-link to="/createTournament">
+    <router-link to="/createTournament" style="text-decoration: none;">
       <p style="color: #27374D;">Swiss</p>
     </router-link>
-    <router-link to="/createKnockout">
+    <router-link to="/createKnockout" style="text-decoration: none;">
       <p style="color: #27374D;">Knockout</p>
     </router-link>
       <p style="font-family: ubuntu-bold">Round Robin</p>
-    <router-link to="/createGroups">
+    <router-link to="/createGroups" style="text-decoration: none;">
       <p style="color: #27374D;" >Groups</p>
     </router-link>
   </div>
@@ -34,8 +34,13 @@
       </div>
       <label for="team-name">Team Name:</label>
       <input type="textbox" id="team-name" name="team-name">
+      <br>
 
-      <router-link to="/roundsRobin">
+        <label for="team-name">Load from Excel:</label>
+        <input type="file" id="my_file_input" @change="onChange"/>
+        <br>
+        <br>
+
         <div class="delete deleteH" style="border: none;" @click="finalizeParameters()">
           <div style="display: flex; flex-direction: column; align-items: center">
             <lord-icon
@@ -49,6 +54,7 @@
             </div>
           </div>
         </div>
+      <router-link :to="{path: '/' + this.tournamentID + '/roundsRobin/'}" style="text-decoration: none; color: black"> goto
       </router-link>
 
     </div>
@@ -102,6 +108,7 @@
 
 </template>
 <script>
+import XLSX from 'xlsx';
 function arrayRemove(arr, value) {
   return arr.filter(function (v) {
     return v != value;
@@ -137,8 +144,7 @@ export default {
               return response.json()
             })
             .then((data) => {
-              this.tournamentID = Number(data)
-              this.id = data;
+              this.tournamentID = data
             })
       },
       shuffle: function (){
@@ -156,12 +162,71 @@ export default {
             })
       }
     }
+  },
+  methods: {
+    onChange(event) {
+      this.file = event.target.files ? event.target.files[0] : null;
+      if (this.file) {
+        console.log("loaded")
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          /* Parse data */
+          const bstr = e.target.result;
+          const wb = XLSX.read(bstr, { type: 'binary' });
+          /* Get first worksheet */
+          const wsname = wb.SheetNames[0];
+          const ws = wb.Sheets[wsname];
+          /* Convert array of arrays */
+          const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+          console.log(data);
+          data.forEach((plyr) => {
+              this.teams.push(plyr[0]);
+          });
+        }
+        reader.readAsBinaryString(this.file);
+      }
+    },
   }
 }
 
 </script>
 
-<style>
+<style scoped>
+@font-face {
+  font-family: ubuntu-bold;
+  src: url("../../Ubuntu/Ubuntu-Bold.ttf");
+}
+@font-face {
+  font-family: ubuntu-bold-italic;
+  src: url("../../Ubuntu/Ubuntu-BoldItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-italic;
+  src: url("../../Ubuntu/Ubuntu-Italic.ttf");
+}
+@font-face {
+  font-family: ubuntu-light;
+  src: url("../../Ubuntu/Ubuntu-Light.ttf");
+}
+@font-face {
+  font-family: ubuntu-lightItalic;
+  src: url("../../Ubuntu/Ubuntu-LightItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-medium;
+  src: url("../../Ubuntu/Ubuntu-Medium.ttf");
+}
+@font-face {
+  font-family: ubuntu-medium-italic;
+  src: url("../../Ubuntu/Ubuntu-MediumItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-regular;
+  src: url("../../Ubuntu/Ubuntu-Regular.ttf");
+}
+body {
+  font-family: ubuntu-regular;
+}
 .types{
   color: #213555;
   font-size: 17px;
@@ -271,5 +336,19 @@ button[type="submit"]:hover {
 }
 .blue-buttonH:hover {
   background-color: #bcc5cc;
+}
+input[type=file]::file-selector-button {
+  border: 0;
+  padding: .4em .4em;
+  border-radius: .2em;
+  background-color: #bbccd7;
+  color: black;
+  margin-right: 10px;
+}
+
+input[type=file]::file-selector-button:hover {
+  border: 0;
+  background-color: #bcc5cc;
+  cursor: pointer;
 }
 </style>

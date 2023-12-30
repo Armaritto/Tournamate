@@ -50,7 +50,7 @@
             </div>
           </div>
         </button>
-        <router-link to="/swissStandings">
+        <router-link :to="{path: '/' + this.tournamentID + '/swissStandings/'}" style="text-decoration: none">
           <button class="blue-button">
             <div style="display: flex; flex-direction: column; align-items: center">
               <lord-icon
@@ -67,31 +67,38 @@
           </button>
         </router-link>
       </div>
+      <div>
+        <qrcode-vue  :value = "valueQR" :size = "300" :level="H"></qrcode-vue>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import QrcodeVue from 'qrcode.vue'
 import {defineComponent} from "vue";
 import Header from "@/components/Header.vue";
 export default defineComponent({
-  props: ['tournamentID'],
-  components: {Header},
+  props: ['id'],
+  components: {Header,QrcodeVue},
   data(){
     return{
+      valueQR: 'https://localhost:3000/#/ViewStats/',
+      size: 300,
       roundNumber: 1,
-      tournamentID: 13 ,
+      tournamentID: this.id ,
       matches:[
       ],
       setScore: function (status,matchNumber){
         fetch("http://localhost:9190/swiss/setMatch?" + new URLSearchParams({
-          roundNumber:this.roundNumber.toString(),
+          roundNumber:this.roundNumber,
           matchNumber:matchNumber,
           matchStatus:status.toString(),
-          id:13
+          id:this.tournamentID
       }),{
           method: 'PUT'
         })
+
         switch (status){
           case "D":
             this.matches[matchNumber].scoreTeamA = 0.5;
@@ -108,6 +115,7 @@ export default defineComponent({
         }
       },
       generateNewRound: function(){
+        console.log(this.tournamentID+"rounds page haha")
         fetch("http://localhost:9190/swiss/newSwissRound?" + new URLSearchParams({
           id:this.tournamentID
         }),{
@@ -134,6 +142,41 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@font-face {
+  font-family: ubuntu-bold;
+  src: url("../../Ubuntu/Ubuntu-Bold.ttf");
+}
+@font-face {
+  font-family: ubuntu-bold-italic;
+  src: url("../../Ubuntu/Ubuntu-BoldItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-italic;
+  src: url("../../Ubuntu/Ubuntu-Italic.ttf");
+}
+@font-face {
+  font-family: ubuntu-light;
+  src: url("../../Ubuntu/Ubuntu-Light.ttf");
+}
+@font-face {
+  font-family: ubuntu-lightItalic;
+  src: url("../../Ubuntu/Ubuntu-LightItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-medium;
+  src: url("../../Ubuntu/Ubuntu-Medium.ttf");
+}
+@font-face {
+  font-family: ubuntu-medium-italic;
+  src: url("../../Ubuntu/Ubuntu-MediumItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-regular;
+  src: url("../../Ubuntu/Ubuntu-Regular.ttf");
+}
+body {
+  font-family: ubuntu-regular;
+}
  .match{
    margin-left: 80px;
    margin-top: 20px;

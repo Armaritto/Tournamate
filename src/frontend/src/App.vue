@@ -1,6 +1,5 @@
 <template>
   <logIn></logIn>
-  <SwissStandings></SwissStandings>
 </template>
 
 <script>

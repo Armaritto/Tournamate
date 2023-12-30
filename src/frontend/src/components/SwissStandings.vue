@@ -7,10 +7,10 @@
   <body>
   <div>
     <div class="title" v-if="roomName !== ''">
-      {{roomName}}
+      {{roomName + " ID is: " + this.tournamentID}}
     </div>
     <div class="title" v-else>
-      Room
+      Room ID is {{this.tournamentID}}
     </div>
     <div class="content">
       <table class="my-table">
@@ -52,14 +52,12 @@ defineElement(lottie.loadAnimation);
 export default {
   name: 'SwissStandings',
   components: {Header},
-  props: {
-    tournamentID: Number
-  },
+  props: ['id'],
   data(){
     return{
       roomName: '',
       fantasyScore: '',
-      tournamentID: 13,
+      tournamentID: this.id,
       teams: [],
       screenWidth: window.innerWidth,
       getResults: function(){
@@ -93,7 +91,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @font-face {
   font-family: ubuntu-bold;
   src: url("../../Ubuntu/Ubuntu-Bold.ttf");
@@ -212,6 +210,9 @@ body {
   test{
     grid-template-columns: minmax(100px,1fr);
   }
+}
+body {
+  font-family: ubuntu-regular;
 }
 </style>
 

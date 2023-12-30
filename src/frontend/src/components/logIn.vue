@@ -102,13 +102,48 @@
               // window.open("http://localhost:3000/#/createTournament")
             }
           });
-        
+
      },
     }
 })
 </script>
 
 <style scoped>
+@font-face {
+  font-family: ubuntu-bold;
+  src: url("../../Ubuntu/Ubuntu-Bold.ttf");
+}
+@font-face {
+  font-family: ubuntu-bold-italic;
+  src: url("../../Ubuntu/Ubuntu-BoldItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-italic;
+  src: url("../../Ubuntu/Ubuntu-Italic.ttf");
+}
+@font-face {
+  font-family: ubuntu-light;
+  src: url("../../Ubuntu/Ubuntu-Light.ttf");
+}
+@font-face {
+  font-family: ubuntu-lightItalic;
+  src: url("../../Ubuntu/Ubuntu-LightItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-medium;
+  src: url("../../Ubuntu/Ubuntu-Medium.ttf");
+}
+@font-face {
+  font-family: ubuntu-medium-italic;
+  src: url("../../Ubuntu/Ubuntu-MediumItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-regular;
+  src: url("../../Ubuntu/Ubuntu-Regular.ttf");
+}
+body {
+  font-family: ubuntu-regular;
+}
 #body{
     margin: 0;
     padding: 0;

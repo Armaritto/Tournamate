@@ -13,23 +13,34 @@ import CreateGroups from './components/Create-Groups.vue';
 import NewAccount from './components/SignUp.vue';
 import rnds_Robin from './components/rounds-Robin.vue'
 import RoundRobinStandings from "@/components/RoundRobinStandings.vue";
+import ViewPlayerStandingMobile from "@/components/ViewPlayerStandingMobile.vue";
+import ViewPlayerStandingMobileRobin from "@/components/ViewPlayerStandingMobileRobin.vue";
+import FinalStandings from "@/components/FinalStandings.vue";
 const router = createRouter({
     mode: 'history',
     history: createWebHashHistory(),
     // base: __dirname,
     routes: [
         { path: '/', component: logIn },
-        { path: '/SwissStandings', component: SwissStandings },
+        { path: '/:id/SwissStandings', component: SwissStandings, props:true },
         { path: '/about', component: About },
+
         { path: '/:username/profile', component: Profile, props:true },
-        { path: '/:username/createTournament', component: CreateTournament, props:true},
+       
         { path: '/rounds', component: rnds},
+
+        { path: '/createTournament', component: CreateTournament},
+        { path: '/:id/rounds', component: rnds, props: true},
+
         { path: '/createKnockout', component: CreateKnockout},
         { path: '/createRoundRobin', component: CreateRobin},
         { path: '/createGroups', component: CreateGroups},
         { path: '/NewAccount', component: NewAccount},
-        { path: '/roundsRobin', component: rnds_Robin},
-        { path: '/RoundRobinStandings', component: RoundRobinStandings}
+        { path: '/:id/roundsRobin', component: rnds_Robin, props: true},
+        { path: '/:id/RoundRobinStandings', component: RoundRobinStandings, props: true},
+        { path: '/ViewStats', component: ViewPlayerStandingMobile, props: true},
+        { path: '/viewstats', component: ViewPlayerStandingMobileRobin, props: true},
+        { path: '/:id/finalStandings', component: FinalStandings, props: true},
     ]
 });
 const store = createStore({
@@ -48,14 +59,7 @@ const store = createStore({
 const app = createApp({
     template: `
     <div>
-      <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-           
-          </ul>
-        </div>
-      </nav>
-      <router-view class="view"></router-view>
+      <router-view></router-view>
     </div>
   `
 });

@@ -50,7 +50,7 @@
             </div>
           </div>
         </button>
-        <router-link to="/RoundRobinStandings">
+        <router-link :to="{path: '/' + this.tournamentID + '/RoundRobinStandings/'}">
           <button class="blue-button">
             <div style="display: flex; flex-direction: column; align-items: center">
               <lord-icon
@@ -75,13 +75,13 @@
 import {defineComponent} from "vue";
 import Header from "@/components/Header.vue";
 export default defineComponent({
-  props: ['tournamentID'],
+  props: ['id'],
   components: {Header},
   data(){
     return{
-      maxRounds: '',
-      roundNumber: 1,
-      tournamentID: 13 ,
+      maxRounds: 3,
+      roundNumber: 0,
+      tournamentID: this.id ,
       matches:[
       ],
       setScore: function (status,matchNumber){
@@ -89,7 +89,7 @@ export default defineComponent({
           roundNumber:this.roundNumber.toString(),
           matchNumber:matchNumber,
           matchStatus:status.toString(),
-          id:13
+          id:this.tournamentID
         }),{
           method: 'POST'
         })
@@ -109,21 +109,41 @@ export default defineComponent({
         }
       },
       generateNewRound: function(){
-        // this.roundNumber = this.roundNumber + 1
-        // if((this.maxRounds < this.roundNumber) && (this.maxRounds !== '')){
-        //   alert("tournament is finished")
-        // }
-        //else{
+        fetch("http://localhost:9190/RoundRobintournament/numOfRounds?" + new URLSearchParams({
+                                             id:this.tournamentID
+                                           }),{
+                                             method: 'GET'
+                                           })
+                                               .then(function (response) {
+                                                 return response.json()
+                                               })
+                                               .then((data) => {
+                                                 console.log(data)
+                                                 this.maxRounds = Number(data);
+                                                 console.log(data)
+                                                 console.log('data')
+                                               })
+        if((this.maxRounds <= this.roundNumber) && (this.maxRounds !== '')){
+          alert("tournament is finished")
+        }
+        else{
+          console.log(this.maxRounds)
+          console.log('this.maxRounds')
+          console.log(this.roundNumber)
+          console.log('this.roundNumber')
           fetch("http://localhost:9190/RoundRobintournament/newRoundRobinRound?" + new URLSearchParams({
             id:this.tournamentID
           }),{
             method: 'POST'
           })
-              .then(function (response) {
+              .then(()=> {
+                this.roundNumber = Number(this.roundNumber)
+                this.roundNumber = this.roundNumber + 1
                 return response.json()
               })
               .then((data) => {
                 console.log(data)
+                console.log('dataaa')
                 for(var index in data){
                   this.matches.push({
                     teamA: data[index].matchTeam1.name,
@@ -134,14 +154,70 @@ export default defineComponent({
                   //this.maxRounds = index;
                 }
               })
-        //}
+              .then(this.roundNumber = Number(this.roundNumber)
+          this.roundNumber = this.roundNumber + 1)
+
+        }
+
+
       }
     }
+  },
+  mounted() {
+    // if(this.roundNumber == 1){
+    // fetch("http://localhost:9190/RoundRobintournament/newRoundRobinRound?" + new URLSearchParams({
+    //   id:this.tournamentID
+    // }),{
+    //   method: 'POST'
+    // })
+    //     .then(function (response) {
+    //       return response.json()
+    //     })
+    //     .then((data) => {
+    //       console.log(data)
+    //
+    //     })
+    // }
   }
 })
 </script>
 
 <style scoped>
+@font-face {
+  font-family: ubuntu-bold;
+  src: url("../../Ubuntu/Ubuntu-Bold.ttf");
+}
+@font-face {
+  font-family: ubuntu-bold-italic;
+  src: url("../../Ubuntu/Ubuntu-BoldItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-italic;
+  src: url("../../Ubuntu/Ubuntu-Italic.ttf");
+}
+@font-face {
+  font-family: ubuntu-light;
+  src: url("../../Ubuntu/Ubuntu-Light.ttf");
+}
+@font-face {
+  font-family: ubuntu-lightItalic;
+  src: url("../../Ubuntu/Ubuntu-LightItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-medium;
+  src: url("../../Ubuntu/Ubuntu-Medium.ttf");
+}
+@font-face {
+  font-family: ubuntu-medium-italic;
+  src: url("../../Ubuntu/Ubuntu-MediumItalic.ttf");
+}
+@font-face {
+  font-family: ubuntu-regular;
+  src: url("../../Ubuntu/Ubuntu-Regular.ttf");
+}
+body {
+  font-family: ubuntu-regular;
+}
 .match{
   margin-left: 80px;
   margin-top: 20px;
