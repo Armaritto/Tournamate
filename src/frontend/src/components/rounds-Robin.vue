@@ -80,13 +80,13 @@ export default defineComponent({
   data(){
     return{
       maxRounds: 3,
-      roundNumber: 0,
+      roundNumber: {value:0},
       tournamentID: this.id ,
       matches:[
       ],
       setScore: function (status,matchNumber){
         fetch("http://localhost:9190/RoundRobintournament/setMatch?" + new URLSearchParams({
-          roundNumber:this.roundNumber.toString(),
+          roundNumber:this.roundNumber.value.toString(),
           matchNumber:matchNumber,
           matchStatus:status.toString(),
           id:this.tournamentID
@@ -108,42 +108,90 @@ export default defineComponent({
             break;
         }
       },
+      // generateNewRound: function(){
+      //   fetch("http://localhost:9190/RoundRobintournament/numOfRounds?" + new URLSearchParams({
+      //                                        id:this.tournamentID
+      //                                      }),{
+      //                                        method: 'GET'
+      //                                      })
+      //                                          // .then(function (response) {
+      //                                          //   return response.json()
+      //                                          // })
+      //                                          .then((data) => {
+      //                                            console.log(data)
+      //                                            this.maxRounds = Number(data);
+      //                                            console.log(data)
+      //                                            console.log('data')
+      //                                          })
+      //   if((this.maxRounds <= this.roundNumber) && (this.maxRounds !== '')){
+      //     alert("tournament is finished")
+      //   }
+      //   else{
+      //     console.log(this.maxRounds)
+      //     console.log('this.maxRounds')
+      //     console.log(this.roundNumber)
+      //     console.log('this.roundNumber')
+      //     fetch("http://localhost:9190/RoundRobintournament/newRoundRobinRound?" + new URLSearchParams({
+      //       id:this.tournamentID
+      //     }),{
+      //       method: 'POST'
+      //     })
+      //         // .then(function (response) {
+      //         //   return response.json()
+      //         // })
+      //
+      //         .then((data) => {
+      //           console.log(data)
+      //           console.log('dataaa')
+      //           for(var index in data){
+      //             this.matches.push({
+      //               teamA: data[index].matchTeam1.name,
+      //               teamB: data[index].matchTeam2.name,
+      //               scoreTeamA: -1,
+      //               scoreTeamB: -1
+      //             })
+      //             //this.maxRounds = index;
+      //           }
+      //         })
+      //         .then(()=>{
+      //           this.roundNumber = Number(this.roundNumber)
+      //           this.roundNumber = this.roundNumber + 1
+      //         })
+      //
+      //   }
+      //
+      //
+      // }
       generateNewRound: function(){
+        this.roundNumber.value = this.roundNumber.value + 1;
         fetch("http://localhost:9190/RoundRobintournament/numOfRounds?" + new URLSearchParams({
-                                             id:this.tournamentID
-                                           }),{
-                                             method: 'GET'
-                                           })
-                                               .then(function (response) {
-                                                 return response.json()
-                                               })
-                                               .then((data) => {
-                                                 console.log(data)
-                                                 this.maxRounds = Number(data);
-                                                 console.log(data)
-                                                 console.log('data')
-                                               })
-        if((this.maxRounds <= this.roundNumber) && (this.maxRounds !== '')){
+          id:this.tournamentID
+        }),{
+          method: 'GET'
+        })
+            .then(function (response) {
+              return response.json()
+            })
+            .then((data) => {
+              console.log(data)
+              this.maxRounds = data;
+            })
+        if((this.maxRounds < this.roundNumber.value) && (this.maxRounds !== '')){
           alert("tournament is finished")
         }
         else{
-          console.log(this.maxRounds)
-          console.log('this.maxRounds')
-          console.log(this.roundNumber)
-          console.log('this.roundNumber')
+          console.log(this.maxRounds, 'maxRounds')
+          console.log(this.roundNumber.value, 'roundNumber')
           fetch("http://localhost:9190/RoundRobintournament/newRoundRobinRound?" + new URLSearchParams({
             id:this.tournamentID
           }),{
             method: 'POST'
           })
-              .then(()=> {
-                this.roundNumber = Number(this.roundNumber)
-                this.roundNumber = this.roundNumber + 1
+              .then(function (response) {
                 return response.json()
               })
               .then((data) => {
                 console.log(data)
-                console.log('dataaa')
                 for(var index in data){
                   this.matches.push({
                     teamA: data[index].matchTeam1.name,
@@ -154,9 +202,6 @@ export default defineComponent({
                   //this.maxRounds = index;
                 }
               })
-              .then(this.roundNumber = Number(this.roundNumber)
-          this.roundNumber = this.roundNumber + 1)
-
         }
 
 

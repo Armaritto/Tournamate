@@ -1,11 +1,11 @@
 <template>
 
- 
+
 
   <head>
 
   </head>
-  <Header></Header>
+  <Header :username="username"></Header>
 
   <div class="types">
       <p style="font-family: ubuntu-bold">Swiss</p>
@@ -134,6 +134,7 @@ function arrayRemove(arr, value) {
 import Header from "@/components/Header.vue";
 import rounds from "@/components/rounds.vue";
 export default {
+ // props:['username'],
   name: 'SwissStandings',
   components: {Header},
   data(){

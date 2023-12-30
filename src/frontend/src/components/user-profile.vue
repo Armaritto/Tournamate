@@ -18,8 +18,8 @@
           </td>
           <!-- <td style="grid-column: span 2;"><p>        </p><h1>                   </h1></td> -->
           <div style="white-space: pre;">                                                </div>
-    
-          <!-- <td>           
+
+          <!-- <td>
             <h1 style="font-family: ubuntu-bold;font-size: 30px;padding-bottom: 15px; align-items: center; align-content: center; display: flex;justify-content: center;">New profile</h1>
           </td> -->
         </tr>
@@ -37,18 +37,18 @@
             <div type="submit" class="active header-right header-rightHovered" style="text-decoration: none; margin-left: 5px;width:135px;text-align: center;">
                 Change Photo
               </div>
-            
-          </td>
-         
 
-           
+          </td>
+
+
+
         </tr>
         <tr>
           <td style="font-family: ubuntu-bold;font-size: 30px;padding-bottom: 15px;padding-top: 15px">
             Username
           </td>
           <td></td>
-          <td>           
+          <td>
             <div v-if="toggleUsername" style="font-family: ubuntu-bold;font-size: 30px;padding-bottom: 15px; align-items: center; align-content: center; display: flex;justify-content: center;">New Username:</div>
           </td>
         </tr>
@@ -75,10 +75,10 @@
           <td>
             <div v-if="displayDynamicComponent" style="font-family: ubuntu-bold;font-size: 30px;padding-bottom: 15px; align-items: center; align-content: center; display: flex;justify-content: center;  "> Old Password:</div>
           </td>
-      
+
           <td></td>
           <td>
-              
+
             <div v-if="displayDynamicComponent" style="font-family: ubuntu-bold;font-size: 30px;padding-bottom: 15px; align-items: center; align-content: center; display: flex;justify-content: center;  "> New Password:</div>
           </td>
         </tr>
@@ -96,7 +96,7 @@
           </td>
           <td>
             <!-- <button v-if="displayDynamicComponent">Check</button> -->
-          </td>    
+          </td>
           <!-- <div style="white-space: pre;"> </div>                              -->
           <td>
             <input v-if="displayDynamicComponent" type="password"  id="newPass" class="input-box" placeholder="New Password"/>
@@ -104,7 +104,7 @@
         </tr>
         </tbody>
       </table>
-      
+
       <div @click="storeData(); sendData()" class="active2 header-right2 header-rightHovered2" style="text-decoration: none;margin-right: 200px;margin-top: 0px;-bottom: 50px ;width:135px;text-align: center;background: #213555;
         color: #DDE6ED;">
         Save Changes
@@ -112,7 +112,7 @@
       <div  style="text-decoration: none; margin-left: 1500px; margin-top: 60px; margin-bottom: 60px ;width:135px; text-align: center; color: #CC7469;">{{ state }}</div>
     </div>
 
-  
+
   </div>
   </body>
 
@@ -141,7 +141,7 @@ export default {
       state:"",
       file: null,
     };
-    
+
   },
   mounted() {
     // Access the attribute in the component's lifecycle hooks
@@ -151,25 +151,25 @@ export default {
   methods: {
     async uploadPhoto(){
       const formData = new FormData();
-        
+
             formData.append('file',this.file);
             const response = await axios.post('http://localhost:9190/setProfilePicture'+this.username, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
-         
+
         }
         );
         this.fromBack=response.data;
         this.file=null
       },
-     
-     
-   
+
+
+
     handleFile(){
           this.file=document.getElementById('attachment').files[0]
           console.log(this.file);
-         
+
       },
     // triggerFileInput() {
     //   // Simulate a click on the hidden file input
@@ -178,14 +178,14 @@ export default {
     // handleFileChange(event) {
     //   // Handle file change event (called when a file is selected)
     //   const file = event.target.files[0];
- 
+
     //   const formData = new FormData();
     //   formData.append('photo', file);
- 
+
     //   // Assuming you have an API endpoint for photo upload
     //   // Adjust the URL accordingly
     //   const apiUrl = 'http://localhost:9190/setProfilePicture';
- 
+
     //   // Use your preferred HTTP library for making the request
     //   // For example, using axios
     //   axios.post(apiUrl, formData)
@@ -201,7 +201,7 @@ export default {
       //   this.newUsername = document.getElementById("username").value
       //   console.log(this.newUsername)
       // }
-  
+
       // if(document.getElementById("oldPass").value !== null){
       //   this.oldPassword = document.getElementById("oldPass").value
       //   console.log(this.oldPassword)
@@ -460,11 +460,11 @@ body {
       display: flex;
       justify-content: flex-start; /* Align content to the start (left) of the page */
       align-items: center;
-      height: 100vh; 
+      height: 100vh;
       text-align: left; /* Align text to the left within the content */
       max-width: 600px; /* Set a maximum width for the content if needed */
       margin: 0 auto; /* Center the content horizontally within the page */
-      padding: 20px; 
+      padding: 20px;
 }
 .input-box{
     border-radius: 20px;

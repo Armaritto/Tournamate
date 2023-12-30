@@ -22,19 +22,19 @@ const router = createRouter({
     // base: __dirname,
     routes: [
         { path: '/', component: logIn },
-        { path: '/:id/SwissStandings', component: SwissStandings, props:true },
-        { path: '/about', component: About },
+        { path: '/:id/SwissStandings', component: SwissStandings, props:true},
+        { path: '/:username/about', component: About, props:true},
 
-        { path: '/:username/profile', component: Profile, props:true },
-       
-        { path: '/rounds', component: rnds},
+        { path: '/:username/profile', component: Profile, props:true},
 
-        { path: '/createTournament', component: CreateTournament},
+        { path: '/:username/rounds', component: rnds, props:true},
+
+        { path: '/:username/createTournament', component: CreateTournament, props:true},
         { path: '/:id/rounds', component: rnds, props: true},
 
-        { path: '/createKnockout', component: CreateKnockout},
-        { path: '/createRoundRobin', component: CreateRobin},
-        { path: '/createGroups', component: CreateGroups},
+        { path: '/:username/createKnockout', component: CreateKnockout},
+        { path: '/:username/createRoundRobin', component: CreateRobin, props:true},
+        { path: '/:username/createGroups', component: CreateGroups},
         { path: '/NewAccount', component: NewAccount},
         { path: '/:id/roundsRobin', component: rnds_Robin, props: true},
         { path: '/:id/RoundRobinStandings', component: RoundRobinStandings, props: true},

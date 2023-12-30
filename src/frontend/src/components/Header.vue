@@ -13,7 +13,7 @@
       <a class="logo">TournaMate</a>
       <div class="header-right header-rightHovered">
         <div>
-          <router-link to="/profile" class="nav-link">
+          <router-link v-if="this.username !== ':username'"  :to="{path: '/' + this.username + '/profile/'}" class="nav-link">
             <lord-icon class = "icon"
                        src="https://cdn.lordicon.com/kthelypq.json"
                        trigger="hover"
@@ -24,23 +24,23 @@
       </div>
       <div class="header-right header-rightHovered">
         <div>
-          
+
             <div class="active" style="text-decoration: none;">
               <router-link to="/about">
                 About
               </router-link>
-            </div>        
-        </div>       
+            </div>
+        </div>
       </div>
       <div class="header-right header-rightHovered">
         <div>
-          
+
             <div class="active" style="text-decoration: none;">
               <router-link to="/">
                 Log out
               </router-link>
-            </div>        
-        </div>       
+            </div>
+        </div>
       </div>
     </div>
   </div>
@@ -48,7 +48,13 @@
 
 
 </template>
-<script setup>
+<script>
+export default{
+  props:['username'],
+  mounted(){
+    console.log(this.username)
+  }
+}
 </script>
 
 <style scoped>
