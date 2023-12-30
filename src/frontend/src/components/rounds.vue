@@ -1,7 +1,6 @@
 <template>
   <Header></Header>
   <div class="page">
-    <h1>Round {{roundNumber}}</h1>
     <div style="margin-top: 30px;">
       <table style="width: 50%">
         <tr v-for="(match, index) in matches" :key="index">
@@ -118,7 +117,7 @@ export default defineComponent({
     return{
       valueQR: '192.168.1.3:3000/#/ViewStats/',
       size: 300,
-      roundNumber: 1,
+      roundNumber: 0,
       maxRounds:2,
       tournamentID: this.id ,
       matches:[

@@ -57,7 +57,7 @@ export default{
 </script>
 
 <style>
-  p .new{
+  .new{
     font-size: large;
   }
 </style>

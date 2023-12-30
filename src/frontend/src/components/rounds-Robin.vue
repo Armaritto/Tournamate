@@ -1,7 +1,6 @@
 <template>
   <Header></Header>
   <div class="page">
-    <h1>Round {{roundNumber}}</h1>
     <div style="margin-top: 30px;">
       <table style="width: 50%">
         <tr v-for="(match, index) in matches" :key="index">
