@@ -24,9 +24,14 @@ const router = createRouter({
         { path: '/', component: logIn },
         { path: '/:id/SwissStandings', component: SwissStandings, props:true },
         { path: '/about', component: About },
-        { path: '/profile', component: Profile },
+
+        { path: '/:username/profile', component: Profile, props:true },
+       
+        { path: '/rounds', component: rnds},
+
         { path: '/createTournament', component: CreateTournament},
         { path: '/:id/rounds', component: rnds, props: true},
+
         { path: '/createKnockout', component: CreateKnockout},
         { path: '/createRoundRobin', component: CreateRobin},
         { path: '/createGroups', component: CreateGroups},

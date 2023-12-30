@@ -1,8 +1,12 @@
 <template>
+
+ 
+
   <head>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script> -->
+
   </head>
   <Header></Header>
+
   <div class="types">
       <p style="font-family: ubuntu-bold">Swiss</p>
     <router-link to="/createKnockout" style="text-decoration: none;">
@@ -134,6 +138,7 @@ export default {
   components: {Header},
   data(){
     return{
+      username:"",
       roomName: '',
       teams: [],
       tournamentID: 13,
@@ -187,7 +192,16 @@ export default {
       },
     }
   },
+
+  mounted() {
+    // Access the attribute in the component's lifecycle hooks
+    this.username = this.$route.params.username;
+    console.log('Received Attribute:', this.username);
+  },
   methods: {
+   checkGuest(){
+      return this.username!==":username"
+    },
     onChange(event) {
       this.file = event.target.files ? event.target.files[0] : null;
       if (this.file) {
@@ -211,6 +225,7 @@ export default {
       }
     },
   }
+
 }
 </script>
 

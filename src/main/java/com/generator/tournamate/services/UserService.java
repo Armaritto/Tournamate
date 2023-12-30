@@ -1,10 +1,21 @@
 package com.generator.tournamate.services;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.generator.tournamate.entities.Database;
 import com.generator.tournamate.entities.LogIn;
+import com.generator.tournamate.entities.Profile;
 import com.generator.tournamate.entities.SignUp;
 import com.generator.tournamate.entities.User;
 import com.generator.tournamate.repository.UserRepository;
+
+import jakarta.activation.MimetypesFileTypeMap;
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Pattern; 
 
 @Service
@@ -54,7 +65,8 @@ public String signUp (SignUp signup)
 			user.setUsername(signup.getUsername());
 			user.setFirstname(signup.getFirstname());
 			user.setLastname(signup.getLastname());
-
+            this.NewProfile(signup);
+            
 			userRepository.save(user);
 			return "signUpSuccess";
 		}
@@ -62,20 +74,20 @@ public String signUp (SignUp signup)
 	
 public String logIn (LogIn login)
 {
+
 		if(login.getUsernameOrEmail().length()==0){
 			return "Enter valid Username/Email.";
 		}
 		if(login.getPassword().length()==0){
 			return "Enter valid Password.";
 		}
-		User user = userRepository
-				            .findByUsernameOrEmail(login.getUsernameOrEmail(),
-		                                          login.getUsernameOrEmail());
-		if(user==null) {
+		Database d = Database.getInstance();
+	    Profile p = d.getProfile(login.getUsernameOrEmail());
+		if(p==null) {
 			return "Invalid Username.";
 		}
 		else
-			if(login.getPassword().equals(user.getPassword()))
+			if(login.getPassword().equals(p.getPassword()))
 			return "loginSuccess";
 			else return "Wrong Password";
 }
@@ -92,5 +104,90 @@ public static boolean isValidEmail(String email)
             return false; 
         return pat.matcher(email).matches(); 
 } 
+public void NewProfile(SignUp sign) {
+	Database data = Database.getInstance();
+	data.addProfile(new Profile(sign.getFirstname(),sign.getLastname()
+			,sign.getUsername(),sign.getPassword(),sign.getEmail()));	
+}
+public void AddSwissTournament(String username , String id , String tourname) {
+	Database d = Database.getInstance();
+	Profile p = d.getProfile(username);
+	String[] s = {tourname,id};
+	 p.getSwissTournaments().add(s);
+}
+public void AddRoundRobinTournament(String username , String id , String tourname) {
+	Database d = Database.getInstance();
+	Profile p = d.getProfile(username);
+	String[] s = {tourname,id};
+    p.getRoundRobinTournaments().add(s);
+}
+public ArrayList<String[]> getSwissTournaments(String username){
+	Database d = Database.getInstance();
+	Profile p = d.getProfile(username);
+	return p.getSwissTournaments();	
+}
+public ArrayList<String[]> getRoundRobinTournament( String username){
+	Database d = Database.getInstance();
+	Profile p = d.getProfile(username);
+	return p.getRoundRobinTournaments();		
+}
+public String editUserName(String username , String newUserName)
+{
+	Database d = Database.getInstance();
+	Profile p = d.getProfile(username);
+	Profile p2 = d.getProfile(newUserName);
+	if(p2!=null) return "UserNameTaken";
+	if(newUserName.length()>=6 && newUserName.length()<=32)
+	{
+		p.setUsername(newUserName);
+		return "UserNamesuccess";
+	}
+	if(newUserName.length()<6)
+	return"UserNameTooShort";
+	else if(newUserName.length()>32)
+		return"UserNameTooLong";
+    return "UserNamesuccess";		
+}
+public String editPassword(String username ,String oldpass , String newpass)
+{
+	System.out.println("I AM HEREEEEEEEEEEEEEEEEEEEEEEEEEE"+oldpass);
+	Database d = Database.getInstance();
+	Profile p = d.getProfile(username);
+	if(!p.getPassword().equals(oldpass))
+		return "passwordWrong";
+	if(newpass.length()<8)
+		return "passwordTooShort";
+	else if(newpass.length()>64)
+		return "passwordTooLong";
+	p.setPassword(newpass);
+	return "passwordsuccess";
+}
+public String setProfilePicture( String username,
+		 MultipartFile file) {
+	Database d = Database.getInstance();
+	Profile p = d.getProfile(username);
+	if (!isPicture(file)) {
+        return "Invalid file format. Only images are allowed.";
+    }
+	try {
+		p.setImage(file.getBytes());
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return "PictureSuccess";	
+}
+public static boolean isPicture(MultipartFile file) {
+    MimetypesFileTypeMap fileTypeMap = new MimetypesFileTypeMap();
+	 String contentType = fileTypeMap.getContentType(file.getOriginalFilename());
+	return contentType != null && contentType.startsWith("image");
+}
+public byte[] getProfilePicture(String username) {
+	Database d = Database.getInstance();
+	Profile p = d.getProfile(username);
+	return p.getImage();
 	
+}
+
+
 }

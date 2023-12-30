@@ -27,8 +27,16 @@
         <h1 style="color:#e2f4ff; font-size: 50px;">Login</h1>
         <div class="log-in">
             <form>
-                <input type="text" class="input-box" id="username" placeholder="Username/Email"/>
-                <input type="password" class="input-box" id="pass" placeholder="Password"/>
+                <div class="input-group">
+                  <label for="username">Username:</label>
+                  <input type="text" id="username" class="input-box" placeholder="Username"/>
+                </div>
+                <div class="input-group">
+                  <label for="pass">Password:</label>
+                  <input type="password" id="pass" class="input-box" placeholder="Password"/>
+                </div>
+                <!-- <input type="text" class="input-box" id="username" placeholder="Username/Email"/>
+                <input type="password" class="input-box" id="pass" placeholder="Password"/> -->
                 <div class="display" style="color: #CC7469;">{{ condition }}</div>
                 <router-link to="/NewAccount">
                   <p style="font-size:10px; color:#DDE6ED;" class="other">Create new account? Sign up.</p>
@@ -37,7 +45,7 @@
 
                 <button type="button" class="login-btn" @click="storeData();login()">Login</button>
 
-                <router-link to="/createTournament">
+                <router-link to="/:username/createTournament">
                   <p style="font-size:10px; color:#DDE6ED;" class="other">Continue as a guest.</p>
                  </router-link>
                 <!-- <p style="font-size:10px" class="other"><a href="#" style=" color: #DDE6ED">Continue as a guest.</a></p> -->
@@ -89,7 +97,7 @@
               this.condition=this.fromBack;
             }
             else{
-                 location.replace("http://localhost:3000/#/createTournament")
+                 location.replace("http://localhost:3000/#/"+this.username+"/createTournament")
               // window.location.href = "http://localhost:3000/createTournament"
               // window.open("http://localhost:3000/#/createTournament")
             }
@@ -180,7 +188,7 @@ body {
 
 .log-in{
     width: 300px;
-    padding: 10px;
+    padding: 30px;
     /* margin: 8% auto 0; */
     text-align: center;
 }
@@ -211,6 +219,22 @@ body {
     color: #bbccd7;
 }
 
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  color: #DDE6ED;
+  width: 150px; /* Adjust the width as needed */
+  margin-right: 10px;
+}
+
+.input-box {
+  width: 200px; /* Adjust the width as needed */
+  padding: 5px;
+}
 
 
 </style>
